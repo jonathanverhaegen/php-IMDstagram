@@ -13,3 +13,15 @@
     margin-left:auto;
     margin-right:auto;
 }
+
+#imageFeed{
+    width:60%;
+    margin-left:auto;
+    margin-right:auto;
+    
+}
+
+#feedImage{
+    height:250px;
+    width:250px;
+}

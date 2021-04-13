@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+
+    $user_id = $_GET["user_id"];
+
+    echo $user_id;
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,11 +19,14 @@
 
 <?php include_once(__DIR__."/header.php") ?>
 
-<div class="container">
-    <div class="row" >
-        <div class="col-md">test1</div>
-        <div class="col-md">test2</div>
-        <div class="col-md">test3</div>
+<div class="container" >
+    <div class="row" id="imageFeed" >
+        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
+        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
+        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
+        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
+        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
+        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
     </div>
 </div>
 
