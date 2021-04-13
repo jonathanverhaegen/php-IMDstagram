@@ -14,6 +14,40 @@
     margin-right:auto;
 }
 
+#containerProfileInfo{
+    margin-top:20px;
+    
+}
+
+#rowProfileInfo{
+    width:60%;
+    margin-left:auto;
+    margin-right:auto;
+    border-bottom: 1px solid gray;
+    padding-bottom:10px;
+}
+
+#profileImage{
+    height:100px;
+    width:100px;
+    border-radius:50%;
+}
+
+.userInfo{
+    display:flex;
+    gap:15px;
+}
+
+
+
+
+
+
+
+#containerImageFeed{
+    margin-top:50px;
+}
+
 #imageFeed{
     width:60%;
     margin-left:auto;

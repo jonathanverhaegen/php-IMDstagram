@@ -2,7 +2,7 @@
 
     $user_id = $_GET["user_id"];
 
-    echo $user_id;
+    
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -19,7 +19,25 @@
 
 <?php include_once(__DIR__."/header.php") ?>
 
-<div class="container" >
+<div class="container" id="containerProfileInfo">
+    <div class="row align-items-center" id="rowProfileInfo">
+        <div class="col-4"><img id="profileImage" src="images/1.jpg" alt=""></div>
+        <div class="col-8">
+            
+                <h5>Jonathan Verhaegen</h5>
+                <div class="userInfo">
+                    <p>7 berichten</p>
+                    <p>7 volgers</p>
+                    <p>7 volgend</p>
+                </div>
+                <p>bio</p>
+                
+            
+        </div>
+    </div>
+</div>
+
+<div class="container" id="containerImageFeed" >
     <div class="row" id="imageFeed" >
         <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
         <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
