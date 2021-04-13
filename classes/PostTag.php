@@ -43,4 +43,13 @@ class PostTag{
 
         return $this;
     }
+
+    public static function getPostIdByTagId($tag_id){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("select post_id from posts_tags where tag_id = :tag_id");
+        $statement->bindValue(":tag_id", $tag_id);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

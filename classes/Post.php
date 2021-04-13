@@ -1,4 +1,5 @@
 <?php
+include_once(__DIR__."/Db.php");
 
 class Post{
     private $user_id;
@@ -87,11 +88,22 @@ class Post{
     }
 
     public static function getAllForUser($user_id){
-        $conn = new PDO('mysql:host=localhost;dbname=buckle_up', "root", "root");
+        $conn = Db::getConnection();
         $statement = $conn->prepare("select * from posts where user_id = :user_id");
         $statement->bindValue(":user_id", $user_id);
         $statement->execute();
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getPostById($id){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("select * from posts where id IN :id");
+        $statement->bindValue(":id", $id);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        
     }
 }

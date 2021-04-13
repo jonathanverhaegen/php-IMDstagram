@@ -23,4 +23,13 @@ class Tag{
 
         return $this;
     }
+
+    public static function getTagByText($text){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("select * from tags where text = :text");
+        $statement->bindValue(":text", $text);
+        $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
 }

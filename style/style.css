@@ -59,3 +59,44 @@
     height:250px;
     width:250px;
 }
+
+#containerTag{
+    margin-top:50px;
+}
+
+#tag{
+    text-align:center;
+}
+
+#containerUploadPost{
+    margin-top:50px;
+}
+
+#titleUpload{
+    text-align:center;
+}
+
+
+form{
+    display:grid;
+    align-items:center;
+    width:60%;
+    margin-left:auto;
+    margin-right:auto;
+    
+}
+
+label{
+    margin-top:20px;
+    margin-bottom:5px;
+}
+
+.container_btn{
+    display:grid;
+    justify-content: center;
+}
+
+.btn_upload{
+    margin-top:50px;
+    width:100%;
+}
