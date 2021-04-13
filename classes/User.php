@@ -1,21 +1,13 @@
-<?php 
+<?php
 
 class User{
     private $username;
-    private $password;
     private $email;
-    private $profilepic;
+    private $password;
+    private $image;
     private $bio;
-    private $map;
-    private $followers;
-    private $following;
-    private $badges;
-    private $friends;
-    private $favorites;
     private $status_id;
-
-
-
+    
 
     /**
      * Get the value of username
@@ -33,26 +25,6 @@ class User{
     public function setUsername($username)
     {
         $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of password
-     */ 
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set the value of password
-     *
-     * @return  self
-     */ 
-    public function setPassword($password)
-    {
-        $this->password = $password;
 
         return $this;
     }
@@ -78,21 +50,41 @@ class User{
     }
 
     /**
-     * Get the value of profilepic
+     * Get the value of password
      */ 
-    public function getProfilepic()
+    public function getPassword()
     {
-        return $this->profilepic;
+        return $this->password;
     }
 
     /**
-     * Set the value of profilepic
+     * Set the value of password
      *
      * @return  self
      */ 
-    public function setProfilepic($profilepic)
+    public function setPassword($password)
     {
-        $this->profilepic = $profilepic;
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of image
+     */ 
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set the value of image
+     *
+     * @return  self
+     */ 
+    public function setImage($image)
+    {
+        $this->image = $image;
 
         return $this;
     }
@@ -113,126 +105,6 @@ class User{
     public function setBio($bio)
     {
         $this->bio = $bio;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of map
-     */ 
-    public function getMap()
-    {
-        return $this->map;
-    }
-
-    /**
-     * Set the value of map
-     *
-     * @return  self
-     */ 
-    public function setMap($map)
-    {
-        $this->map = $map;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of followers
-     */ 
-    public function getFollowers()
-    {
-        return $this->followers;
-    }
-
-    /**
-     * Set the value of followers
-     *
-     * @return  self
-     */ 
-    public function setFollowers($followers)
-    {
-        $this->followers = $followers;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of following
-     */ 
-    public function getFollowing()
-    {
-        return $this->following;
-    }
-
-    /**
-     * Set the value of following
-     *
-     * @return  self
-     */ 
-    public function setFollowing($following)
-    {
-        $this->following = $following;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of badges
-     */ 
-    public function getBadges()
-    {
-        return $this->badges;
-    }
-
-    /**
-     * Set the value of badges
-     *
-     * @return  self
-     */ 
-    public function setBadges($badges)
-    {
-        $this->badges = $badges;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of friends
-     */ 
-    public function getFriends()
-    {
-        return $this->friends;
-    }
-
-    /**
-     * Set the value of friends
-     *
-     * @return  self
-     */ 
-    public function setFriends($friends)
-    {
-        $this->friends = $friends;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of favorites
-     */ 
-    public function getFavorites()
-    {
-        return $this->favorites;
-    }
-
-    /**
-     * Set the value of favorites
-     *
-     * @return  self
-     */ 
-    public function setFavorites($favorites)
-    {
-        $this->favorites = $favorites;
 
         return $this;
     }

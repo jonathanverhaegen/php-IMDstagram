@@ -1,9 +1,10 @@
 <?php
 
-class Comment{
+class Like{
     private $user_id;
     private $post_id;
-    private $text;
+
+    
 
     /**
      * Get the value of user_id
@@ -41,26 +42,6 @@ class Comment{
     public function setPost_id($post_id)
     {
         $this->post_id = $post_id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of text
-     */ 
-    public function getText()
-    {
-        return $this->text;
-    }
-
-    /**
-     * Set the value of text
-     *
-     * @return  self
-     */ 
-    public function setText($text)
-    {
-        $this->text = $text;
 
         return $this;
     }

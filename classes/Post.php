@@ -1,49 +1,27 @@
 <?php
 
 class Post{
-    private $image;
-    private $title;
+    private $user_id;
     private $text;
-    private $location;
-    private $likes;
-    private $tags;
+    private $time;
+    private $image;
 
     /**
-     * Get the value of image
+     * Get the value of user_id
      */ 
-    public function getImage()
+    public function getUser_id()
     {
-        return $this->image;
+        return $this->user_id;
     }
 
     /**
-     * Set the value of image
+     * Set the value of user_id
      *
      * @return  self
      */ 
-    public function setImage($image)
+    public function setUser_id($user_id)
     {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of title
-     */ 
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set the value of title
-     *
-     * @return  self
-     */ 
-    public function setTitle($title)
-    {
-        $this->title = $title;
+        $this->user_id = $user_id;
 
         return $this;
     }
@@ -69,61 +47,41 @@ class Post{
     }
 
     /**
-     * Get the value of location
+     * Get the value of time
      */ 
-    public function getLocation()
+    public function getTime()
     {
-        return $this->location;
+        return $this->time;
     }
 
     /**
-     * Set the value of location
+     * Set the value of time
      *
      * @return  self
      */ 
-    public function setLocation($location)
+    public function setTime($time)
     {
-        $this->location = $location;
+        $this->time = $time;
 
         return $this;
     }
 
     /**
-     * Get the value of likes
+     * Get the value of image
      */ 
-    public function getLikes()
+    public function getImage()
     {
-        return $this->likes;
+        return $this->image;
     }
 
     /**
-     * Set the value of likes
+     * Set the value of image
      *
      * @return  self
      */ 
-    public function setLikes($likes)
+    public function setImage($image)
     {
-        $this->likes = $likes;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of tags
-     */ 
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * Set the value of tags
-     *
-     * @return  self
-     */ 
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
+        $this->image = $image;
 
         return $this;
     }
