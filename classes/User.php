@@ -1,5 +1,7 @@
 <?php
 
+include_once(__DIR__."/Db.php");
+
 class User{
     private $username;
     private $email;
@@ -130,7 +132,7 @@ class User{
     }
 
     public static function getUser($user_id){
-        $conn = new PDO('mysql:host=localhost;dbname=buckle_up', "root", "root");
+        $conn = Db::getConnection();
         $statement = $conn->prepare("select * from users where id = :user_id");
         $statement->bindValue(":user_id", $user_id);
         $statement->execute();
