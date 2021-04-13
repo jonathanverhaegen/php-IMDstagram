@@ -128,4 +128,13 @@ class User{
 
         return $this;
     }
+
+    public static function getUser($user_id){
+        $conn = new PDO('mysql:host=localhost;dbname=buckle_up', "root", "root");
+        $statement = $conn->prepare("select * from users where id = :user_id");
+        $statement->bindValue(":user_id", $user_id);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
 }

@@ -1,6 +1,21 @@
 <?php
 
-    $user_id = $_GET["user_id"];
+    include_once(__DIR__."/classes/User.php");
+    include_once(__DIR__."/classes/Post.php");
+
+    if(!empty($_GET["user_id"])){
+        $user = User::getUser($_GET["user_id"]);
+        $posts = Post::getAllForUser($user["id"]);
+    }
+
+    $numberOfPosts = count($posts);
+
+    
+
+    
+    
+
+    
 
     
 
@@ -21,16 +36,16 @@
 
 <div class="container" id="containerProfileInfo">
     <div class="row align-items-center" id="rowProfileInfo">
-        <div class="col-4"><img id="profileImage" src="images/1.jpg" alt=""></div>
+        <div class="col-4"><img id="profileImage" src="<?php echo $user["image"] ?>" alt=""></div>
         <div class="col-8">
             
-                <h5>Jonathan Verhaegen</h5>
+                <h5><?php echo $user["username"] ?></h5>
                 <div class="userInfo">
-                    <p>7 berichten</p>
+                    <p><?php echo $numberOfPosts ?> berichten</p>
                     <p>7 volgers</p>
                     <p>7 volgend</p>
                 </div>
-                <p>bio</p>
+                <p><?php echo $user["bio"] ?></p>
                 
             
         </div>
@@ -39,12 +54,10 @@
 
 <div class="container" id="containerImageFeed" >
     <div class="row" id="imageFeed" >
-        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
-        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
-        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
-        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
-        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
-        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
+        <?php foreach($posts as $p): ?>
+        <div class="col-4"><img id="feedImage" src="<?php echo $p["image"] ?>" alt="post"></div>
+        <?php endforeach; ?>
+        
     </div>
 </div>
 

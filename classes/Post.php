@@ -85,4 +85,13 @@ class Post{
 
         return $this;
     }
+
+    public static function getAllForUser($user_id){
+        $conn = new PDO('mysql:host=localhost;dbname=buckle_up', "root", "root");
+        $statement = $conn->prepare("select * from posts where user_id = :user_id");
+        $statement->bindValue(":user_id", $user_id);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
