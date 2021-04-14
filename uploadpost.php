@@ -6,6 +6,7 @@ include_once(__DIR__."/classes/Post.php");
     if(!empty($_POST)){
 
         
+        
         $file = $_FILES['file'];
 
         $fileName = $file['name'];
@@ -20,7 +21,7 @@ include_once(__DIR__."/classes/Post.php");
         $allowed = array("jpg", "png", "jpeg", "gif");
 
         if(in_array($fileActExt, $allowed)){
-
+            
             if($fileError === 0){
 
                 if($fileSize < 1000000){
@@ -39,9 +40,11 @@ include_once(__DIR__."/classes/Post.php");
                     $time = $dateUnix->format('Y-m-d H:i:s') . "\n";
                     $image = $fileDestination;
 
-                    $status = Post::uploadPost($user_id,$text,$time,$image);
+                    Post::uploadPost($user_id,$text,$time,$image);
 
-                    echo $status;
+                    header("Location: userpage.php?user_id=".$user_id);
+
+                    
                     
                     
 
@@ -56,6 +59,7 @@ include_once(__DIR__."/classes/Post.php");
             }
         }else{
             $error = "files are not supported";
+            
         }
     }
 
@@ -66,9 +70,7 @@ include_once(__DIR__."/classes/Post.php");
         
         
         
-        if(!empty($error)){
-            echo $error;
-        }
+        
         
 
         
@@ -101,6 +103,13 @@ include_once(__DIR__."/classes/Post.php");
         <div class="col-12" id="uploadPost">
 
             <form action="" method="post" enctype="multipart/form-data">
+
+            <?php if(isset($error)): ?>
+
+                <p id="message">Oops, there went something wrong:</p>
+                <p id="errorMessage" ><?php echo $error ?></p>
+
+            <?php endif; ?>
 
                 <label for="file">Image</label>
                 <input type="file" id="file" name="file">

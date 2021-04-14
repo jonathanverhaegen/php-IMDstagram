@@ -58,6 +58,7 @@
 #feedImage{
     height:250px;
     width:250px;
+    padding-bottom:10px;
 }
 
 #containerTag{
@@ -99,4 +100,13 @@ label{
 .btn_upload{
     margin-top:50px;
     width:100%;
+}
+
+#message{
+    margin-top:25px;
+}
+
+#errorMessage{
+    font-weight:bold;
+    margin-top:-20px;
 }
