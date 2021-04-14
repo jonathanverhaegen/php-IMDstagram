@@ -3,7 +3,7 @@
 include_once(__DIR__."/classes/Post.php");
 
 
-    if(!empty($_POST)){
+    if(!empty($_POST && $_POST["description"])){
 
         
         
@@ -61,6 +61,8 @@ include_once(__DIR__."/classes/Post.php");
             $error = "files are not supported";
             
         }
+    }else{
+        $error = "description cannot by empty";
     }
 
     
