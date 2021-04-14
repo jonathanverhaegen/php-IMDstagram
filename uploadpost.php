@@ -5,16 +5,76 @@ include_once(__DIR__."/classes/Post.php");
 
     if(!empty($_POST)){
 
-        $user_id = 1;
-        $image = "images/".$_POST["file"];
-        $text = $_POST["description"];
-        $time = new DateTime();
+        
+        $file = $_FILES['file'];
+
+        $fileName = $file['name'];
+        $fileTmpName = $file['tmp_name'];
+        $fileSize = $file['size'];
+        $fileError = $file['error'];
+        $fileType = $file['type'];
+
+        $fileExt = explode('.', $fileName);
+        $fileActExt = strtolower(end($fileExt));
+
+        $allowed = array("jpg", "png", "jpeg", "gif");
+
+        if(in_array($fileActExt, $allowed)){
+
+            if($fileError === 0){
+
+                if($fileSize < 1000000){
+
+                    $fileNameNew = uniqid('', true).".".$fileActExt;
+
+                    $fileDestination = 'images/'.$fileNameNew;
+
+                    move_uploaded_file($fileTmpName, $fileDestination);
+
+                    //upload the file to db
+
+                    $user_id = 1;
+                    $text = $_POST["description"];
+                    $dateUnix = new DateTime();
+                    $time = $dateUnix->format('Y-m-d H:i:s') . "\n";
+                    $image = $fileDestination;
+
+                    $status = Post::uploadPost($user_id,$text,$time,$image);
+
+                    echo $status;
+                    
+                    
+
+                }else{
+                    $error = "file is to big to upload";
+                }
+                
+
+            }else{
+                $error = "there was an error uploading the file";
+            
+            }
+        }else{
+            $error = "files are not supported";
+        }
+    }
+
+    
+
+
+        
+        
+        
+        
+        if(!empty($error)){
+            echo $error;
+        }
         
 
         
       
        
-    }
+    
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -40,9 +100,9 @@ include_once(__DIR__."/classes/Post.php");
     <div class="row">
         <div class="col-12" id="uploadPost">
 
-            <form action="#" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
 
-                <label for="filename">Image</label>
+                <label for="file">Image</label>
                 <input type="file" id="file" name="file">
             
 

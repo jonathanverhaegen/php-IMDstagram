@@ -89,7 +89,7 @@ class Post{
 
     public static function getAllForUser($user_id){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("select * from posts where user_id = :user_id");
+        $statement = $conn->prepare("select * from posts where user_id = :user_id order by time DESC");
         $statement->bindValue(":user_id", $user_id);
         $statement->execute();
 
@@ -105,5 +105,22 @@ class Post{
         return $statement->fetchAll(PDO::FETCH_ASSOC);
 
         
+    }
+
+    public static function uploadPost($user_id, $text, $time, $image){
+
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("insert into posts (user_id, text, time, image) values (:user_id, :text, :time, :image)");
+        $statement->bindValue(":user_id", $user_id);
+        $statement->bindValue(":text", $text);
+        $statement->bindValue(":time", $time);
+        $statement->bindValue(":image", $image);
+
+        $statement->execute();
+
+        return "succes";
+
+        
+
     }
 }
