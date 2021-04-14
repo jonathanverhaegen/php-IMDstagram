@@ -1,6 +1,8 @@
 <?php
 
 include_once(__DIR__."/classes/Post.php");
+include_once(__DIR__."/classes/Tag.php");
+include_once(__DIR__."/classes/PostTag.php");
 
 
     if(!empty($_POST && $_POST["description"])){
@@ -32,21 +34,61 @@ include_once(__DIR__."/classes/Post.php");
 
                     move_uploaded_file($fileTmpName, $fileDestination);
 
-                    //upload the file to db
+                    //upload the file to db posts
 
-                    $user_id = 1;
-                    $text = $_POST["description"];
+                    $post = new Post();
+
+                    $post->setUser_id(1);
+                    $post->setText($_POST["description"]);
+
                     $dateUnix = new DateTime();
-                    $time = $dateUnix->format('Y-m-d H:i:s') . "\n";
-                    $image = $fileDestination;
+                    $post->setTime($dateUnix->format('Y-m-d H:i:s') . "\n");
+                    
+                    $post->setImage($fileDestination);
 
-                    Post::uploadPost($user_id,$text,$time,$image);
+                    // $post->uploadPost();
 
-                    header("Location: userpage.php?user_id=".$user_id);
+                    //kijken op tag al bestaat
+
+                    $tag = $_POST["tag"];
+
+                    $tags = explode(" ", $tag);
+
+                    foreach($tags as $t){
+                        $result = Tag::getTagByText($t);
+                        if(!empty($result)){
+                            echo "bestaat";
+
+
+
+                        }else{
+                            echo "bestaat niet";
+
+
+
+                            
+                        }
+                    }
+
+                   
 
                     
+
+                    // foreach($tags as $t){
+                    //     $tag = new Tag();
+                    //     $tag->setText($t);
+                    //     // $resultTag = $tag->uploadTag();
+
+                    // }
+
+
+                    // id's van de post en de tag halen
+
                     
-                    
+
+
+                    // header("Location: userpage.php?user_id=".$post->getUser_id());
+
 
                 }else{
                     $error = "file is to big to upload";
@@ -127,6 +169,12 @@ include_once(__DIR__."/classes/Post.php");
 
                 <label for="description">Description</label>
                 <input type="text" id="description" name="description" >
+
+                <label for="tag">Tag</label>
+                <input type="text" id="tag" name="tag" >
+
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" >
 
                 <div class="container_btn">
                 <input class="btn_upload" type="submit" value="Upload">

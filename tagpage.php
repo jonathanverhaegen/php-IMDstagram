@@ -2,14 +2,21 @@
 
     
     include_once(__DIR__."/classes/Post.php");
-    include_once(__DIR__."/classes/PostTag.php");
-    include_once(__DIR__."/classes/Tag.php");
-
+    
     if(!empty($_GET["tag"])){
-        $tag = Tag::getTagByText($_GET["tag"]);
-        $post_id = PostTag::getPostIdByTagId($tag["id"]);
-       
         
+
+        $tagWithout = $_GET["tag"];
+
+        $tag = "#".$tagWithout;
+
+        //alle posts met die tag vinden in database
+
+        $posts = Post::getPostByTagName($tag);
+       
+        var_dump($posts);
+
+        echo $posts[0]["image"];
     }
 
    
@@ -33,19 +40,17 @@
 
 <div class="container" id="containerTag">
     <div class="row">
-        <div class="col-12"><h2 id="tag"><?php echo $tag["text"] ?></h2></div>
+        <div class="col-12"><h2 id="tagTitle"><?php echo $tag?></h2></div>
     </div>
 </div>
 
 <div class="container" id="containerImageFeed" >
     <div class="row" id="imageFeed" >
         
-        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
-        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
-        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
-        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
-        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
-        <div class="col-4"><img id="feedImage" src="images/1.jpg" alt="post"></div>
+    <?php foreach($posts as $p): ?>
+        <div class="col-4"><img id="feedImage" src="<?php echo $p["image"] ?>" alt="post"></div>
+    <?php endforeach; ?>
+        
         
         
     </div>

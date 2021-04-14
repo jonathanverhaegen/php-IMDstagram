@@ -107,20 +107,33 @@ class Post{
         
     }
 
-    public static function uploadPost($user_id, $text, $time, $image){
+    public function uploadPost(){
 
         $conn = Db::getConnection();
         $statement = $conn->prepare("insert into posts (user_id, text, time, image) values (:user_id, :text, :time, :image)");
-        $statement->bindValue(":user_id", $user_id);
-        $statement->bindValue(":text", $text);
-        $statement->bindValue(":time", $time);
-        $statement->bindValue(":image", $image);
+        $statement->bindValue(":user_id", $this->getUser_id());
+        $statement->bindValue(":text", $this->getText());
+        $statement->bindValue(":time", $this->getTime());
+        $statement->bindValue(":image", $this->getImage());
 
         $statement->execute();
 
         return "succes";
 
         
+
+    }
+
+    public static function getPostByTagName($tag){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM `posts` INNER JOIN `posts_tags` ON `posts_tags`.`post_id` = `posts`.`id` INNER JOIN `tags` ON `posts_tags`.`tag_id` = `tags`.`id` AND `tags`.`text` = :tag");
+        $statement->bindValue(":tag", $tag);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+
+        return $result;
+
 
     }
 }
