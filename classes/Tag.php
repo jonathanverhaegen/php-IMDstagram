@@ -54,4 +54,15 @@ class Tag{
         $statement->bindValue(":text", $this->getText());
         return $statement->execute();
     }
+
+    public static function getIdbyText($text){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT `id` FROM `tags` WHERE `text` = :text");
+        $statement->bindValue(":text", $text);
+        $statement->execute();
+
+        $result = $statement->fetch();
+
+        return $result;
+    }
 }

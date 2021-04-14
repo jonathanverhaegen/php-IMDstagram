@@ -5,7 +5,7 @@ include_once(__DIR__."/classes/Tag.php");
 include_once(__DIR__."/classes/PostTag.php");
 
 
-    if(!empty($_POST && $_POST["description"])){
+    if(!empty($_POST["description"])){
 
         
         
@@ -46,8 +46,9 @@ include_once(__DIR__."/classes/PostTag.php");
                     
                     $post->setImage($fileDestination);
 
-                    // $post->uploadPost();
+                    $post->uploadPost();
 
+                    
                     //kijken op tag al bestaat
 
                     $tag = $_POST["tag"];
@@ -59,32 +60,54 @@ include_once(__DIR__."/classes/PostTag.php");
                         if(!empty($result)){
                             echo "bestaat";
 
+                            //post id gaan halen uit databse
+                            //tag id gaan halen uit de database
+
+                           
+                            $idPost = $post->getIdByImage();
+                            $idTag = $result[0]["id"];
+
+                            //nieuwe posttag met de ids
+
+                            $postTag = new PostTag();
+
+                            $postTag->setPost_id($idPost["id"]);
+                            $postTag->setTag_id($idTag);
+
+                            $postTag->upload();
 
 
                         }else{
+
                             echo "bestaat niet";
 
+                            //tag toevoegen aan de database
 
+                            $newTag = new Tag();
+                            $newTag->setText($t);
+                            $textTag = $newTag->getText();
+                            $newTag->uploadTag();
+
+                            //post id gaan halen uit databse
+                            //tag id gaan halen uit de database
+
+                            $idPost = $post->getIdByImage();
+                            $idTag = Tag::getTagByText($textTag);
+                            
+                            //nieuwe posttag met de ids
+                            $postTag = new PostTag();
+
+                            $postTag->setPost_id($idPost["id"]);
+                            $postTag->setTag_id($idTag[0]["id"]);
 
                             
+                            $postTag->upload();
+
+
+
                         }
                     }
-
-                   
-
-                    
-
-                    // foreach($tags as $t){
-                    //     $tag = new Tag();
-                    //     $tag->setText($t);
-                    //     // $resultTag = $tag->uploadTag();
-
-                    // }
-
-
-                    // id's van de post en de tag halen
-
-                    
+                
 
 
                     // header("Location: userpage.php?user_id=".$post->getUser_id());

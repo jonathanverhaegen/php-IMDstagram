@@ -116,11 +116,9 @@ class Post{
         $statement->bindValue(":time", $this->getTime());
         $statement->bindValue(":image", $this->getImage());
 
-        $statement->execute();
+        $result = $statement->execute();
 
-        return "succes";
-
-        
+        return $result;
 
     }
 
@@ -131,9 +129,19 @@ class Post{
         $statement->execute();
 
         $result = $statement->fetchAll();
-
         return $result;
 
 
+    }
+
+    public function getIdByImage(){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT `id` FROM `posts` WHERE `image` = :image");
+        $statement->bindValue(":image", $this->getImage());
+        $statement->execute();
+
+        $result = $statement->fetch();
+
+        return $result;
     }
 }
