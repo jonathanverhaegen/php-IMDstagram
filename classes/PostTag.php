@@ -44,12 +44,15 @@ class PostTag{
         return $this;
     }
 
-    public static function getPostIdByTagId($tag_id){
+
+    public function upload(){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("select post_id from posts_tags where tag_id = :tag_id");
-        $statement->bindValue(":tag_id", $tag_id);
+        $statement = $conn->prepare("insert into posts_tags (post_id, tag_id) values (:post_id, :tag_id)");
+        $statement->bindValue(":post_id", $this->getPost_id());
+        $statement->bindValue(":tag_id", $this->getTag_id());
         $statement->execute();
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    
 }

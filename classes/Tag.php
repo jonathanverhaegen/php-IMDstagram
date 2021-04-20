@@ -1,4 +1,5 @@
 <?php
+include_once(__DIR__."/Db.php");
 
 class Tag{
     private $text;
@@ -24,12 +25,44 @@ class Tag{
         return $this;
     }
 
-    public static function getTagByText($text){
+    public static function getAllTags(){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("select * from tags");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getTagByText($tag){
         $conn = Db::getConnection();
         $statement = $conn->prepare("select * from tags where text = :text");
+        $statement->bindValue(":text", $tag);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+
+        return $result;
+
+        
+    }
+
+    
+
+    public function uploadTag(){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("insert into tags (text) values (:text)");
+        $statement->bindValue(":text", $this->getText());
+        return $statement->execute();
+    }
+
+    public static function getIdbyText($text){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT `id` FROM `tags` WHERE `text` = :text");
         $statement->bindValue(":text", $text);
         $statement->execute();
 
-        return $statement->fetch(PDO::FETCH_ASSOC);
+        $result = $statement->fetch();
+
+        return $result;
     }
 }
