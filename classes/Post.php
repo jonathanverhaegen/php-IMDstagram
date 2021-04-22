@@ -110,10 +110,9 @@ class Post{
     public function uploadPost(){
 
         $conn = Db::getConnection();
-        $statement = $conn->prepare("insert into posts (user_id, text, time, image) values (:user_id, :text, :time, :image)");
+        $statement = $conn->prepare("insert into posts (user_id, description, time, image) values (:user_id, :text, sysdate(), :image)");
         $statement->bindValue(":user_id", $this->getUser_id());
         $statement->bindValue(":text", $this->getText());
-        $statement->bindValue(":time", $this->getTime());
         $statement->bindValue(":image", $this->getImage());
 
         $result = $statement->execute();
@@ -124,7 +123,7 @@ class Post{
 
     public static function getPostByTagName($tag){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM `posts` INNER JOIN `posts_tags` ON `posts_tags`.`post_id` = `posts`.`id` INNER JOIN `tags` ON `posts_tags`.`tag_id` = `tags`.`id` AND `tags`.`text` = :tag");
+        $statement = $conn->prepare("SELECT * FROM `posts` INNER JOIN `posts_tags` ON `posts_tags`.`post_id` = `posts`.`id` INNER JOIN `tags` ON `posts_tags`.`tag_id` = `tags`.`id` AND `tags`.`text` = :tag order by time desc");
         $statement->bindValue(":tag", $tag);
         $statement->execute();
 
@@ -143,5 +142,22 @@ class Post{
         $result = $statement->fetch();
 
         return $result;
+    }
+
+    public static function getAllPosts(){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM `posts` order by time desc");
+        $statement->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public static function deletePost($id){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("delete from posts where id = :id");
+        $statement->bindValue(":id", $id);
+        $statement->execute();
+        
     }
 }

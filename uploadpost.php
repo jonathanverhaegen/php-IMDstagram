@@ -26,7 +26,7 @@ include_once(__DIR__."/classes/PostTag.php");
             
             if($fileError === 0){
 
-                if($fileSize < 1000000){
+                if($fileSize < 5000000){
 
                     $fileNameNew = uniqid('', true).".".$fileActExt;
 
@@ -41,9 +41,6 @@ include_once(__DIR__."/classes/PostTag.php");
                     $post->setUser_id(1);
                     $post->setText($_POST["description"]);
 
-                    $dateUnix = new DateTime();
-                    $post->setTime($dateUnix->format('Y-m-d H:i:s') . "\n");
-                    
                     $post->setImage($fileDestination);
 
                     $post->uploadPost();
@@ -58,7 +55,7 @@ include_once(__DIR__."/classes/PostTag.php");
                     foreach($tags as $t){
                         $result = Tag::getTagByText($t);
                         if(!empty($result)){
-                            echo "bestaat";
+                            
 
                             //post id gaan halen uit databse
                             //tag id gaan halen uit de database
@@ -79,7 +76,7 @@ include_once(__DIR__."/classes/PostTag.php");
 
                         }else{
 
-                            echo "bestaat niet";
+                            
 
                             //tag toevoegen aan de database
 
@@ -110,7 +107,7 @@ include_once(__DIR__."/classes/PostTag.php");
                 
 
 
-                    // header("Location: userpage.php?user_id=".$post->getUser_id());
+                    header("Location: userpage.php?user_id=".$post->getUser_id());
 
 
                 }else{

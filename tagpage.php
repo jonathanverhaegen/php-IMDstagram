@@ -1,7 +1,10 @@
 <?php
 
     
-    include_once(__DIR__."/classes/Post.php");
+include_once(__DIR__."/classes/Post.php");
+include_once(__DIR__."/classes/Tag.php");
+include_once(__DIR__."/classes/User.php");
+include_once(__DIR__."/classes/Report.php");
     
     if(!empty($_GET["tag"])){
         
@@ -13,10 +16,13 @@
         //alle posts met die tag vinden in database
 
         $posts = Post::getPostByTagName($tag);
-       
-        var_dump($posts);
 
-        echo $posts[0]["image"];
+        
+        
+       
+        
+
+        
     }
 
    
@@ -44,7 +50,7 @@
     </div>
 </div>
 
-<div class="container" id="containerImageFeed" >
+<!-- <div class="container" id="containerImageFeed" >
     <div class="row" id="imageFeed" >
         
     <?php foreach($posts as $p): ?>
@@ -54,11 +60,63 @@
         
         
     </div>
+</div> -->
+
+<div class="container">
+<div class="row">
+
+    
+
+
+
+    <?php foreach($posts as $p): ?>
+        <div class="col-12 justify-content-center">
+        <?php 
+
+           $user_id = $p["user_id"]; 
+           $user = User::getUser($user_id);
+           
+           $tags = Tag::getTagsByPostId($p["post_id"]);
+
+           $reports = Report::getReportsById($p["post_id"]);
+
+           $numberOfReports = count($reports);
+
+           
+           if($numberOfReports < 3 || $_SESSION["user-type"] === "admin"):
+
+            
+            ?>
+        <h2 style="margin-top:25px;"><?php echo $user["username"] ?></h2>
+        <img style="height:250px; width:250px;" src="<?php echo $p["image"] ?>" alt="">
+        <p><?php echo $p["description"] ?></p>
+        <div style="display:flex; gap:5px;">
+
+        <?php foreach($tags as $t): ?>
+        <?php $tWithouth = explode("#", $t["text"]); ?>
+            <a style="text-decoration:none;" href="tagpage.php?tag=<?php echo end($tWithouth); ?>"><?php echo $t["text"]; ?></a>
+        <?php endforeach; ?>
+        </div>
+
+        <a id="report" href="#" data-postid="<?php echo $p["post_id"];?>">report</a>
+        
+    <?php endif; ?>
+    </div>
+    <?php endforeach; ?>
+    
+    
+
+</div>
+</div>
+    
+    
+
+</div>
 </div>
 
 
 
 
-    
+<script src="js/app.js"></script>
 </body>
 </html>

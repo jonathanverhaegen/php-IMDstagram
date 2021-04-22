@@ -137,6 +137,6 @@ class User{
         $statement->bindValue(":user_id", $user_id);
         $statement->execute();
 
-        return $statement->fetch();
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 }

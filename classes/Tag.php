@@ -40,10 +40,8 @@ class Tag{
         $statement->execute();
 
         $result = $statement->fetchAll();
-
         return $result;
 
-        
     }
 
     
@@ -62,6 +60,16 @@ class Tag{
         $statement->execute();
 
         $result = $statement->fetch();
+        return $result;
+    }
+
+    public static function getTagsByPostId($id){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT `text` FROM `tags` INNER JOIN `posts_tags` ON `posts_tags`.`tag_id` = `tags`.`id` WHERE `posts_tags`.`post_id` = :id ");
+        $statement->bindValue(":id", $id);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
 
         return $result;
     }
