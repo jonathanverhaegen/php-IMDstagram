@@ -44,7 +44,7 @@
 <?php include_once(__DIR__."/header.php") ?>
 
 
-<h1 style="text-align:center; margin-top:50px;">Posts</h1>
+<h1 style="text-align:center; margin-top:50px;">Posts wow!</h1>
 
 
 
