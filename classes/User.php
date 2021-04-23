@@ -214,16 +214,14 @@ class User{
 
             if ( $email === $oldEmail ) {
                 if ( $newEmail === $newEmailCheck ) {
-                    if ( preg_match( '|@student.thomasmore.be$|', $newEmail ) ) {
+                    
                         $mailUpdateStmt->bindValue( ':newEmail', $newEmail );
                         $mailUpdateStmt->bindValue( ':email', $email );
                         $updateEmailRes = $mailUpdateStmt->execute();
                         $_SESSION['user'] = $newEmail;
 
                         return $updateEmailRes;
-                    } else {
-                        throw new Exception( 'Email must end with @student.thomasmore.be' );
-                    }
+                    
                 } else {
                     throw new Exception( 'you did not repeat the correct email adress' );
                 }
