@@ -6,6 +6,7 @@ class Post{
     private $text;
     private $time;
     private $image;
+    
 
     /**
      * Get the value of user_id
@@ -87,6 +88,8 @@ class Post{
         return $this;
     }
 
+    
+
     public static function getAllForUser($user_id){
         $conn = Db::getConnection();
         $statement = $conn->prepare("select * from posts where user_id = :user_id order by time DESC");
@@ -110,10 +113,11 @@ class Post{
     public function uploadPost(){
 
         $conn = Db::getConnection();
-        $statement = $conn->prepare("insert into posts (user_id, description, time, image) values (:user_id, :text, sysdate(), :image)");
+        $statement = $conn->prepare("insert into posts (user_id, description, time, image) values (:user_id, :text, sysdate(), :image )");
         $statement->bindValue(":user_id", $this->getUser_id());
         $statement->bindValue(":text", $this->getText());
         $statement->bindValue(":image", $this->getImage());
+        
 
         $result = $statement->execute();
 
@@ -160,4 +164,6 @@ class Post{
         $statement->execute();
         
     }
+
+    
 }

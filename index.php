@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cssgram/0.1.10/cssgram.min.css">
     <title>report</title>
 </head>
 <body>
@@ -75,7 +76,9 @@
             
             ?>
         <h2 style="margin-top:25px;"><?php echo $user["username"] ?></h2>
+        <figure style="height:250px; width:250px;" class="aden">
         <img style="height:250px; width:250px;" src="<?php echo $p["image"] ?>" alt="">
+        </figure>
         <p><?php echo $p["description"] ?></p>
         <div style="display:flex; gap:5px;">
 
@@ -97,7 +100,9 @@
 </div>
 
 
-<?php if($_SESSION["user-type"] === "admin"): ?>
+
+
+<!-- <?php if($_SESSION["user-type"] === "admin"): ?>
 <div class="container">
     <div class="row">
 
@@ -150,7 +155,7 @@
 
     </div>
 </div>
-<?php endif; ?>
+<?php endif; ?> -->
 
 <script src="js/app.js"></script>
 
@@ -160,5 +165,4 @@
     
 </body>
 </html>
-=======
->>>>>>> e3a94a1193f411d170bbcb55ab1b38008acd5dd5
+
