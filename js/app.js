@@ -34,7 +34,7 @@ class App{
             console.log(city);
             console.log(country);
 
-            
+            document.querySelector("#location").value = `${city}, ${country}`;
             
         })
 
