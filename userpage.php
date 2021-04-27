@@ -15,15 +15,6 @@
 
     
 
-    
-
-    
-    
-
-    
-
-    
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,8 +38,8 @@
                 <h5><?php echo $user["username"] ?></h5>
                 <div class="userInfo">
                     <p><?php echo $numberOfPosts ?> berichten</p>
-                    <p>7 volgers</p>
-                    <p>7 volgend</p>
+                    <p><?php echo $user["followers"] ?> volgers</p>
+                    <p><?php echo $user["following"] ?> volgend</p>
                 </div>
                 <p><?php echo $user["bio"] ?></p>
                 
@@ -85,15 +76,15 @@
             ?>
         <a href="userpage.php?user=<?php echo $p["user_id"] ?>"><h2 style="margin-top:25px;"><?php echo $p["username"] ?></h2></a>
         <figure style="height:250px; width:250px;" class="<?php echo $p["filter"] ?>">
-        <img style="height:250px; width:250px;" src="<?php echo $p["image"] ?>" alt="">
+            <img style="height:250px; width:250px;" src="<?php echo $p["image"] ?>" alt="">
         </figure>
         <p><?php echo $p["description"] ?></p>
         <div style="display:flex; gap:5px;">
 
-        <?php foreach($tags as $t): ?>
-        <?php $tWithouth = explode("#", $t["text"]); ?>
-            <a style="text-decoration:none;" href="tagpage.php?tag=<?php echo end($tWithouth); ?>"><?php echo $t["text"]; ?></a>
-        <?php endforeach; ?>
+            <?php foreach($tags as $t): ?>
+            <?php $tWithouth = explode("#", $t["text"]); ?>
+                <a style="text-decoration:none;" href="tagpage.php?tag=<?php echo end($tWithouth); ?>"><?php echo $t["text"]; ?></a>
+            <?php endforeach; ?>
         </div>
 
         <a id="report" href="#" data-postid="<?php echo $p["id"];?>">report</a>
@@ -108,6 +99,6 @@
 </div>
 
 
-    
+<script src="js/app.js"></script>
 </body>
 </html>
