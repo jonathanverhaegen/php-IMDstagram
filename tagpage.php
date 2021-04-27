@@ -17,13 +17,6 @@ include_once(__DIR__."/classes/Report.php");
 
         $posts = Post::getPostByTagName($tag);
 
-        var_dump($posts);
-
-        
-        
-       
-        
-
         
     }
 

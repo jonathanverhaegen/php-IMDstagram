@@ -92,11 +92,11 @@ class Post{
 
     public static function getAllForUser($user_id){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("select * from posts where user_id = :user_id order by time DESC");
+        $statement = $conn->prepare("select * from posts INNER JOIN `filters` on `posts`.`filter_id` = `filters`.`id` where user_id = :user_id order by time DESC");
         $statement->bindValue(":user_id", $user_id);
         $statement->execute();
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $statement->fetchAll();
     }
 
     public static function getPostById($id){
