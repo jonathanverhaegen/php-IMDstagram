@@ -128,7 +128,7 @@ class Post{
 
     public static function getPostByTagName($tag){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM `posts` INNER JOIN `posts_tags` ON `posts_tags`.`post_id` = `posts`.`id` INNER JOIN `tags` ON `posts_tags`.`tag_id` = `tags`.`id` AND `tags`.`text` = :tag order by time desc");
+        $statement = $conn->prepare("SELECT * FROM `posts` INNER JOIN `users` ON `posts`.`user_id` = `users`.`id` INNER JOIN `filters` on `posts`.`filter_id` = `filters`.`id` INNER JOIN `posts_tags` ON `posts_tags`.`post_id` = `posts`.`id` INNER JOIN `tags` ON `posts_tags`.`tag_id` = `tags`.`id` AND `tags`.`text` = :tag order by time desc");
         $statement->bindValue(":tag", $tag);
         $statement->execute();
 
