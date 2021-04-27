@@ -51,6 +51,8 @@ session_start();
                     $email = $_SESSION["user"];
                     $filter = $_POST["filter"];
 
+                    $post->setLocation($_POST["location"]);
+
                     
 
                     $post->uploadPost($email, $filter);

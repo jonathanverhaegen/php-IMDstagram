@@ -6,6 +6,7 @@ class Post{
     private $text;
     private $time;
     private $image;
+    private $location;
     
 
     /**
@@ -88,6 +89,28 @@ class Post{
         return $this;
     }
 
+    /**
+     * Get the value of location
+     */ 
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set the value of location
+     *
+     * @return  self
+     */ 
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    
+
     
 
     public static function getAllForUser($user_id){
@@ -113,11 +136,12 @@ class Post{
     public function uploadPost($email, $filter){
 
         $conn = Db::getConnection();
-        $statement = $conn->prepare("INSERT INTO `posts`(`user_id`, `description`, `time`, `image`, `filter_id`) VALUES ((SELECT id from users where email = :email), :text, sysdate(), :image, (select id from filters where filter = :filter))");
+        $statement = $conn->prepare("INSERT INTO `posts`(`user_id`, `description`, `time`, `image`, `filter_id`, `location`) VALUES ((SELECT id from users where email = :email), :text, sysdate(), :image, (select id from filters where filter = :filter), :location)");
         $statement->bindValue(":email", $email);
         $statement->bindValue(":text", $this->getText());
         $statement->bindValue(":image", $this->getImage());
         $statement->bindValue(":filter", $filter);
+        $statement->bindValue(":location", $this->getLocation());
         
 
         $result = $statement->execute();
@@ -165,6 +189,10 @@ class Post{
         $statement->execute();
         
     }
+
+    
+
+    
 
     
 }

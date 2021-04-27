@@ -31,9 +31,6 @@ class App{
             let city = json.results[0].components.county;
             let country = json.results[0].components.country;
 
-            console.log(city);
-            console.log(country);
-
             document.querySelector("#location").value = `${city}, ${country}`;
             
         })
