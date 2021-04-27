@@ -45,10 +45,10 @@
 
 <?php include_once(__DIR__."/header.php") ?>
 
+<a href="uploadPost.php">upload post</a>
+
 
 <h1 style="text-align:center; margin-top:50px;">Posts wow!</h1>
-
-
 
 
 <div class="container">
