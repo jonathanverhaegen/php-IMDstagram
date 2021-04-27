@@ -5,6 +5,8 @@ include_once(__DIR__."/classes/Tag.php");
 include_once(__DIR__."/classes/PostTag.php");
 include_once(__DIR__."/classes/Filter.php");
 
+session_start();
+
 
     if(!empty($_POST)){
 
@@ -41,14 +43,17 @@ include_once(__DIR__."/classes/Filter.php");
 
                     $post = new Post();
 
-                    $post->setUser_id(1);
+                    
                     $post->setText($_POST["description"]);
 
                     $post->setImage($fileDestination);
 
+                    $email = $_SESSION["user"];
+                    $filter = $_POST["filter"];
+
                     
 
-                    $post->uploadPost();
+                    $post->uploadPost($email, $filter);
 
                     
                     //kijken op tag al bestaat
@@ -112,7 +117,7 @@ include_once(__DIR__."/classes/Filter.php");
                 
 
 
-                    header("Location: userpage.php?user_id=".$post->getUser_id());
+                    header("Location: index.php");
 
 
                 }else{

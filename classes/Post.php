@@ -110,13 +110,14 @@ class Post{
         
     }
 
-    public function uploadPost(){
+    public function uploadPost($email, $filter){
 
         $conn = Db::getConnection();
-        $statement = $conn->prepare("insert into posts (user_id, description, time, image) values (:user_id, :text, sysdate(), :image )");
-        $statement->bindValue(":user_id", $this->getUser_id());
+        $statement = $conn->prepare("INSERT INTO `posts`(`user_id`, `description`, `time`, `image`, `filter_id`) VALUES ((SELECT id from users where email = :email), :text, sysdate(), :image, (select id from filters where filter = :filter))");
+        $statement->bindValue(":email", $email);
         $statement->bindValue(":text", $this->getText());
         $statement->bindValue(":image", $this->getImage());
+        $statement->bindValue(":filter", $filter);
         
 
         $result = $statement->execute();
@@ -150,10 +151,10 @@ class Post{
 
     public static function getAllPosts(){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM `posts` order by time desc");
+        $statement = $conn->prepare("SELECT * FROM `posts` INNER JOIN `users` ON `posts`.`user_id` = `users`.`id` INNER JOIN `filters` on `posts`.`filter_id` = `filters`.`id` order by time desc");
         $statement->execute();
 
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $result = $statement->fetchAll();
         return $result;
     }
 

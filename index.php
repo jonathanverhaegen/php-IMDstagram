@@ -23,6 +23,7 @@
 
     $posts = Post::getAllPosts();
     
+    
 
     
     
@@ -61,22 +62,18 @@
         <div class="col-12 justify-content-center">
         <?php 
 
-           $user_id = $p["user_id"]; 
-           $user = User::getUser($user_id);
-           
-           $tags = Tag::getTagsByPostId($p["id"]);
+           $tags = Tag::getTagsByPostId($p[0]);
 
-           $reports = Report::getReportsById($p["id"]);
+           $reports = Report::getReportsById($p[0]);
 
            $numberOfReports = count($reports);
 
-           
            if($numberOfReports < 3 || $_SESSION["user-type"] === "admin"):
 
             
             ?>
-        <h2 style="margin-top:25px;"><?php echo $user["username"] ?></h2>
-        <figure style="height:250px; width:250px;" class="aden">
+        <h2 style="margin-top:25px;"><?php echo $p["username"] ?></h2>
+        <figure style="height:250px; width:250px;" class="<?php echo $p["filter"] ?>">
         <img style="height:250px; width:250px;" src="<?php echo $p["image"] ?>" alt="">
         </figure>
         <p><?php echo $p["description"] ?></p>
