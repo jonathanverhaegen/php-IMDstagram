@@ -45,7 +45,7 @@
 
 <?php include_once(__DIR__."/header.php") ?>
 
-<a href="uploadPost.php">upload post</a>
+
 
 
 <h1 style="text-align:center; margin-top:50px;">Posts wow!</h1>
@@ -62,7 +62,7 @@
         <div class="col-12 justify-content-center">
         <?php 
 
-        var_dump($p);
+        
 
            $tags = Tag::getTagsByPostId($p[0]);
 
@@ -101,7 +101,7 @@
 
 
 
-<!-- <?php if($_SESSION["user-type"] === "admin"): ?>
+<?php if($_SESSION["user-type"] === "admin"): ?>
 <div class="container">
     <div class="row">
 
@@ -115,8 +115,7 @@
         <div class="col-12">
         <?php 
 
-           $user_id = $p["user_id"]; 
-           $user = User::getUser($user_id);
+           
            
            $tags = Tag::getTagsByPostId($p["id"]);
 
@@ -154,7 +153,7 @@
 
     </div>
 </div>
-<?php endif; ?> -->
+<?php endif; ?>
 
 <script src="js/app.js"></script>
 
