@@ -22,6 +22,8 @@
     
 
     $posts = Post::getAllPosts();
+
+    
     
     
 
@@ -69,6 +71,7 @@
            $reports = Report::getReportsById($p[0]);
 
            $numberOfReports = count($reports);
+          
 
            if($numberOfReports < 3 || $_SESSION["user-type"] === "admin"):
 
@@ -87,7 +90,7 @@
         <?php endforeach; ?>
         </div>
 
-        <a id="report" href="#" data-postid="<?php echo $p["id"];?>">report</a>
+        <a id="report" href="#" data-postid="<?php echo $p[0];?>">report</a>
         
     <?php endif; ?>
     </div>
@@ -117,11 +120,13 @@
 
            
            
-           $tags = Tag::getTagsByPostId($p["id"]);
+           $tags = Tag::getTagsByPostId($p[0]);
 
-           $reports = Report::getReportsById($p["id"]);
+           $reports = Report::getReportsById($p[0]);
 
            $numberOfReports = count($reports);
+
+           
 
            
            if($numberOfReports >= 3):
@@ -129,7 +134,9 @@
             
             ?>
         <h2 style="margin-top:25px;"><?php echo $user["username"] ?></h2>
+        <figure style="height:250px; width:250px;" class="<?php echo $p["filter"] ?>">
         <img style="height:250px; width:250px;" src="<?php echo $p["image"] ?>" alt="">
+        </figure>
         <p><?php echo $p["description"] ?></p>
         <div style="display:flex; gap:5px;">
 
@@ -139,7 +146,7 @@
         <?php endforeach; ?>
         </div>
 
-        <!-- <a id="report" href="#" data-postid="<?php echo $p["id"];?>">report</a> -->
+        <a id="report" href="#" data-postid="<?php echo $p["id"];?>">report</a>
 
         
         <a id="deletePost" href="#" data-postid="<?php echo $p["id"];?>">delete the post</a>
