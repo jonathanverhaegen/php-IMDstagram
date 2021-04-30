@@ -10,6 +10,8 @@
 
     <div class="col">menu</div>
 
+    <div class="col"><a href="uploadPost.php">upload post</a></div>
+
     </div>
 
 </div>

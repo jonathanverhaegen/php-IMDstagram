@@ -3,9 +3,12 @@
 include_once(__DIR__."/classes/Post.php");
 include_once(__DIR__."/classes/Tag.php");
 include_once(__DIR__."/classes/PostTag.php");
+include_once(__DIR__."/classes/Filter.php");
+
+session_start();
 
 
-    if(!empty($_POST["description"])){
+    if(!empty($_POST)){
 
         
         
@@ -21,6 +24,8 @@ include_once(__DIR__."/classes/PostTag.php");
         $fileActExt = strtolower(end($fileExt));
 
         $allowed = array("jpg", "png", "jpeg", "gif");
+
+        if(!empty($_POST["description"])){
 
         if(in_array($fileActExt, $allowed)){
             
@@ -38,12 +43,19 @@ include_once(__DIR__."/classes/PostTag.php");
 
                     $post = new Post();
 
-                    $post->setUser_id(1);
+                    
                     $post->setText($_POST["description"]);
 
                     $post->setImage($fileDestination);
 
-                    $post->uploadPost();
+                    $email = $_SESSION["user"];
+                    $filter = $_POST["filter"];
+
+                    $post->setLocation($_POST["location"]);
+
+                    
+
+                    $post->uploadPost($email, $filter);
 
                     
                     //kijken op tag al bestaat
@@ -107,7 +119,7 @@ include_once(__DIR__."/classes/PostTag.php");
                 
 
 
-                    header("Location: userpage.php?user_id=".$post->getUser_id());
+                    header("Location: index.php");
 
 
                 }else{
@@ -123,9 +135,18 @@ include_once(__DIR__."/classes/PostTag.php");
             $error = "files are not supported";
             
         }
-    }else{
-        $error = "description cannot by empty";
+        }else{
+            
+            $error = "description cannot by empty";
+            
+        }
     }
+
+
+    $filters = Filter::getAllFilters();
+    
+
+    
 
     
 
@@ -181,9 +202,10 @@ include_once(__DIR__."/classes/PostTag.php");
 
                 <label for="filter">Filter</label>
                 <select id="filter" name="filter">
-                    <option value="none">Geen Filter</option>
-                    <option value="zwart-wit">Zwart-wit</option>
-                    <option value="sepia">Sepia</option>
+                <?php foreach($filters as $f): ?>
+                    <option value="<?php echo $f["filter"] ?>"><?php echo $f["name"] ?></option>
+                <?php endforeach; ?>
+                    
                 </select>
 
 
@@ -217,7 +239,7 @@ include_once(__DIR__."/classes/PostTag.php");
 
 
 
-
+<script src="js/app.js"></script>
     
 </body>
 </html>

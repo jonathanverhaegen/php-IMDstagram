@@ -6,6 +6,8 @@ class Post{
     private $text;
     private $time;
     private $image;
+    private $location;
+    
 
     /**
      * Get the value of user_id
@@ -87,13 +89,37 @@ class Post{
         return $this;
     }
 
+    /**
+     * Get the value of location
+     */ 
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set the value of location
+     *
+     * @return  self
+     */ 
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    
+
+    
+
     public static function getAllForUser($user_id){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("select * from posts where user_id = :user_id order by time DESC");
+        $statement = $conn->prepare("select * from posts INNER JOIN `filters` on `posts`.`filter_id` = `filters`.`id` where user_id = :user_id order by time DESC");
         $statement->bindValue(":user_id", $user_id);
         $statement->execute();
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $statement->fetchAll();
     }
 
     public static function getPostById($id){
@@ -107,13 +133,16 @@ class Post{
         
     }
 
-    public function uploadPost(){
+    public function uploadPost($email, $filter){
 
         $conn = Db::getConnection();
-        $statement = $conn->prepare("insert into posts (user_id, description, time, image) values (:user_id, :text, sysdate(), :image)");
-        $statement->bindValue(":user_id", $this->getUser_id());
+        $statement = $conn->prepare("INSERT INTO `posts`(`user_id`, `description`, `time`, `image`, `filter_id`, `location`) VALUES ((SELECT id from users where email = :email), :text, sysdate(), :image, (select id from filters where filter = :filter), :location)");
+        $statement->bindValue(":email", $email);
         $statement->bindValue(":text", $this->getText());
         $statement->bindValue(":image", $this->getImage());
+        $statement->bindValue(":filter", $filter);
+        $statement->bindValue(":location", $this->getLocation());
+        
 
         $result = $statement->execute();
 
@@ -123,7 +152,7 @@ class Post{
 
     public static function getPostByTagName($tag){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM `posts` INNER JOIN `posts_tags` ON `posts_tags`.`post_id` = `posts`.`id` INNER JOIN `tags` ON `posts_tags`.`tag_id` = `tags`.`id` AND `tags`.`text` = :tag order by time desc");
+        $statement = $conn->prepare("SELECT * FROM `posts` INNER JOIN `users` ON `posts`.`user_id` = `users`.`id` INNER JOIN `filters` on `posts`.`filter_id` = `filters`.`id` INNER JOIN `posts_tags` ON `posts_tags`.`post_id` = `posts`.`id` INNER JOIN `tags` ON `posts_tags`.`tag_id` = `tags`.`id` AND `tags`.`text` = :tag order by time desc");
         $statement->bindValue(":tag", $tag);
         $statement->execute();
 
@@ -146,10 +175,10 @@ class Post{
 
     public static function getAllPosts(){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM `posts` order by time desc");
+        $statement = $conn->prepare("SELECT * FROM `posts` INNER JOIN `users` ON `posts`.`user_id` = `users`.`id` INNER JOIN `filters` on `posts`.`filter_id` = `filters`.`id` order by time desc");
         $statement->execute();
 
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $result = $statement->fetchAll();
         return $result;
     }
 
@@ -160,4 +189,10 @@ class Post{
         $statement->execute();
         
     }
+
+    
+
+    
+
+    
 }

@@ -22,6 +22,9 @@
     
 
     $posts = Post::getAllPosts();
+
+    
+    
     
 
     
@@ -37,6 +40,7 @@
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cssgram/0.1.10/cssgram.min.css">
     <title>report</title>
 </head>
 <body>
@@ -44,9 +48,9 @@
 <?php include_once(__DIR__."/header.php") ?>
 
 
+
+
 <h1 style="text-align:center; margin-top:50px;">Posts wow!</h1>
-
-
 
 
 <div class="container">
@@ -60,22 +64,23 @@
         <div class="col-12 justify-content-center">
         <?php 
 
-           $user_id = $p["user_id"]; 
-           $user = User::getUser($user_id);
-           
-           $tags = Tag::getTagsByPostId($p["id"]);
+        
 
-           $reports = Report::getReportsById($p["id"]);
+           $tags = Tag::getTagsByPostId($p[0]);
+
+           $reports = Report::getReportsById($p[0]);
 
            $numberOfReports = count($reports);
+          
 
-           
            if($numberOfReports < 3 || $_SESSION["user-type"] === "admin"):
 
             
             ?>
-        <h2 style="margin-top:25px;"><?php echo $user["username"] ?></h2>
+        <a href="userpage.php?user=<?php echo $p["user_id"] ?>"><h2 style="margin-top:25px;"><?php echo $p["username"] ?></h2></a>
+        <figure style="height:250px; width:250px;" class="<?php echo $p["filter"] ?>">
         <img style="height:250px; width:250px;" src="<?php echo $p["image"] ?>" alt="">
+        </figure>
         <p><?php echo $p["description"] ?></p>
         <div style="display:flex; gap:5px;">
 
@@ -85,7 +90,7 @@
         <?php endforeach; ?>
         </div>
 
-        <a id="report" href="#" data-postid="<?php echo $p["id"];?>">report</a>
+        <a id="report" href="#" data-postid="<?php echo $p[0];?>">report</a>
         
     <?php endif; ?>
     </div>
@@ -95,6 +100,8 @@
 
 </div>
 </div>
+
+
 
 
 <?php if($_SESSION["user-type"] === "admin"): ?>
@@ -111,14 +118,15 @@
         <div class="col-12">
         <?php 
 
-           $user_id = $p["user_id"]; 
-           $user = User::getUser($user_id);
            
-           $tags = Tag::getTagsByPostId($p["id"]);
+           
+           $tags = Tag::getTagsByPostId($p[0]);
 
-           $reports = Report::getReportsById($p["id"]);
+           $reports = Report::getReportsById($p[0]);
 
            $numberOfReports = count($reports);
+
+           
 
            
            if($numberOfReports >= 3):
@@ -126,7 +134,9 @@
             
             ?>
         <h2 style="margin-top:25px;"><?php echo $user["username"] ?></h2>
+        <figure style="height:250px; width:250px;" class="<?php echo $p["filter"] ?>">
         <img style="height:250px; width:250px;" src="<?php echo $p["image"] ?>" alt="">
+        </figure>
         <p><?php echo $p["description"] ?></p>
         <div style="display:flex; gap:5px;">
 
@@ -136,7 +146,7 @@
         <?php endforeach; ?>
         </div>
 
-        <!-- <a id="report" href="#" data-postid="<?php echo $p["id"];?>">report</a> -->
+        <a id="report" href="#" data-postid="<?php echo $p["id"];?>">report</a>
 
         
         <a id="deletePost" href="#" data-postid="<?php echo $p["id"];?>">delete the post</a>
@@ -160,5 +170,4 @@
     
 </body>
 </html>
-=======
->>>>>>> e3a94a1193f411d170bbcb55ab1b38008acd5dd5
+

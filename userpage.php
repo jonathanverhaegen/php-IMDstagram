@@ -2,20 +2,16 @@
 
     include_once(__DIR__."/classes/User.php");
     include_once(__DIR__."/classes/Post.php");
+    include_once(__DIR__."/classes/Tag.php");
+    include_once(__DIR__."/classes/Report.php");
+    include_once(__DIR__."/classes/Filter.php");
 
-    if(!empty($_GET["user_id"])){
-        $user = User::getUser($_GET["user_id"]);
+    if(!empty($_GET["user"])){
+        $user = User::getUser($_GET["user"]);
         $posts = Post::getAllForUser($user["id"]);
     }
 
     $numberOfPosts = count($posts);
-
-    
-
-    
-    
-
-    
 
     
 
@@ -42,8 +38,8 @@
                 <h5><?php echo $user["username"] ?></h5>
                 <div class="userInfo">
                     <p><?php echo $numberOfPosts ?> berichten</p>
-                    <p>7 volgers</p>
-                    <p>7 volgend</p>
+                    <p><?php echo $user["followers"] ?> volgers</p>
+                    <p><?php echo $user["following"] ?> volgend</p>
                 </div>
                 <p><?php echo $user["bio"] ?></p>
                 
@@ -52,16 +48,57 @@
     </div>
 </div>
 
-<div class="container" id="containerImageFeed" >
-    <div class="row" id="imageFeed" >
-        <?php foreach($posts as $p): ?>
-        <div class="col-4"><img id="feedImage" src="<?php echo $p["image"] ?>" alt="post"></div>
-        <?php endforeach; ?>
+
+<div class="container">
+<div class="row">
+
+    
+
+
+
+    <?php foreach($posts as $p): ?>
+        <div class="col-12 justify-content-center">
+        <?php 
+
         
+
+           $tags = Tag::getTagsByPostId($p[0]);
+           
+
+           $reports = Report::getReportsById($p[0]);
+           
+
+           $numberOfReports = count($reports);
+
+           if($numberOfReports < 3 || $_SESSION["user-type"] === "admin"):
+
+            
+            ?>
+        <a href="userpage.php?user=<?php echo $p["user_id"] ?>"><h2 style="margin-top:25px;"><?php echo $p["username"] ?></h2></a>
+        <figure style="height:250px; width:250px;" class="<?php echo $p["filter"] ?>">
+            <img style="height:250px; width:250px;" src="<?php echo $p["image"] ?>" alt="">
+        </figure>
+        <p><?php echo $p["description"] ?></p>
+        <div style="display:flex; gap:5px;">
+
+            <?php foreach($tags as $t): ?>
+            <?php $tWithouth = explode("#", $t["text"]); ?>
+                <a style="text-decoration:none;" href="tagpage.php?tag=<?php echo end($tWithouth); ?>"><?php echo $t["text"]; ?></a>
+            <?php endforeach; ?>
+        </div>
+
+        <a id="report" href="#" data-postid="<?php echo $p["id"];?>">report</a>
+        
+    <?php endif; ?>
     </div>
+    <?php endforeach; ?>
+    
+    
+
+</div>
 </div>
 
 
-    
+<script src="js/app.js"></script>
 </body>
 </html>

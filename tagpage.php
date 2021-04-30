@@ -18,11 +18,6 @@ include_once(__DIR__."/classes/Report.php");
         $posts = Post::getPostByTagName($tag);
 
         
-        
-       
-        
-
-        
     }
 
    
@@ -50,17 +45,7 @@ include_once(__DIR__."/classes/Report.php");
     </div>
 </div>
 
-<!-- <div class="container" id="containerImageFeed" >
-    <div class="row" id="imageFeed" >
-        
-    <?php foreach($posts as $p): ?>
-        <div class="col-4"><img id="feedImage" src="<?php echo $p["image"] ?>" alt="post"></div>
-    <?php endforeach; ?>
-        
-        
-        
-    </div>
-</div> -->
+
 
 <div class="container">
 <div class="row">
@@ -73,8 +58,7 @@ include_once(__DIR__."/classes/Report.php");
         <div class="col-12 justify-content-center">
         <?php 
 
-           $user_id = $p["user_id"]; 
-           $user = User::getUser($user_id);
+           
            
            $tags = Tag::getTagsByPostId($p["post_id"]);
 
@@ -87,8 +71,10 @@ include_once(__DIR__."/classes/Report.php");
 
             
             ?>
-        <h2 style="margin-top:25px;"><?php echo $user["username"] ?></h2>
+        <h2 style="margin-top:25px;"><?php echo $p["username"] ?></h2>
+        <figure style="height:250px; width:250px;" class="<?php echo $p["filter"] ?>">
         <img style="height:250px; width:250px;" src="<?php echo $p["image"] ?>" alt="">
+        </figure>
         <p><?php echo $p["description"] ?></p>
         <div style="display:flex; gap:5px;">
 
