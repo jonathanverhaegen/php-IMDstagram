@@ -33,6 +33,7 @@ if (isset($_SESSION["user"])) {
         $error = $t->getMessage();
     }
 }
+
     
 ?>
 <!DOCTYPE html>
@@ -63,7 +64,7 @@ if (isset($_SESSION["user"])) {
             <h2>Email adress</h2>
             <a href="updateemail.php">Change email</a>
             <h2>Password</h2>
-            <a href="UpdatePassword">Change password</a>
+            <a href="UpdatePassword.php">Change password</a>
         </div>
 
 

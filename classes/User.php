@@ -14,7 +14,6 @@ class User{
     private $oldEmail; 
     private $newEmail;
     private $newEmailCheck;
-    
 
     /**
      * Get the value of username
@@ -35,7 +34,7 @@ class User{
 
         return $this;
     }
-
+    
     /**
      * Get the value of email
      */ 
@@ -205,6 +204,101 @@ class User{
         return $this;
     }
 
+    public function save() 
+    {
+        try {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare( 'INSERT INTO users (email, firstName, lastName, password, description, avatar) VALUES (:email, :firstName, :lastName, :password, :description, :avatar)' );
+            $email = $this->getEmail();
+            $firstName = $this->getFirstName();
+            $lastName = $this->getLastName();
+            $password = $this->getPassword();
+            $description = "here comes your description";
+            $avatar = "Upload/standard.jpg";
+      
+
+        
+            
+        
+            $statement->bindValue(":email", $email);
+            $statement->bindValue(":firstName", $firstName);
+            $statement->bindValue(":lastName", $lastName);
+            $statement->bindValue(":password", $password);
+            $statement->bindValue(":description", $description);
+            $statement->bindValue(":avatar", $avatar);
+
+
+            $result = $statement->execute();
+
+            return $result;
+
+        } catch ( PDOException $e ) {
+            print 'Error!: ' . $e->getMessage() . '<br/>';
+            die();
+        }
+    }
+
+    public static function getAll() 
+    {
+        $conn = DB::getConnection();
+        $statement = $conn->prepare( 'select * from users' );
+        $statement->execute();
+        $users = $statement->fetchAll( PDO::FETCH_ASSOC );
+
+        return $users;
+
+    }
+
+    public function viewEmail( $email ) 
+    {
+        try {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare( 'SELECT email FROM users WHERE email = :yourEmail' );
+            $statement->bindValue( 'yourEmail', $email );
+            $statement->execute();
+            while( $row = $statement->fetch() ) {
+                $activeEmail = $row['email'];
+
+                return $activeEmail;
+            }
+        } catch ( PDOException $e ) {
+            print 'Error: '.$e->getMessage().'<br>';
+        }
+    }
+
+    public function viewDescription( $email ) 
+    {
+        try {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare( 'SELECT description FROM users WHERE email = :currentEmail' );
+            $statement->bindValue( ':currentEmail', $email );
+            $statement->execute();
+            while( $row = $statement->fetch() ) {
+                $activeDescription = $row['description'];
+
+                return $activeDescription;
+            }
+        } catch ( PDOException $e ) {
+            print 'Error: '.$e->getMessage().'<br>';
+        }
+    }
+
+    public function editDescription( $email ) 
+    {
+        try {
+            $conn = Db::getConnection();
+            $updateDesStmt = $conn->prepare( 'UPDATE users SET description=:description WHERE email = :email' );
+            $description = $this->getDescription();
+            $updateDesStmt->bindValue( ':description', $description );
+            $updateDesStmt->bindValue( ':email', $email );
+            $descrResult = $updateDesStmt->execute();
+
+            return $descrResult;
+        } catch ( PDOException $e ) {
+            print 'Error: '.$e->getMessage().'<br>';
+        }
+    }
+
     public function editEmail( $email ) {
         try {
             $conn = Db::getConnection();
@@ -231,6 +325,48 @@ class User{
             }
         } catch( PDOException $e ) {
             print 'Error: '.$e->getMessage().'<br>';
+        }
+    }
+
+    public function changeAvatar( $email, $fileName, $fileSize, $fileTmpName, $file ) 
+    {
+        $conn = Db::getConnection();
+        $profileStatement = $conn->prepare( 'UPDATE users SET avatar=:avatar WHERE email=:email' );
+        $fileName = $fileName;
+        $fileSize = $fileSize;
+        $fileTmpName = $fileTmpName;
+        $file = $file;
+        $fileExt = explode( '.', $fileName );
+        $fileExtention = strtolower( end( $fileExt ) );
+        $allowedFiles = array( 'jpg', 'jpeg', 'png' );
+
+        if ( in_array( $fileExtention, $allowedFiles ) ) {
+            if ( $fileSize < 1000000 ) {
+                $fileNewName = uniqid( '', true ).'.'.$fileExtention;
+                $fileDestination = 'uploads/'.$fileNewName;
+                move_uploaded_file( $fileTmpName, $fileDestination );
+                $profileStatement->bindValue( ':avatar', $fileDestination );
+                $profileStatement->bindValue( ':email', $email );
+                $profileStatement->execute();
+            } else {
+                throw new Exception( 'filesize is to big!' );
+            }
+        } else {
+            throw new Exception( 'this image type is not supported by imdstagram' );
+        }
+    }
+
+    public function showAvatar( $email ) 
+    {
+        $conn = Db::getConnection();
+        $avatarstmt = $conn->prepare( 'SELECT avatar FROM users WHERE email=:email' );
+        $avatarstmt->bindValue( ':email', $email );
+        $avatarstmt->execute();
+
+        while( $row = $avatarstmt->fetch() ) {
+            $showAvatar = $row['avatar'];
+
+            return $showAvatar;
         }
     }
 }
