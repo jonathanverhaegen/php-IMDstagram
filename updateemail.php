@@ -34,7 +34,7 @@ if (isset($_SESSION["user"])) {
     <title>Change email here</title>
 </head>
 <body class="changeEmail">
-<?php include("app/frontend/includes/navbar.php") ?>
+<?php include("header.php") ?>
     <h1>Change email here</h1>
     <form class="form-group" action="" method="post">
         <label for="old-email" >Enter your old email</label>

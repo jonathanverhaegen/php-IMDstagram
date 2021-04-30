@@ -4,7 +4,9 @@ session_start();
 include_once( __DIR__ . '/classes/User.php' );
 
 if (isset($_SESSION["user"])) {
+    
     $email = $_SESSION["user"];
+    
     $description = new User;
     $showDescription = $description->viewDescription($email);
     if (!empty($_POST)) {

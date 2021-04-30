@@ -6,9 +6,10 @@ class User{
     private $username;
     private $email;
     private $password;
-    private $image;
+    private $avatar;
     private $bio;
     private $status_id;
+    private $description;
 
     private $oldEmail; 
     private $newEmail;
@@ -78,9 +79,9 @@ class User{
     /**
      * Get the value of image
      */ 
-    public function getImage()
+    public function getAvatar()
     {
-        return $this->image;
+        return $this->avatar;
     }
 
     /**
@@ -88,9 +89,9 @@ class User{
      *
      * @return  self
      */ 
-    public function setImage($image)
+    public function setAvatar($avatar)
     {
-        $this->image = $image;
+        $this->avatar = $avatar;
 
         return $this;
     }
@@ -98,9 +99,9 @@ class User{
     /**
      * Get the value of bio
      */ 
-    public function getBio()
+    public function getDescription()
     {
-        return $this->bio;
+        return $this->description;
     }
 
     /**
@@ -108,9 +109,9 @@ class User{
      *
      * @return  self
      */ 
-    public function setBio($bio)
+    public function setDescription($description)
     {
-        $this->bio = $bio;
+        $this->description = $description;
 
         return $this;
     }
