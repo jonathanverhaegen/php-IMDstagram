@@ -194,6 +194,9 @@ input, select{
     font-weight: 500;
 }
 
+.btn-location{
+    color:black;
+}
 .admin__reports{
     display:grid;
     grid-template-columns: 2fr 1fr;

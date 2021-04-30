@@ -190,6 +190,17 @@ class Post{
         
     }
 
+    public static function getPostByLocation($location){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM `posts` INNER JOIN `users` ON `posts`.`user_id` = `users`.`id` INNER JOIN `filters` on `posts`.`filter_id` = `filters`.`id` where `location` = :location order by time desc ");
+        $statement->bindValue(":location", $location);
+        $statement->execute();
+        $result = $statement->fetchAll();
+
+        return $result;
+
+    }
+
     
 
     

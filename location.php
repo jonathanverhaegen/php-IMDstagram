@@ -1,25 +1,31 @@
-
 <?php
 
-
-
-    include_once("includes/autoloader.inc.php");
-
-
-    session_start();
-
-    $user = User::getUser(1);
     
-    $_SESSION["user"] = $user["email"];
+include_once("includes/autoloader.inc.php");
+    
+    if(!empty($_GET["location"])){
+        
 
-    $_SESSION["user-type"] = $user["type"];
+        $location = $_GET["location"];
 
-    $posts = Post::getAllPosts();
+        echo $location;
 
+       
 
+        //alle posts met die location vinden in database
+
+        $posts = Post::getPostByLocation($location);
+
+        
+
+        
+
+        
+    }
+
+   
 
     
-
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -28,32 +34,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="style/header.css">
-    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/footer.css"/>
+    <link rel="stylesheet" href="style/header.css"/>
     <link rel="stylesheet" href="style/style.css">
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cssgram/0.1.10/cssgram.min.css">
-    <title>Buckle up</title>
+    <title><?php echo $location; ?></title>
 </head>
 <body>
 
 <?php include_once(__DIR__."/header.php") ?>
 
-
-<?php if($_SESSION["user-type"] === "admin"): ?>
-    <div class="container__reports">
-        <a class="btn__reports" href="reports.php">Bekijk de reported posts</a>
-    </div>
-    
-<?php endif; ?>
-
-<h1 class="title">Buckle up posts</h1>
+<h1 class="title"><?php echo $location ?></h1>
 
 
-
-
-    <?php foreach($posts as $p): ?>
+<?php foreach($posts as $p): ?>
         <?php 
 
         
@@ -78,7 +73,7 @@
             <a class="post_username" href="userpage.php?user=<?php echo $p["user_id"] ?>"><h2><?php echo $p["username"] ?></h2></a>
         </div>
         
-        <a class="btn-location" href="location.php?location=<?php echo $p["location"] ?>"><p class="post__location"><?php echo $p["location"] ?></p></a>
+        <p class="post__location"><?php echo $p["location"] ?></p>
         <figure class="<?php echo $p["filter"] ?>">
             <img class="post__image" src="<?php echo $p["image"] ?>" alt="post">
         </figure>
@@ -94,10 +89,9 @@
 
         <?php endif; ?>
     <?php endforeach; ?>
-    
-    
 
 
+    
 
 
 
@@ -107,11 +101,5 @@
 <?php include_once(__DIR__."/footer.php") ?>
 
 <script src="js/app.js"></script>
-
-
-
-
-    
 </body>
 </html>
-
