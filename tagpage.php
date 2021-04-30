@@ -1,10 +1,7 @@
 <?php
 
     
-include_once(__DIR__."/classes/Post.php");
-include_once(__DIR__."/classes/Tag.php");
-include_once(__DIR__."/classes/User.php");
-include_once(__DIR__."/classes/Report.php");
+include_once("includes/autoloader.inc.php");
     
     if(!empty($_GET["tag"])){
         
@@ -32,6 +29,7 @@ include_once(__DIR__."/classes/Report.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/footer.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <title>tag</title>
 </head>
@@ -101,7 +99,7 @@ include_once(__DIR__."/classes/Report.php");
 </div>
 
 
-
+<?php include_once(__DIR__."/footer.php") ?>
 
 <script src="js/app.js"></script>
 </body>

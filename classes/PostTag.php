@@ -1,5 +1,5 @@
 <?php
-
+include_once(__DIR__."/../includes/autoloader.inc.php");
 class PostTag{
     private $post_id;
     private $tag_id;

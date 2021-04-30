@@ -1,6 +1,6 @@
 <?php
 
-include_once( __DIR__ . '/Db.php' );
+include_once(__DIR__."/../includes/autoloader.inc.php");
 
 class Search {
     private $searchTerm;
