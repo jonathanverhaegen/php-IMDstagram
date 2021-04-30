@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include_once( __DIR__ . '/classes/User.php' );
+include_once("includes/autoloader.inc.php");
 
 if (isset($_SESSION["user"])) {
     

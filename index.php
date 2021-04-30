@@ -1,12 +1,8 @@
 
 <?php
 
-    
+    include_once("includes/autoloader.inc.php");
 
-    include_once(__DIR__."/classes/Post.php");
-    include_once(__DIR__."/classes/Tag.php");
-    include_once(__DIR__."/classes/User.php");
-    include_once(__DIR__."/classes/Report.php");
 
     session_start();
 
@@ -39,6 +35,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/footer.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cssgram/0.1.10/cssgram.min.css">
     <title>report</title>
@@ -63,8 +60,6 @@
     <?php foreach($posts as $p): ?>
         <div class="col-12 justify-content-center">
         <?php 
-
-        
 
            $tags = Tag::getTagsByPostId($p[0]);
 
@@ -161,6 +156,8 @@
     </div>
 </div>
 <?php endif; ?>
+
+<?php include_once(__DIR__."/footer.php") ?>
 
 <script src="js/app.js"></script>
 
