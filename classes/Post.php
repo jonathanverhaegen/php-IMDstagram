@@ -115,7 +115,7 @@ class Post{
 
     public static function getAllForUser($user_id){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("select * from posts INNER JOIN `filters` on `posts`.`filter_id` = `filters`.`id` where user_id = :user_id order by time DESC");
+        $statement = $conn->prepare("SELECT * FROM `posts` INNER JOIN `users` ON `posts`.`user_id` = `users`.`id` INNER JOIN `filters` on `posts`.`filter_id` = `filters`.`id` where `users`.`id` = :user_id order by time desc ");
         $statement->bindValue(":user_id", $user_id);
         $statement->execute();
 

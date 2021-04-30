@@ -69,11 +69,18 @@
     text-align:center;
 }
 
-#containerUploadPost{
+
+
+.upload{
+    width:40%;
+    margin-left:auto;
+    margin-right:auto;
     margin-top:50px;
+    background-color: rgb(231, 228, 228);
+    padding:25px;
 }
 
-#titleUpload{
+.title__upload{
     text-align:center;
 }
 
@@ -81,10 +88,9 @@
 form{
     display:grid;
     align-items:center;
-    width:60%;
+    width:100%;
     margin-left:auto;
     margin-right:auto;
-    
 }
 
 label{
@@ -92,15 +98,25 @@ label{
     margin-bottom:5px;
 }
 
+input, select{
+    border:none;
+    height:35px;
+}
+
 .container_btn{
     display:grid;
     justify-content: center;
+    margin-top:25px;
 }
 
-.btn_upload{
-    margin-top:50px;
-    width:100%;
+.btn__upload {
+    background-color: white;
+    padding: 5px 20px 5px 20px;
+    border-radius:50px;
+    
+    
 }
+
 
 #message{
     margin-top:25px;
@@ -110,3 +126,84 @@ label{
     font-weight:bold;
     margin-top:-20px;
 }
+
+
+.title{
+    text-align:center;
+    margin-top:50px;
+    margin-bottom: 50px;
+}
+
+.post{
+    width:40%;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: rgb(231, 228, 228);
+    padding:25px;
+    margin-bottom:50px;
+}
+
+.post__report{
+    display:grid;
+    justify-content:right;
+}
+
+.post__report a{
+    color:black;
+}
+
+.post_user{
+    display:flex;
+    gap:50px;
+    align-items: center;
+    margin-bottom:20px;
+    padding-top:20px;
+}
+
+.post_avatar{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+}
+
+.post_username{
+    text-decoration: none;
+    color:black;
+}
+
+.post_tags{
+    display:flex;
+    gap:5px;
+}
+
+.post_tags a{
+    text-decoration:none;
+    
+}
+
+.container__reports{
+    margin-top:25px;
+}
+
+.btn__reports{
+    text-decoration: none;
+    padding: 10px 32px;
+    background-color:rgb(231, 228, 228);
+    border-radius: 50px;
+    color: black;
+    font-weight: 500;
+}
+
+.admin__reports{
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+    justify-items:end;
+}
+
+.admin__reports a{
+    color:black;
+}
+
+
+
+
