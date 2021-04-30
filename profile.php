@@ -3,11 +3,11 @@
 session_start();
 include_once("includes/autoloader.inc.php");
 
-if (isset($_SESSION["user"])) {
-    
-    $email = $_SESSION["user"];
+    $user = new User::getUser(1);
 
-    $user = new User();
+    $_SESSION["user"] = $user["email"];
+
+    $_SESSION["user-type"] = $user["type"];
     
 
     try {
