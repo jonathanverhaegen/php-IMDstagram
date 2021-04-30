@@ -7,6 +7,8 @@ if (isset($_SESSION["user"])) {
     
     $email = $_SESSION["user"];
 
+    echo $email;
+
     $user = new User();
     
 

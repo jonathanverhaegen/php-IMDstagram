@@ -210,8 +210,8 @@ class User{
             $conn = Db::getConnection();
             $statement = $conn->prepare( 'INSERT INTO users (email, firstName, lastName, password, description, avatar) VALUES (:email, :firstName, :lastName, :password, :description, :avatar)' );
             $email = $this->getEmail();
-            $firstName = $this->getFirstName();
-            $lastName = $this->getLastName();
+            // $firstName = $this->getFirstName();
+            // $lastName = $this->getLastName();
             $password = $this->getPassword();
             $description = "here comes your description";
             $avatar = "Upload/standard.jpg";
@@ -221,8 +221,8 @@ class User{
             
         
             $statement->bindValue(":email", $email);
-            $statement->bindValue(":firstName", $firstName);
-            $statement->bindValue(":lastName", $lastName);
+            // $statement->bindValue(":firstName", $firstName);
+            // $statement->bindValue(":lastName", $lastName);
             $statement->bindValue(":password", $password);
             $statement->bindValue(":description", $description);
             $statement->bindValue(":avatar", $avatar);
