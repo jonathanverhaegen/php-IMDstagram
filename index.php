@@ -1,6 +1,8 @@
 
 <?php
 
+
+
     include_once("includes/autoloader.inc.php");
 
 
@@ -15,9 +17,9 @@
     $_SESSION["user-type"] = $user["type"];
 
 
-    
-
     $posts = Post::getAllPosts();
+
+    
 
     
     
@@ -73,6 +75,7 @@
             
             ?>
         <a href="userpage.php?user=<?php echo $p["user_id"] ?>"><h2 style="margin-top:25px;"><?php echo $p["username"] ?></h2></a>
+        <p><?php echo $p["location"] ?></p>
         <figure style="height:250px; width:250px;" class="<?php echo $p["filter"] ?>">
         <img style="height:250px; width:250px;" src="<?php echo $p["image"] ?>" alt="">
         </figure>
@@ -129,6 +132,7 @@
             
             ?>
         <h2 style="margin-top:25px;"><?php echo $user["username"] ?></h2>
+        <p><?php echo $p["location"] ?></p>
         <figure style="height:250px; width:250px;" class="<?php echo $p["filter"] ?>">
         <img style="height:250px; width:250px;" src="<?php echo $p["image"] ?>" alt="">
         </figure>
