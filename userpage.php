@@ -7,6 +7,8 @@ include_once("includes/autoloader.inc.php");
         $posts = Post::getAllForUser($user["id"]);
     }
 
+    
+
     $numberOfPosts = count($posts);
 
     
@@ -29,7 +31,7 @@ include_once("includes/autoloader.inc.php");
 
 <div class="container" id="containerProfileInfo">
     <div class="row align-items-center" id="rowProfileInfo">
-        <div class="col-4"><img id="profileImage" src="<?php echo $user["image"] ?>" alt=""></div>
+        <div class="col-4"><img id="profileImage" src="<?php echo $user["avatar"] ?>" alt=""></div>
         <div class="col-8">
             
                 <h5><?php echo $user["username"] ?></h5>
@@ -57,21 +59,18 @@ include_once("includes/autoloader.inc.php");
         <div class="col-12 justify-content-center">
         <?php 
 
-        
-
            $tags = Tag::getTagsByPostId($p[0]);
-           
-
+        
            $reports = Report::getReportsById($p[0]);
            
-
            $numberOfReports = count($reports);
 
            if($numberOfReports < 3 || $_SESSION["user-type"] === "admin"):
 
             
-            ?>
+        ?>
         <a href="userpage.php?user=<?php echo $p["user_id"] ?>"><h2 style="margin-top:25px;"><?php echo $p["username"] ?></h2></a>
+        <p><?php echo $p["location"] ?></p>
         <figure style="height:250px; width:250px;" class="<?php echo $p["filter"] ?>">
             <img style="height:250px; width:250px;" src="<?php echo $p["image"] ?>" alt="">
         </figure>
