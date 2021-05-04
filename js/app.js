@@ -138,3 +138,13 @@ postOkBTns.forEach((postOkBtn) => {
 
     })
 })
+
+
+let btnMore = document.querySelectorAll(".btn-more");
+
+btnMore.forEach((btn) => {
+    btn.addEventListener("click", function(e){
+        e.preventDefault();
+        console.log("test");
+    })
+})

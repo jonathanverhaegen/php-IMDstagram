@@ -3,7 +3,7 @@
 session_start();
 include_once("includes/autoloader.inc.php");
 
-    $user = new User::getUser(1);
+    $user =  User::getUser(1);
 
     $_SESSION["user"] = $user["email"];
 
@@ -38,7 +38,7 @@ include_once("includes/autoloader.inc.php");
     } catch (\Throwable $t) {
         $error = $t->getMessage();
     }
-}
+
 
     
 ?>

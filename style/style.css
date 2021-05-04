@@ -194,6 +194,20 @@ input, select{
     font-weight: 500;
 }
 
+.btn-more{
+    text-decoration: none;
+    padding: 10px 32px;
+    background-color:rgb(230, 230, 230);
+    border-radius: 50px;
+    color: black;
+    font-weight: 500;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 175px;
+    text-align: center;
+}
+
 .btn-location{
     color:black;
 }
