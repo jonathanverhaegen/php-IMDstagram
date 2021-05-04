@@ -60,22 +60,22 @@ include_once("includes/autoloader.inc.php");
 
     <div class="post">
         <div class="post__report">
-            <a  href="#" data-postid="<?php echo $p[0];?>">Report</a>
+            <a class="report" href="" data-postid="<?php echo $p[0];?>">Report</a>
         </div>
         <div class="post_user">
-            <img class="post_avatar" src="<?php echo $p["avatar"] ?>" alt="avatar">
-            <a class="post_username" href="userpage.php?user=<?php echo $p["user_id"] ?>"><h2><?php echo $p["username"] ?></h2></a>
+            <img class="post_avatar" src="<?php echo htmlspecialchars($p["avatar"]) ?>" alt="avatar">
+            <a class="post_username" href="userpage.php?user=<?php echo $p["user_id"] ?>"><h2><?php echo htmlspecialchars($p["username"]) ?></h2></a>
         </div>
         
-        <a class="btn-location" href="location.php?location=<?php echo $p["location"] ?>"><p class="post__location"><?php echo $p["location"] ?></p></a>
-        <figure class="<?php echo $p["filter"] ?>">
-            <img class="post__image" src="<?php echo $p["image"] ?>" alt="post">
+        <a class="btn-location" href="location.php?location=<?php echo $p["location"] ?>"><p class="post__location"><?php echo htmlspecialchars($p["location"]) ?></p></a>
+        <figure class="<?php echo htmlspecialchars( $p["filter"]) ?>">
+            <img class="post__image" src="<?php echo htmlspecialchars($p["image"]) ?>" alt="post">
         </figure>
-        <p class="post_description"><?php echo $p["description"] ?></p>
+        <p class="post_description"><?php echo htmlspecialchars($p["description"]) ?></p>
         <div class="post_tags">
             <?php foreach($tags as $t): ?>
             <?php $tWithouth = explode("#", $t["text"]); ?>
-                <a href="tagpage.php?tag=<?php echo end($tWithouth); ?>"><?php echo $t["text"]; ?></a>
+                <a href="tagpage.php?tag=<?php echo htmlspecialchars(end($tWithouth)); ?>"><?php echo htmlspecialchars($t["text"]); ?></a>
             <?php endforeach; ?>
         </div>
         

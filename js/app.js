@@ -46,7 +46,7 @@ let app = new App;
 
 
 
-let reportBtns = document.querySelectorAll("#report");
+let reportBtns = document.querySelectorAll(".report");
 
 reportBtns.forEach((reportBtn) => {
     reportBtn.addEventListener("click", function(e){
