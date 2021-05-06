@@ -1,55 +1,125 @@
-<head>
-<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style/header.css">
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style/header.css" />
+  </head>
 
-<script
-src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <body>
+    <div class="container">
+      <!-- desktop version -->
+      <div class="inner-container desktop">
+        <span class="logo left"
+          ><a href="index.php"><img src="./images/buckle.png" alt=""/></a
+        ></span>
+        <ul class="left">
+          <li class="desktop-li"><a href="#">Home</a></li>
+          <li class="desktop-li"><a href="#">Post</a></li>
+          <li class="desktop-li"><a href="#">Popular</a></li>
+          <li class="desktop-li"><a href="#">Profile</a></li>
+        </ul>
+
+        <ul class="right">
+          <li class="search-outer desktop-li">
+            <div class="search-outer">
+              <input type="text" class="search" placeholder="Search Buckle-up" />
+              <img
+                src="https://assets-cdn.github.com/images/search-shortcut-hint.svg"
+                class="search-hint"
+                alt=""
+              />
+            </div>
+          </li>
+          <li class="desktop-li">
+            <a class="bold" href="#">Sign In</a>
+            <a class="bold" href="#">Sign Out</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- mobile version -->
+      <div class="inner-container mobile">
+        <div class="mobile-logo"><img src="./images/buckle.png" /></div>
+        <button class="svg-button">
+          <svg
+            height="28"
+            class="octicon octicon-three-bars text-white"
+            viewBox="0 0 12 16"
+            version="1.1"
+            width="30"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="drop-down-mobile">
+      <ul class="mobile-ul">
+        <li class="mobile-li"><a href="#">Home</a></li>
+        <li class="mobile-li"><a href="#">Post</a></li>
+        <li class="mobile-li"><a href="#">Popular</a></li>
+        <li class="mobile-li"><a href="#">Profile</a></li>
+        <li class="search-outer mobile-li">
+          <div class="search-outer search-outer-mobile">
+            <input
+              type="text"
+              class="search search-mobile"
+              placeholder="Search Buckle-up"
+            />
+            <img
+              src="https://assets-cdn.github.com/images/search-shortcut-hint.svg"
+              class="search-hint"
+              alt=""
+            />
+          </div>
+        </li>
+        <li class="mobile-li">
+          <a class="bold" href="#">Sign In</a><br>
+          <a class="bold" href="#">Sign Out</a>
+        </li>
+      </ul>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
 
 <script>
-$(function() {
-$(".toggle").on("click", function() {
-    if ($(".item").hasClass("active")) {
-        $(".item").removeClass("active");
-    } else {
-        $(".item").addClass("active");
-    }
+  let input = document.getElementsByClassName("search");
+let searchhint = document.getElementsByClassName("search-hint");
+let button = document.getElementsByClassName("svg-button");
+let mobile = document.getElementsByClassName("drop-down-mobile");
+let isOpen = false;
+
+// show hide search hint
+for (let i = 0; i < input.length; i++) {
+  for (let i = 0; i < searchhint.length; i++) {
+    input[i].addEventListener("focus", () => {
+      searchhint[i].style.display = "none";
+    });
+
+    input[i].addEventListener("focusout", () => {
+      searchhint[i].style.display = "block";
+    });
+  }
+}
+
+// show hide mobile drop down
+button[0].addEventListener("click", () => {
+  if (isOpen === false) {
+    // mobile[0].classList.remove("hide-lg");
+    mobile[0].style.height = "400px";
+    isOpen = true;
+  } else {
+    // mobile[0].classList.add("hide-lg");
+    mobile[0].style.height = "0";
+    isOpen = false;
+  }
 });
-});
+
 </script>
-
-<body>
-  <div class="buckle-main">
-      <!-- Header -->
-      <header>
-          <div class="container">
-              <nav>
-                  <div class="logo">
-                      <a href="#"><img src="img/Favicon.png" alt="logo"></a>
-                  </div>
-                  <!-- toggle bar -->
-                  <div class="toggle-bar" type="button">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                  </div>
-                  <div class="navigation-bar">
-                      <ul>
-                          <li><a href="index.html">Home</a></li>
-                          <li><a href="team.html">Zoeken</a></li>
-                          <li><a href="#">Profiel</a></li>
-                          <li class="discord-btn"><a href="uploadpost.php">Upload</a></li>
-                      </ul>
-                  </div>
-              </nav>
-          </div>
-      </header>
-
-      <script>
-        $('toggle-bar').on('click', function (event) {
-            $('this').toggleClass('open');
-            $('.navigation-bar').slideToggle('200');
-        })
-      </script>

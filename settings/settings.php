@@ -6,7 +6,7 @@ const SETTINGS = [
         "password"  => "root",
         "host"      => "localhost",
         "port"      => "",
-        "name"      => "buckle_up"
+        "name"      => "buckle"
     ]
 
     ];
