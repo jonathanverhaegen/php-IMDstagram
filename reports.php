@@ -1,25 +1,26 @@
 <?php
 
+
+
+    include_once("includes/autoloader.inc.php");
+
+
+    session_start();
+
     
-include_once("includes/autoloader.inc.php");
-    
-    if(!empty($_GET["tag"])){
-        
 
-        $tagWithout = $_GET["tag"];
-
-        $tag = "#".$tagWithout;
-
-        //alle posts met die tag vinden in database
-
-        $posts = Post::getPostByTagName($tag);
-
-        
+    if($_SESSION["user-type"] != "admin"){
+        header("Location: index.php");
     }
 
-   
+    
+
+    $posts = Post::getAllPosts();
+
+
 
     
+
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -28,21 +29,24 @@ include_once("includes/autoloader.inc.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="style/footer.css"/>
-    <link rel="stylesheet" href="style/header.css"/>
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/footer.css">
     <link rel="stylesheet" href="style/style.css">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cssgram/0.1.10/cssgram.min.css">
-    <title><?php echo $tag; ?></title>
+    <title>Reported posts</title>
 </head>
 <body>
 
 <?php include_once(__DIR__."/header.php") ?>
 
-<h1 class="title"><?php echo $tag; ?></h1>
+<h1 class="title">All the reported posts</h1>
 
 
-<?php foreach($posts as $p): ?>
+
+
+    <?php foreach($posts as $p): ?>
         <?php 
 
         
@@ -51,10 +55,9 @@ include_once("includes/autoloader.inc.php");
            $reports = Report::getReportsById($p[0]);
 
            $numberOfReports = count($reports);
-          
 
-           if($numberOfReports < 3):
-
+           
+           if($numberOfReports >= 3):
             
             ?>
 
@@ -81,19 +84,12 @@ include_once("includes/autoloader.inc.php");
         
     </div>
 
-        <?php endif; ?>
+       <?php endif; ?>
     <?php endforeach; ?>
-
-
-    
-
-
-
-
-
 
 <?php include_once(__DIR__."/footer.php") ?>
 
 <script src="js/app.js"></script>
+
 </body>
 </html>

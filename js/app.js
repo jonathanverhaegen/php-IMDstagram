@@ -46,7 +46,7 @@ let app = new App;
 
 
 
-let reportBtns = document.querySelectorAll("#report");
+let reportBtns = document.querySelectorAll(".report");
 
 reportBtns.forEach((reportBtn) => {
     reportBtn.addEventListener("click", function(e){
@@ -136,5 +136,15 @@ postOkBTns.forEach((postOkBtn) => {
 
             this.innerHTML = "the post is now report free"
 
+    })
+})
+
+
+let btnMore = document.querySelectorAll(".btn-more");
+
+btnMore.forEach((btn) => {
+    btn.addEventListener("click", function(e){
+        e.preventDefault();
+        console.log("test");
     })
 })

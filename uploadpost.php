@@ -176,14 +176,12 @@ session_start();
 
 <?php include_once(__DIR__."/header.php") ?>
 
-<div class="container" id="containerUploadPost">
 
-    <div class="row">
-        <div class="col-12"><h2 id="titleUpload">Upload a new post</h2></div>
-    </div>
 
-    <div class="row">
-        <div class="col-12" id="uploadPost">
+<div class="upload">
+    <h2 class="title__upload">Upload a new post</h2>
+    
+    <div class="uploadPost__form">
 
             <form action="" method="post" enctype="multipart/form-data">
 
@@ -208,7 +206,7 @@ session_start();
 
 
                 <label for="description">Description</label>
-                <input type="text" id="description" name="description" >
+                <textarea type="text" id="description" name="description" ></textarea>
 
                 <label for="tag">Tag</label>
                 <input type="text" id="tag" name="tag" >
@@ -217,20 +215,13 @@ session_start();
                 <input type="text" id="location" name="location" >
 
                 <div class="container_btn">
-                <input class="btn_upload" type="submit" value="Upload">
+                <input class="btn__upload" type="submit" value="Upload">
                 </div>
 
 
             </form>
 
-
-
-
-
         </div>
-    </div>
-
-
 </div>
 
 
