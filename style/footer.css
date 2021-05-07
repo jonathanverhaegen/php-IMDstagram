@@ -1,24 +1,16 @@
 .site-footer
 {
-  background: rgb(230, 230, 230);
-  margin-top: 90px;
+  background: #e73c7e;
+  backdrop-filter: blur(42px);
   padding:45px 0 20px;
   font-size:15px;
   line-height:24px;
-  color:#000;
+  color:#fff;
 }
-.site-footer hr
-{
-  border-top-color:#bbb;
-  opacity:0.5
-}
-.site-footer hr.small
-{
-  margin:20px 0
-}
+
 .site-footer h6
 {
-  color:#000;
+  color:#fff;
   font-size:16px;
   text-transform:uppercase;
   margin-top:5px;
@@ -26,7 +18,7 @@
 }
 .site-footer a
 {
-  color:#f70332;
+  color:#23d5ab;
 }
 .site-footer a:hover
 {
@@ -44,7 +36,7 @@
 }
 .footer-links a
 {
-  color:#000;
+  color:#fff
 }
 .footer-links a:active,.footer-links a:focus,.footer-links a:hover
 {
@@ -55,8 +47,15 @@
 {
   display:inline-block
 }
+.site-footer .social-icons
+{
+  text-align:right
+}
 
-
+.copyright-text
+{
+  margin:0
+}
 @media (max-width:991px)
 {
   .site-footer [class^=col-]
@@ -75,40 +74,3 @@
     text-align:center
   }
 }
-
-#button {
-    display: inline-block;
-    background-color: #f70332;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    border-radius: 4px;
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    transition: background-color .3s, 
-      opacity .5s, visibility .5s;
-    opacity: 0;
-    visibility: hidden;
-    z-index: 1000;
-  }
-  #button::after {
-    content: "\f077";
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
-    font-size: 2em;
-    line-height: 50px;
-    color: #fff;
-  }
-  #button:hover {
-    cursor: pointer;
-    background-color: #ff0033;
-  }
-  #button:active {
-    background-color: #fff;
-  }
-  #button.show {
-    opacity: 1;
-    visibility: visible;
-  }

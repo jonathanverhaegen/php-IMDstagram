@@ -34,7 +34,7 @@
           </li>
           <li class="desktop-li">
             <a class="bold" href="#">Sign In</a>
-            <a class="bold" href="#">Sign Out</a>
+            <a class="bold" href="logout.php">Sign Out</a>
           </li>
         </ul>
       </div>
@@ -121,43 +121,4 @@ button[0].addEventListener("click", () => {
     isOpen = false;
   }
 });
-<<<<<<< HEAD
-
 </script>
-=======
-</script>
-
-<body>
-  <div class="buckle-main">
-      <!-- Header -->
-      <header>
-          <div class="container">
-              <nav>
-                  <div class="logo">
-                      <a href="#"><img src="img/Favicon.png" alt="logo"></a>
-                  </div>
-                  <!-- toggle bar -->
-                  <div class="toggle-bar" type="button">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                  </div>
-                  <div class="navigation-bar">
-                      <ul>
-                          <li><a href="index.php">Home</a></li>
-                          <li><a href="team.html">Zoeken</a></li>
-                          <li><a href="#">Profiel</a></li>
-                          <li class="discord-btn"><a href="uploadpost.php">Upload</a></li>
-                      </ul>
-                  </div>
-              </nav>
-          </div>
-      </header>
-
-      <script>
-        $('toggle-bar').on('click', function (event) {
-            $('this').toggleClass('open');
-            $('.navigation-bar').slideToggle('200');
-        })
-      </script>
->>>>>>> eb0bb4a9b6f6ec69b701df5c2d88bbae3b3f5747

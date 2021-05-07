@@ -49,7 +49,7 @@ class Search {
         $category = $this->getCategory();
         $searchTerm = $this->getSearchTerm();
         $conn = Db::getConnection();
-        $statement = $conn->prepare( "SELECT `id`,`email`,`firstName`,`lastName`,`music`,`movies`,`games`,`tvShows`,`books`,`buddy`,`avatar`,`description` FROM `users` WHERE `email` != :currentEmail && `$category` like '%$searchTerm%' " );
+        $statement = $conn->prepare( "SELECT `id`,`email`,`firstName`,`lastName`,`location`,`tags`,`image` FROM `users`,`posts`  WHERE `email` != :currentEmail && `$category` like '%$searchTerm%' " );
         $statement->bindValue( ':currentEmail', $currentEmail );
         $statement->execute();
         $result = $statement->fetchAll( PDO::FETCH_ASSOC );

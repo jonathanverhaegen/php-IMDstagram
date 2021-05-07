@@ -3,11 +3,7 @@
 session_start();
 include_once("includes/autoloader.inc.php");
 
-<<<<<<< HEAD
     $user = User::getUser(1);
-=======
-    $user =  User::getUser(1);
->>>>>>> eb0bb4a9b6f6ec69b701df5c2d88bbae3b3f5747
 
     $_SESSION["user"] = $user["email"];
 
@@ -42,10 +38,6 @@ include_once("includes/autoloader.inc.php");
     } catch (\Throwable $t) {
         $error = $t->getMessage();
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> eb0bb4a9b6f6ec69b701df5c2d88bbae3b3f5747
 
     
 ?>
