@@ -6,10 +6,10 @@ class User{
     private $username;
     private $email;
     private $password;
+    private $confirmPassword;
     private $avatar;
     private $bio;
     private $status_id;
-    private $description;
 
     private $oldEmail; 
     private $newEmail;
@@ -76,6 +76,26 @@ class User{
     }
 
     /**
+     * Get the value of ConfirmPassword
+     */ 
+    public function getConfirmPassword()
+    {
+        return $this->confirmPassword;
+    }
+
+    /**
+     * Set the value of ConfirmPassword
+     *
+     * @return  self
+     */ 
+    public function setConfirmPassword($confirmPassword)
+    {
+        $this->confirmPassword = $confirmPassword;
+
+        return $this;
+    }
+
+    /**
      * Get the value of image
      */ 
     public function getAvatar()
@@ -95,25 +115,6 @@ class User{
         return $this;
     }
 
-    /**
-     * Get the value of bio
-     */ 
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set the value of bio
-     *
-     * @return  self
-     */ 
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
 
     /**
      * Get the value of status_id
@@ -367,6 +368,80 @@ class User{
             $showAvatar = $row['avatar'];
 
             return $showAvatar;
+        }
+    }
+
+    //login functie ----------
+
+    public function canLogin($email,$password) {
+
+        $conn = Db::getConnection();
+        $statement = $conn->prepare('select * from users where email = :email');
+        $statement->bindParam(':email', $email);
+        $result = $statement->execute();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        $hash = $user['password'];
+        
+        if(password_verify($password, $hash)){   
+                return true; 
+        }
+        else{
+                return false;
+            }
+    }
+
+
+
+    // registreren -------------
+
+    public function registerUser() {
+
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("insert into users (username,email,password) values(:username, :email, :password, '10' )");
+        $username = $this->getUsername();
+        $email = $this->getEmail();
+        $password = $this->getPassword();
+        $confirmPassword = $this->getConfirmPassword();
+
+            
+    
+        if(empty($email) || empty($username) || empty($password) || empty($confirmPassword)) {
+                throw new Exception("All fields are required!");
+                return false;
+        } 
+        
+        elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                throw new Exception("Give a validate email!");
+                return false;
+
+        } 
+        elseif($password != $confirmPassword){
+                throw new Exception("Passwords don't match!");
+                return false;
+        }
+        else {
+
+            $hash = password_hash($password, PASSWORD_DEFAULT, ['cost' => 13]);
+            $statement->bindValue(":username", $username);
+            $statement->bindValue(":email", $email);
+            $statement->bindValue(":password", $hash);
+                
+            $result = $statement->execute();
+            return $result;
+        }
+    }
+
+
+    public function login( $complete ) {
+            session_start();
+            $_SESSION['user'] = $this->getEmail();
+            if ( $complete ) {
+                header( 'Location: match.php' );
+
+            } else {
+                header( 'Location: profile.php' );
+            }
         }
     }
 }
