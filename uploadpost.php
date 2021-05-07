@@ -43,7 +43,7 @@ session_start();
                     
                     $post->setText($_POST["description"]);
 
-                    $post->setImage($fileDestination);
+                    $post->setImage($fileNameNew);
 
                     $email = $_SESSION["user"];
                     $filter = $_POST["filter"];
