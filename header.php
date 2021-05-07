@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container-header">
       <!-- desktop version -->
       <div class="inner-container desktop">
         <span class="logo left"

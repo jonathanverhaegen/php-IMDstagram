@@ -72,7 +72,7 @@
         
         <a class="btn-location" href="location.php?location=<?php echo $p["location"] ?>"><p class="post__location"><?php echo htmlspecialchars($p["location"]) ?></p></a>
         <figure class="<?php echo htmlspecialchars( $p["filter"]) ?>">
-            <img class="post__image" src="<?php echo htmlspecialchars($p["image"]) ?>" alt="post">
+            <img class="post__image" src="images/<?php echo htmlspecialchars($p["image"]) ?>" alt="post">
         </figure>
         <p class="post_description"><?php echo htmlspecialchars($p["description"]) ?></p>
         <div class="post_tags">
