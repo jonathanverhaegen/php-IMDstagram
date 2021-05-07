@@ -15,16 +15,15 @@
           ><a href="index.php"><img src="./images/buckle.png" alt=""/></a
         ></span>
         <ul class="left">
-          <li class="desktop-li"><a href="#">Home</a></li>
-          <li class="desktop-li"><a href="#">Post</a></li>
-          <li class="desktop-li"><a href="#">Popular</a></li>
-          <li class="desktop-li"><a href="#">Profile</a></li>
+          <li class="desktop-li"><a href="index.php">Home</a></li>
+          <li class="desktop-li"><a href="uploadpost.php">Post</a></li>
+          <li class="desktop-li"><a href="profile.php">Profile</a></li>
         </ul>
 
         <ul class="right">
           <li class="search-outer desktop-li">
             <div class="search-outer">
-              <input type="text" class="search" placeholder="Search Buckle-up" />
+              <input action="Search.php" type="text" class="search" method="post" placeholder="Search Buckle-up" />
               <img
                 src="https://assets-cdn.github.com/images/search-shortcut-hint.svg"
                 class="search-hint"
@@ -33,7 +32,7 @@
             </div>
           </li>
           <li class="desktop-li">
-            <a class="bold" href="#">Sign In</a>
+            <a class="bold" href="login.php">Sign In</a>
             <a class="bold" href="logout.php">Sign Out</a>
           </li>
         </ul>
@@ -61,10 +60,9 @@
     </div>
     <div class="drop-down-mobile">
       <ul class="mobile-ul">
-        <li class="mobile-li"><a href="#">Home</a></li>
-        <li class="mobile-li"><a href="#">Post</a></li>
-        <li class="mobile-li"><a href="#">Popular</a></li>
-        <li class="mobile-li"><a href="#">Profile</a></li>
+        <li class="mobile-li"><a href="index.php">Home</a></li>
+        <li class="mobile-li"><a href="uploadpost.php">Post</a></li>
+        <li class="mobile-li"><a href="profile.php">Profile</a></li>
         <li class="search-outer mobile-li">
           <div class="search-outer search-outer-mobile">
             <input
@@ -80,8 +78,8 @@
           </div>
         </li>
         <li class="mobile-li">
-          <a class="bold" href="#">Sign In</a><br>
-          <a class="bold" href="#">Sign Out</a>
+          <a class="bold" href="login.php">Sign In</a><br>
+          <a class="bold" href="logout.php">Sign Out</a>
         </li>
       </ul>
     </div>
