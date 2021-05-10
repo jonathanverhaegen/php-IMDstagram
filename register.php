@@ -1,6 +1,6 @@
 <?php
 
-include_once(__DIR__."/../includes/autoloader.inc.php");
+include_once(__DIR__."/includes/autoloader.inc.php");
 
 if (!empty($_POST)) {
 		

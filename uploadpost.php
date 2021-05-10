@@ -8,54 +8,43 @@ session_start();
     if(!empty($_POST)){
 
         
-        
-        $file = $_FILES['file'];
 
-        $fileName = $file['name'];
-        $fileTmpName = $file['tmp_name'];
-        $fileSize = $file['size'];
-        $fileError = $file['error'];
-        $fileType = $file['type'];
+        //beginnen met de try
 
-        $fileExt = explode('.', $fileName);
-        $fileActExt = strtolower(end($fileExt));
+        try{
 
-        $allowed = array("jpg", "png", "jpeg", "gif");
+            $post = new Post();
 
-        if(!empty($_POST["description"])){
-
-        if(in_array($fileActExt, $allowed)){
+            // $post->setFile($_FILES['file']);
+            $file = $_FILES['file'];
+            var_dump($file);
             
-            if($fileError === 0){
+            $post->setFileName($file['name']);
+            $post->setFileTmpName($file['tmp_name']);
+            $post->setFileSize($file['size']);
+            $post->setFileError($file['error']);
+            $post->setFileType($file['type']);
+            $post->setFileExt(explode('.', $post->getFileName()));
+            $post->setFileActExt(strtolower(end($post->getFileExt())));
 
-                if($fileSize < 5000000){
+            if($post->isPostAllowed()){
 
-                    $fileNameNew = uniqid('', true).".".$fileActExt;
+                $fileNameNew = uniqid('', true).".".$post->getFileActExt();
+                $fileDestination = 'images/'.$fileNameNew;
 
-                    $fileDestination = 'images/'.$fileNameNew;
+                $imgCompressed = Post::compressImage($post->getFileTmpName(),$fileDestination,20);
+                var_dump($imgCompressed);
 
-                    move_uploaded_file($fileTmpName, $fileDestination);
+                // move_uploaded_file($post->getFileTmpName(), $fileDestination);
 
-                    //upload the file to db posts
+                $post->setDescription($_POST["description"]);
+                $post->setImage($fileNameNew);
+                $email = $_SESSION["user"];
+                $filter = $_POST["filter"];
+                $post->setLocation($_POST["location"]);
+                $post->uploadPost($email, $filter);
 
-                    $post = new Post();
-
-                    
-                    $post->setText($_POST["description"]);
-
-                    $post->setImage($fileNameNew);
-
-                    $email = $_SESSION["user"];
-                    $filter = $_POST["filter"];
-
-                    $post->setLocation($_POST["location"]);
-
-                    
-
-                    $post->uploadPost($email, $filter);
-
-                    
-                    //kijken op tag al bestaat
+                //kijken op tag al bestaat
 
                     $tag = $_POST["tag"];
 
@@ -110,54 +99,29 @@ session_start();
                             $postTag->upload();
 
 
-
-                        }
-                    }
-                
-
-
-                    header("Location: index.php");
-
-
-                }else{
-                    $error = "file is to big to upload";
-                }
-                
-
-            }else{
-                $error = "there was an error uploading the file";
-            
             }
-        }else{
-            $error = "files are not supported";
-            
+
+
         }
-        }else{
-            
-            $error = "description cannot by empty";
-            
+        header("Location: index.php");
+        
+    }
+    
+
+        } catch(\Throwable $th){
+            $error = $th->getMessage();
         }
+
+        
+
     }
 
-
-    $filters = Filter::getAllFilters();
-    
-
-    
-
-    
-
-
-        
-        
-        
-        
-        
         
 
-        
-      
-       
+  
+
+
+    $filters = Filter::getAllFilters(); 
     
 
 ?><!DOCTYPE html>

@@ -3,10 +3,20 @@ include_once(__DIR__."/../includes/autoloader.inc.php");
 
 class Post{
     private $user_id;
-    private $text;
+    private $description;
     private $time;
     private $image;
     private $location;
+    private $filter;
+
+    private $file;
+    private $fileName;
+    private $fileTmpName;
+    private $fileSize;
+    private $fileError;
+    private $fileType;
+    private $fileExt;
+    private $fileActExt;
     
 
     /**
@@ -32,9 +42,9 @@ class Post{
     /**
      * Get the value of text
      */ 
-    public function getText()
+    public function getDescription()
     {
-        return $this->text;
+        return $this->description;
     }
 
     /**
@@ -42,10 +52,15 @@ class Post{
      *
      * @return  self
      */ 
-    public function setText($text)
+    public function setDescription($description)
     {
-        $this->text = $text;
 
+        if(empty($description)){
+            // description kan niet leeg zijn
+            throw new Exception("Description cannot be empty");
+        }
+
+        $this->description = $description;
         return $this;
     }
 
@@ -109,9 +124,202 @@ class Post{
         return $this;
     }
 
-    
+    /**
+     * Get the value of filter
+     */ 
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Set the value of filter
+     *
+     * @return  self
+     */ 
+    public function setFilter($filter)
+    {
+        if(empty($filter)){
+            // filter kan niet leeg zijn
+            throw new Exception("Please choose a filter");
+        }
+
+        $this->filter = $filter;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of file
+     */ 
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Set the value of file
+     *
+     * @return  self
+     */ 
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+     /**
+     * Get the value of fileName
+     */ 
+    public function getFileName()
+    {
+        return $this->fileName;
+    }
+
+    /**
+     * Set the value of fileName
+     *
+     * @return  self
+     */ 
+    public function setFileName($fileName)
+    {
+        $this->fileName = $fileName;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fileTmpName
+     */ 
+    public function getFileTmpName()
+    {
+        return $this->fileTmpName;
+    }
+
+    /**
+     * Set the value of fileTmpName
+     *
+     * @return  self
+     */ 
+    public function setFileTmpName($fileTmpName)
+    {
+        $this->fileTmpName = $fileTmpName;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fileSize
+     */ 
+    public function getFileSize()
+    {
+        return $this->fileSize;
+    }
+
+    /**
+     * Set the value of fileSize
+     *
+     * @return  self
+     */ 
+    public function setFileSize($fileSize)
+    {
+        //als foto groter is 
+        if($fileSize > 50000000){
+            throw new Exception("image size is to big");
+        }
+
+        $this->fileSize = $fileSize;
+        return $this;
+    }
+
+    /**
+     * Get the value of fileError
+     */ 
+    public function getFileError()
+    {
+        return $this->fileError;
+    }
+
+    /**
+     * Set the value of fileError
+     *
+     * @return  self
+     */ 
+    public function setFileError($fileError)
+    {
+        if($fileError != 0){
+            throw new Exception("there was an error uploading the image");
+        }
+
+        $this->fileError = $fileError;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fileType
+     */ 
+    public function getFileType()
+    {
+        return $this->fileType;
+    }
+
+    /**
+     * Set the value of fileType
+     *
+     * @return  self
+     */ 
+    public function setFileType($fileType)
+    {
+        $this->fileType = $fileType;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fileExt
+     */ 
+    public function getFileExt()
+    {
+        return $this->fileExt;
+    }
+
+    /**
+     * Set the value of fileExt
+     *
+     * @return  self
+     */ 
+    public function setFileExt($fileExt)
+    {
+        $this->fileExt = $fileExt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fileActExt
+     */ 
+    public function getFileActExt()
+    {
+        return $this->fileActExt;
+    }
+
+    /**
+     * Set the value of fileActExt
+     *
+     * @return  self
+     */ 
+    public function setFileActExt($fileActExt)
+    {
+        $this->fileActExt = $fileActExt;
+
+        return $this;
+    }
 
     
+
+    //functies
 
     public static function getAllForUser($user_id){
         $conn = Db::getConnection();
@@ -138,7 +346,7 @@ class Post{
         $conn = Db::getConnection();
         $statement = $conn->prepare("INSERT INTO `posts`(`user_id`, `description`, `time`, `image`, `filter_id`, `location`) VALUES ((SELECT id from users where email = :email), :text, sysdate(), :image, (select id from filters where filter = :filter), :location)");
         $statement->bindValue(":email", $email);
-        $statement->bindValue(":text", $this->getText());
+        $statement->bindValue(":text", $this->getDescription());
         $statement->bindValue(":image", $this->getImage());
         $statement->bindValue(":filter", $filter);
         $statement->bindValue(":location", $this->getLocation());
@@ -200,6 +408,69 @@ class Post{
         return $result;
 
     }
+
+    public function isPostAllowed(){
+        $allowed = array("jpg", "png", "jpeg", "gif");
+
+        if(in_array($this->getFileActExt(), $allowed)){
+            return true;
+        }else{
+            throw new Exception("the file is not supported");
+        }
+    }
+
+    public static function compressImage($source, $destination, $quality){
+
+        // info van de image
+        $info = getimagesize($source);
+        $mime = $info['mime']; 
+
+        
+        //nieuwe image createn
+        switch($mime){ 
+            case 'image/jpeg': 
+                $image = imagecreatefromjpeg($source); 
+                break; 
+            case 'image/png': 
+                $image = imagecreatefrompng($source); 
+                break; 
+            case 'image/gif': 
+                $image = imagecreatefromgif($source); 
+                break; 
+            case 'image/jpg':
+                $image = imagecreatefromjpeg($source);
+                break;
+            default: 
+                $image = imagecreatefromjpeg($source); 
+        }
+
+        
+        // Save image 
+        imagejpeg($image, $destination, $quality);
+
+        // Return compressed image 
+        return $destination; 
+        
+
+    }
+
+    
+
+    
+
+    
+
+    
+
+   
+
+    
+
+    
+
+    
+
+    
 
     
 

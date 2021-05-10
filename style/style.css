@@ -78,6 +78,7 @@
     margin-top:50px;
     background-color: rgb(231, 228, 228);
     padding:25px;
+    margin-bottom:50px;
 }
 
 .title__upload{
@@ -141,6 +142,11 @@ input, select{
     background-color: rgb(231, 228, 228);
     padding:25px;
     margin-bottom:50px;
+}
+
+.post__image{
+    width: 100%;
+    
 }
 
 .post__report{

@@ -398,7 +398,7 @@ class User{
     public function registerUser() {
 
         $conn = Db::getConnection();
-        $statement = $conn->prepare("insert into users (username,email,password) values(:username, :email, :password, '10' )");
+        $statement = $conn->prepare("insert into users (username,email,password) values (:username, :email, :password )");
         $username = $this->getUsername();
         $email = $this->getEmail();
         $password = $this->getPassword();
@@ -443,5 +443,6 @@ class User{
                 header( 'Location: profile.php' );
             }
         }
+
+
     }
-}
