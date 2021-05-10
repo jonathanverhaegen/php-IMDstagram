@@ -437,10 +437,10 @@ class User{
             session_start();
             $_SESSION['user'] = $this->getEmail();
             if ( $complete ) {
-                header( 'Location: match.php' );
+                header( 'Location: index.php' );
 
             } else {
-                header( 'Location: profile.php' );
+                header( 'Location: login.php' );
             }
         }
 
