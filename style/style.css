@@ -212,6 +212,7 @@ input, select{
     display: block;
     width: 175px;
     text-align: center;
+    margin-bottom:50px;
 }
 
 .btn-location{

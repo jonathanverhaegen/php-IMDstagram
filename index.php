@@ -8,9 +8,9 @@
 
     session_start();
 
-    $user = User::getUser(1);
+    // $user = User::getUser(1);
     
-    $_SESSION["user"] = $user["email"];
+    $_SESSION["user"] = 1;
 
     $_SESSION["user-type"] = $user["type"];
 

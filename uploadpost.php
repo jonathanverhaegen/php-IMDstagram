@@ -39,10 +39,10 @@ session_start();
 
                 $post->setDescription($_POST["description"]);
                 $post->setImage($fileNameNew);
-                $email = $_SESSION["user"];
-                $filter = $_POST["filter"];
+                $post->setUser_id($_SESSION["user"]);
+                $post->setFilter($_POST["filter"]);
                 $post->setLocation($_POST["location"]);
-                $post->uploadPost($email, $filter);
+                $post->uploadPost($email);
 
                 //kijken op tag al bestaat
 

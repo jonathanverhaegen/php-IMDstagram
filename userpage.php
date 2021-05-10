@@ -10,6 +10,10 @@ include_once("includes/autoloader.inc.php");
 
     $numberOfPosts = count($posts);
 
+    foreach($posts as $l){
+        echo $l["location"]." ";
+    }
+
     
 
 ?><!DOCTYPE html>
@@ -32,7 +36,7 @@ include_once("includes/autoloader.inc.php");
 
 <div style="margin-bottom:50px;" id="containerProfileInfo">
     <div class="row align-items-center" id="rowProfileInfo">
-        <div class="col-4"><img id="profileImage" src="<?php echo $user["avatar"] ?>" alt=""></div>
+        <div class="col-4"><img id="profileImage" src="images/<?php echo $user["avatar"] ?>" alt=""></div>
         <div class="col-8">
             
                 <h5><?php echo $user["username"] ?></h5>

@@ -341,14 +341,14 @@ class Post{
         
     }
 
-    public function uploadPost($email, $filter){
+    public function uploadPost(){
 
         $conn = Db::getConnection();
-        $statement = $conn->prepare("INSERT INTO `posts`(`user_id`, `description`, `time`, `image`, `filter_id`, `location`) VALUES ((SELECT id from users where email = :email), :text, sysdate(), :image, (select id from filters where filter = :filter), :location)");
-        $statement->bindValue(":email", $email);
+        $statement = $conn->prepare("INSERT INTO `posts`(`user_id`, `description`, `time`, `image`, `filter_id`, `location`) VALUES (:user, :text, sysdate(), :image, (select id from filters where filter = :filter), :location)");
+        $statement->bindValue(":user", $this->getUser_id());
         $statement->bindValue(":text", $this->getDescription());
         $statement->bindValue(":image", $this->getImage());
-        $statement->bindValue(":filter", $filter);
+        $statement->bindValue(":filter", $this->getFilter());
         $statement->bindValue(":location", $this->getLocation());
         
 
