@@ -27,6 +27,14 @@ session_start();
             $post->setFileExt(explode('.', $post->getFileName()));
             $post->setFileActExt(strtolower(end($post->getFileExt())));
 
+            $location = $_POST["location"];
+
+            $extLocation = explode(" ", $location);
+
+            echo $extLocation[0];
+
+            
+
             if($post->isPostAllowed()){
 
                 $fileNameNew = uniqid('', true).".".$post->getFileActExt();
@@ -41,8 +49,9 @@ session_start();
                 $post->setImage($fileNameNew);
                 $post->setUser_id($_SESSION["user"]);
                 $post->setFilter($_POST["filter"]);
-                $post->setLocation($_POST["location"]);
-                $post->uploadPost($email);
+                $post->setCity($extLocation[0]);
+                $post->setCountry($extLocation[1]);
+                $post->uploadPost();
 
                 //kijken op tag al bestaat
 

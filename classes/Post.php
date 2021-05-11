@@ -6,7 +6,9 @@ class Post{
     private $description;
     private $time;
     private $image;
-    private $location;
+    
+    private $city;
+    private $country;
     private $filter;
 
     private $file;
@@ -104,22 +106,44 @@ class Post{
         return $this;
     }
 
+    
+
     /**
-     * Get the value of location
+     * Get the value of city
      */ 
-    public function getLocation()
+    public function getCity()
     {
-        return $this->location;
+        return $this->city;
     }
 
     /**
-     * Set the value of location
+     * Set the value of city
      *
      * @return  self
      */ 
-    public function setLocation($location)
+    public function setCity($city)
     {
-        $this->location = $location;
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of country
+     */ 
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set the value of country
+     *
+     * @return  self
+     */ 
+    public function setCountry($country)
+    {
+        $this->country = $country;
 
         return $this;
     }
@@ -148,6 +172,12 @@ class Post{
 
         return $this;
     }
+
+
+
+
+
+
 
     /**
      * Get the value of file
@@ -344,12 +374,13 @@ class Post{
     public function uploadPost(){
 
         $conn = Db::getConnection();
-        $statement = $conn->prepare("INSERT INTO `posts`(`user_id`, `description`, `time`, `image`, `filter_id`, `location`) VALUES (:user, :text, sysdate(), :image, (select id from filters where filter = :filter), :location)");
+        $statement = $conn->prepare("INSERT INTO `posts`(`user_id`, `description`, `time`, `image`, `filter_id`, `city`, `country`) VALUES (:user, :text, sysdate(), :image, (select id from filters where filter = :filter), :city, :country)");
         $statement->bindValue(":user", $this->getUser_id());
         $statement->bindValue(":text", $this->getDescription());
         $statement->bindValue(":image", $this->getImage());
         $statement->bindValue(":filter", $this->getFilter());
-        $statement->bindValue(":location", $this->getLocation());
+        $statement->bindValue(":city", $this->getCity());
+        $statement->bindValue(":country", $this->getCountry());
         
 
         $result = $statement->execute();
@@ -516,26 +547,6 @@ class Post{
 
         return $number;
     }
-    
-
-    
-
-    
-
-    
-
-   
-
-    
-
-    
-
-    
-
-    
-
-    
-
     
 
     

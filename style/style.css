@@ -111,6 +111,10 @@ input, select{
     height:35px;
 }
 
+input{
+    padding-left:5px;
+}
+
 .container_btn{
     display:grid;
     justify-content: center;
