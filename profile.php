@@ -3,7 +3,7 @@
 session_start();
 include_once("includes/autoloader.inc.php");
 
-    $user = User::getUser(1);
+    $user = User::getUser();
 
     $_SESSION["user"] = $user["email"];
 
