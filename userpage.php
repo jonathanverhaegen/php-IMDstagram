@@ -1,8 +1,11 @@
 <?php
 
+// list($city, $country) = array_pad(explode(" ", $location, $numberOfListItems ), $numberOfListItems , null);
+
 include_once("includes/autoloader.inc.php");
 
     if(!empty($_GET["user"])){
+        $user_id = $_GET["user"];
         $user = User::getUser($_GET["user"]);
         $posts = Post::getAllForUser($user["id"]);
     }
@@ -10,9 +13,64 @@ include_once("includes/autoloader.inc.php");
 
     $numberOfPosts = count($posts);
 
-    foreach($posts as $l){
-        echo $l["location"]." ";
-    }
+    
+
+    //badge systeem
+
+        //land badge: aantal post uit een zelfde land
+
+            //in welke landen zijn er posts gebeurd
+
+        
+
+        $countriesPosts = Post::getCountriesForUser($user_id);
+
+            //hoeveel posts in dat land
+
+            foreach($countriesPosts as $c){
+                // echo $c["country"];
+                $numberOfCountry = Post::countCountryForUser($user_id,$c["country"]);
+                // echo $numberOfPosts;
+
+                if($numberOfCountry > 1){
+                    $countryBadge[] = $c["country"];
+                    
+                }
+
+            }
+
+       
+
+        //travell badge: hoeveel keer in een bepaald land geweest
+
+        $numberOfCountries = Post::numberOfCountries($user_id);
+        // echo $numberOfCountries;
+
+        if($numberOfCountries > 2){
+            $travellerBadge = true;
+        }
+        
+
+
+        //post badge: hoeveel keer een post gedaan
+        if($numberOfPosts > 2){
+            $postBadge = true;
+        }
+
+        //distance badge: hoeveel kilometer gereisd, hoeveel keer verschillende steden
+
+        $numberOfCities = Post::countCitiesForUser($user_id);
+        echo $numberOfCities;
+
+        if($numberOfCities > 5){
+            $distanceBadge = true;
+        }
+        
+        
+
+        
+
+        
 
     
 
@@ -46,10 +104,31 @@ include_once("includes/autoloader.inc.php");
                     <p><?php echo $user["following"] ?> volgend</p>
                 </div>
                 <p><?php echo $user["bio"] ?></p>
+                <p>
+                    <?php if(isset($postBadge)){
+                        echo "postbadge";
+                    } ?>
+
+                    <?php if(isset($countryBadge)){
+                        foreach($countryBadge as $b){
+                            echo $b."badge ";
+                        }
+                    } ?>
+
+                    <?php if(isset($travellerBadge)){
+                        echo "travellerbadge";
+                    } ?>
+
+                    <?php if(isset($distanceBadge)){
+                        echo "distancebadge";
+                    } ?>
+                
+                </p>
                 
             
         </div>
     </div>
+    
 </div>
 
 
@@ -83,7 +162,7 @@ include_once("includes/autoloader.inc.php");
             <a class="post_username" href="userpage.php?user=<?php echo $p["user_id"] ?>"><h2><?php echo htmlspecialchars($p["username"]) ?></h2></a>
         </div>
         
-        <a class="btn-location" href="location.php?location=<?php echo $p["location"] ?>"><p class="post__location"><?php echo htmlspecialchars($p["location"]) ?></p></a>
+        <a class="btn-location" href="location.php?city=<?php echo $p["city"] ?>&country=<?php echo $p["country"] ?>"><p class="post__location"><?php echo htmlspecialchars($p["city"].", ".$p["country"]) ?></p></a>
         <figure class="<?php echo htmlspecialchars( $p["filter"]) ?>">
             <img class="post__image" src="images/<?php echo htmlspecialchars($p["image"]) ?>" alt="post">
         </figure>

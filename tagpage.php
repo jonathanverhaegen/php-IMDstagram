@@ -67,7 +67,7 @@ include_once("includes/autoloader.inc.php");
             <a class="post_username" href="userpage.php?user=<?php echo $p["user_id"] ?>"><h2><?php echo htmlspecialchars($p["username"]) ?></h2></a>
         </div>
         
-        <a class="btn-location" href="location.php?location=<?php echo $p["location"] ?>"><p class="post__location"><?php echo htmlspecialchars($p["location"]) ?></p></a>
+        <a class="btn-location" href="location.php?city=<?php echo $p["city"] ?>&country=<?php echo $p["country"] ?>"><p class="post__location"><?php echo htmlspecialchars($p["city"].", ".$p["country"]) ?></p></a>
         <figure class="<?php echo htmlspecialchars( $p["filter"]) ?>">
             <img class="post__image" src="images/<?php echo htmlspecialchars($p["image"]) ?>" alt="post">
         </figure>

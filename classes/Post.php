@@ -398,10 +398,11 @@ class Post{
         
     }
 
-    public static function getPostByLocation($location){
+    public static function getPostByLocation($city, $country){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT * FROM `posts` INNER JOIN `users` ON `posts`.`user_id` = `users`.`id` INNER JOIN `filters` on `posts`.`filter_id` = `filters`.`id` where `location` = :location order by time desc ");
-        $statement->bindValue(":location", $location);
+        $statement = $conn->prepare("SELECT * FROM `posts` INNER JOIN `users` ON `posts`.`user_id` = `users`.`id` INNER JOIN `filters` on `posts`.`filter_id` = `filters`.`id` where `city` = :city AND `country` = :country order by time desc ");
+        $statement->bindValue(":city", $city);
+        $statement->bindValue(":country", $country);
         $statement->execute();
         $result = $statement->fetchAll();
 
@@ -454,6 +455,67 @@ class Post{
 
     }
 
+    public static function getPostsByCountry($user_id,$country){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM `posts` WHERE `user_id` = :user_id AND location LIKE :country");
+        $statement->bindvalue(":user_id", $user_id);
+        $statement->bindvalue(":country", '%'.$country.'%');
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+        $numberOfResults = count($result);
+
+        return $numberOfResults;
+    }
+
+
+    public static function getCountriesForUser($user_id){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT DISTINCT country FROM posts WHERE `user_id` = :user_id ");
+        $statement->bindValue(":user_id", $user_id);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public static function countCountryForUser($user_id, $country){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * from posts WHERE `user_id` = :user_id AND `country` = :country ");
+        $statement->bindValue(":user_id", $user_id);
+        $statement->bindvalue(":country", $country);
+        $statement->execute();
+        $result = $statement->fetchAll();
+
+        $numberOfResults = count($result);
+        return $numberOfResults;
+
+
+    }
+
+    public static function numberOfCountries($user_id){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT DISTINCT country FROM posts WHERE `user_id` = :user_id ");
+        $statement->bindValue(":user_id", $user_id);
+        $statement->execute();
+        $result = $statement->fetchAll();
+
+        $number = count($result);
+
+        return $number;
+    }
+
+    public static function countCitiesForUser($user_id){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT DISTINCT city FROM posts WHERE `user_id` = :user_id ");
+        $statement->bindValue(":user_id", $user_id);
+        $statement->execute();
+        $result = $statement->fetchAll();
+
+        $number = count($result);
+
+        return $number;
+    }
     
 
     

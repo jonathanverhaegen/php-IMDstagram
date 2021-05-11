@@ -3,10 +3,14 @@
     
 include_once("includes/autoloader.inc.php");
     
-    if(!empty($_GET["location"])){
+    if(!empty($_GET["city"])&& !empty($_GET["country"])){
         
 
-        $location = $_GET["location"];
+        $city = $_GET["city"];
+        $country = $_GET["country"];
+
+        // echo $city;
+        // echo $country;
 
         
 
@@ -14,7 +18,7 @@ include_once("includes/autoloader.inc.php");
 
         //alle posts met die location vinden in database
 
-        $posts = Post::getPostByLocation($location);
+        $posts = Post::getPostByLocation($city, $country);
 
         
 
@@ -39,13 +43,13 @@ include_once("includes/autoloader.inc.php");
     <link rel="stylesheet" href="style/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cssgram/0.1.10/cssgram.min.css">
-    <title><?php echo $location; ?></title>
+    <title><?php echo $city.", ".$country; ?></title>
 </head>
 <body>
 
 <?php include_once(__DIR__."/header.php") ?>
 
-<h1 class="title"><?php echo $location ?></h1>
+<h1 class="title"><?php echo $city.", ".$country ?></h1>
 
 
 <?php foreach($posts as $p): ?>
@@ -73,7 +77,7 @@ include_once("includes/autoloader.inc.php");
             <a class="post_username" href="userpage.php?user=<?php echo $p["user_id"] ?>"><h2><?php echo htmlspecialchars($p["username"]) ?></h2></a>
         </div>
         
-        <a class="btn-location" href="location.php?location=<?php echo $p["location"] ?>"><p class="post__location"><?php echo htmlspecialchars($p["location"]) ?></p></a>
+        <a class="btn-location" href="location.php?city=<?php echo $p["city"] ?>&country=<?php echo $p["country"] ?>"><p class="post__location"><?php echo htmlspecialchars($p["city"].", ".$p["country"]) ?></p></a>
         <figure class="<?php echo htmlspecialchars( $p["filter"]) ?>">
             <img class="post__image" src="images/<?php echo htmlspecialchars($p["image"]) ?>" alt="post">
         </figure>
