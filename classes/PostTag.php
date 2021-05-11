@@ -1,5 +1,7 @@
 <?php
-include_once(__DIR__."/../includes/autoloader.inc.php");
+// include_once(__DIR__."/../includes/autoloader.inc.php");
+include_once(__DIR__."/Db.php");
+
 class PostTag{
     private $post_id;
     private $tag_id;
@@ -52,6 +54,13 @@ class PostTag{
         $statement->bindValue(":tag_id", $this->getTag_id());
         $statement->execute();
 
+    }
+
+    public static function deletePostTag($post_id){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("DELETE FROM `posts_tags` WHERE post_id = :post_id");
+        $statement->bindValue(":post_id", $post_id);
+        $statement->execute();
     }
 
     

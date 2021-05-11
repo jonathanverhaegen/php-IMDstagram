@@ -1,6 +1,7 @@
 <?php
 
-include_once(__DIR__."/../includes/autoloader.inc.php");
+// include_once(__DIR__."./../includes/autoloader.inc.php");
+include_once(__DIR__."/Db.php");
 
 class Report{
     private $post_id;

@@ -201,7 +201,7 @@ session_start();
 
 
 <?php include_once(__DIR__."/footer.php") ?>
-<script src="js/app.js"></script>
+<script src="js/location.js"></script>
     
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 
-include_once(__DIR__."/../includes/autoloader.inc.php");
+include_once(__DIR__."/../classes/Report.php");
 
 if(!empty($_POST)){
 
@@ -13,11 +13,11 @@ if(!empty($_POST)){
 
 
     $response =[
-        'status' => "succes",
-        "message" => "post reported"
+        'status' => 'succes',
+        'message' => 'post reported'
     ];
 
-    header("Content-Type: application/json");
+    header('Content-Type: application/json');
     echo json_encode($response);
 
 }

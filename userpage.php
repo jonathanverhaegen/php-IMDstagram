@@ -60,7 +60,7 @@ include_once("includes/autoloader.inc.php");
         //distance badge: hoeveel kilometer gereisd, hoeveel keer verschillende steden
 
         $numberOfCities = Post::countCitiesForUser($user_id);
-        echo $numberOfCities;
+        // echo $numberOfCities;
 
         if($numberOfCities > 5){
             $distanceBadge = true;
