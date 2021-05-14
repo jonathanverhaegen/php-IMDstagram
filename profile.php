@@ -10,11 +10,11 @@ session_start();
 
 include_once("includes/autoloader.inc.php");
 
-    if(!empty($_GET["user"])){
-        $user_id = $_GET["user"];
-        $user = User::getUser($_GET["user"]);
-        $posts = Post::getAllForUser($user["id"]);
-    }
+    
+        $user_id = $id;
+        $user = User::getUser($user_id);
+        $posts = Post::getAllForUser($user_id);
+    
 
 
     $numberOfPosts = count($posts);
@@ -105,7 +105,7 @@ include_once("includes/autoloader.inc.php");
             
                 <h5><?php echo $user["username"] ?></h5>
                 <div class="userInfo">
-                    <p><?php echo $numberOfPosts ?> berichten</p>
+                    <p><?php echo $numberOfPosts ?> <?php if($numberOfPosts === 1){echo "post";}else{echo "posts";}  ?></p>
                     <p><?php echo $user["followers"] ?> volgers</p>
                     <p><?php echo $user["following"] ?> volgend</p>
                 </div>

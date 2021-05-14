@@ -3,8 +3,11 @@
 session_start();
 include_once( __DIR__ . '/classes/User.php' );
 
-if (isset($_SESSION["user"])) {
-    $email = $_SESSION["user"];
+if (isset($_SESSION["id"])) {
+  
+    $user = User::getUser($_SESSION["id"]);
+    
+    $email = $user["email"];
 
     if (!empty($_POST)) {
         try {
