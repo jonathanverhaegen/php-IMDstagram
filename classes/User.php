@@ -204,6 +204,26 @@ class User{
         return $this;
     }
 
+    /**
+     * Get the value of bio
+     */ 
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    /**
+     * Set the value of bio
+     *
+     * @return  self
+     */ 
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
     public function save() 
     {
         try {
@@ -270,11 +290,11 @@ class User{
     {
         try {
             $conn = Db::getConnection();
-            $statement = $conn->prepare( 'SELECT description FROM users WHERE email = :currentEmail' );
+            $statement = $conn->prepare( 'SELECT bio FROM users WHERE email = :currentEmail' );
             $statement->bindValue( ':currentEmail', $email );
             $statement->execute();
             while( $row = $statement->fetch() ) {
-                $activeDescription = $row['description'];
+                $activeDescription = $row['bio'];
 
                 return $activeDescription;
             }
@@ -287,9 +307,9 @@ class User{
     {
         try {
             $conn = Db::getConnection();
-            $updateDesStmt = $conn->prepare( 'UPDATE users SET description=:description WHERE email = :email' );
-            // $description = $this->getDescription();
-            // $updateDesStmt->bindValue( ':description', $description );
+            $updateDesStmt = $conn->prepare( 'UPDATE users SET bio = :description WHERE email = :email' );
+            $description = $this->getBio();
+            $updateDesStmt->bindValue( ':description', $description );
             $updateDesStmt->bindValue( ':email', $email );
             $descrResult = $updateDesStmt->execute();
 
@@ -343,9 +363,9 @@ class User{
         if ( in_array( $fileExtention, $allowedFiles ) ) {
             if ( $fileSize < 1000000 ) {
                 $fileNewName = uniqid( '', true ).'.'.$fileExtention;
-                $fileDestination = 'uploads/'.$fileNewName;
+                $fileDestination = 'images/'.$fileNewName;
                 move_uploaded_file( $fileTmpName, $fileDestination );
-                $profileStatement->bindValue( ':avatar', $fileDestination );
+                $profileStatement->bindValue( ':avatar', $fileNewName );
                 $profileStatement->bindValue( ':email', $email );
                 $profileStatement->execute();
             } else {
@@ -362,15 +382,14 @@ class User{
         $avatarstmt = $conn->prepare( 'SELECT avatar FROM users WHERE email = :email' );
         $avatarstmt->bindValue( ':email', $email );
         $avatarstmt->execute();
-        $result = $avatarstmt->fetchAll();
         
-        return $result;
+        
 
-        // while( $row = $avatarstmt->fetch() ) {
-        //     $showAvatar = $row['avatar'];
+        while( $row = $avatarstmt->fetch() ) {
+            $showAvatar = $row['avatar'];
 
-        //     return $showAvatar;
-        // }
+            return $showAvatar;
+        }
     }
 
     //login functie ----------
@@ -463,6 +482,8 @@ class User{
     }
 
 
+
+    
     }
 
     

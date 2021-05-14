@@ -3,15 +3,17 @@
 session_start();
 include_once( __DIR__ . '/classes/User.php' );
 
-if (isset($_SESSION["user"])) {
+if (isset($_SESSION["id"])) {
+
+    $user = User::getUser($_SESSION["id"]);
     
-    $email = $_SESSION["user"];
+    $email = $user["email"];
     
     $description = new User;
     $showDescription = $description->viewDescription($email);
     if (!empty($_POST)) {
         try {
-            $description->setDescription($_POST["description"]);
+            $description->setBio($_POST["description"]);
             $description->editDescription($email);
         } catch (\Throwable $th) {
             $error = $th->getMessage();
@@ -31,7 +33,7 @@ if (isset($_SESSION["user"])) {
     <title>Change your description</title>
 </head>
 <body class="desc">
-<?php include("app/frontend/includes/navbar.php") ?>
+<!-- <?php include("app/frontend/includes/navbar.php") ?> wat is dit? --> 
     <form action="" method="post">
         <h2><label for="dscrptn" >Your description</label></h2>
         <textarea class="form-control" name="description" id="description" cols="30" rows="10" > <?php echo htmlspecialchars($showDescription) ?> </textarea>
