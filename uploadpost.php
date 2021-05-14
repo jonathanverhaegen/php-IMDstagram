@@ -149,6 +149,7 @@ if(!isset($_SESSION["id"])){
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/footer.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cssgram/0.1.10/cssgram.min.css">
     <title>Upload post</title>
 </head>
 <body>
@@ -159,6 +160,11 @@ if(!isset($_SESSION["id"])){
 
 <div class="upload">
     <h2 class="title__upload">Upload a new post</h2>
+
+    <figure class="">
+        <img class="prev-image" src="" alt="">
+    </figure>
+    
     
     <div class="uploadPost__form">
 
@@ -208,6 +214,7 @@ if(!isset($_SESSION["id"])){
 
 <?php include_once(__DIR__."/footer.php") ?>
 <script src="js/location.js"></script>
+<script src="js/previewImage.js"></script>
     
 </body>
 </html>
