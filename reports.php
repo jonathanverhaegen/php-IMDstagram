@@ -7,6 +7,12 @@
 
     session_start();
 
+    if(!isset($_SESSION["id"])){
+        header("Location: login.php"); //redirect to login.php
+    }else{
+        $id = $_SESSION["id"];
+    }
+
     
 
     if($_SESSION["user-type"] != "admin"){

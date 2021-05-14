@@ -1,6 +1,12 @@
 <?php
 
-// list($city, $country) = array_pad(explode(" ", $location, $numberOfListItems ), $numberOfListItems , null);
+session_start();
+
+    if(!isset($_SESSION["id"])){
+        header("Location: login.php"); //redirect to login.php
+    }else{
+        $id = $_SESSION["id"];
+    }
 
 include_once("includes/autoloader.inc.php");
 

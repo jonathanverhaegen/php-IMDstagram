@@ -2,6 +2,14 @@
 
     
 include_once("includes/autoloader.inc.php");
+
+    session_start();
+
+    if(!isset($_SESSION["id"])){
+        header("Location: login.php"); //redirect to login.php
+    }else{
+        $id = $_SESSION["id"];
+    }
     
     if(!empty($_GET["city"])&& !empty($_GET["country"])){
         

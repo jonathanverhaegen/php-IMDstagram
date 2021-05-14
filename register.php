@@ -11,10 +11,18 @@ if (!empty($_POST)) {
 	  $user->setPassword($_POST['wachtwoord']);
 	  $user->setConfirmPassword($_POST['wachtwoordHerhaling']);
 
+	  
+
 	  $user->registerUser();
 	  
 	  session_start();
-	  $_SESSION['user'] = $_POST['email'];
+
+	  $user_id = User::getIdByEmail($user->getEmail());
+
+	  $_SESSION['user'] = $user_id;
+
+	  
+
 	  header("Location: index.php");
 	} catch (\Throwable $th) {
 	  $error = $th->getMessage();

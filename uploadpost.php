@@ -4,6 +4,12 @@ include_once("includes/autoloader.inc.php");
 
 session_start();
 
+if(!isset($_SESSION["id"])){
+    header("Location: login.php"); //redirect to login.php
+}else{
+    $id = $_SESSION["id"];
+}
+
 
     if(!empty($_POST)){
 
@@ -47,7 +53,7 @@ session_start();
 
                 $post->setDescription($_POST["description"]);
                 $post->setImage($fileNameNew);
-                $post->setUser_id($_SESSION["user"]);
+                $post->setUser_id($id);
                 $post->setFilter($_POST["filter"]);
                 $post->setCity($extLocation[0]);
                 $post->setCountry($extLocation[1]);

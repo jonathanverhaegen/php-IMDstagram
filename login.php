@@ -14,9 +14,10 @@ if(!empty($_POST)){
 
 	//check  username
 		if($user->canLogin($email,$password)){
-			
+
+			$user_id = User::getIdByEmail($email);
 			session_start();
-			$_SESSION['user'] = $email;
+			$_SESSION['id'] = $user_id;
 			header("Location: index.php"); //redirect to index.php
         }
 

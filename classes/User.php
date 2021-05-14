@@ -141,7 +141,6 @@ class User{
         $statement = $conn->prepare("select * from users where id = :user_id");
         $statement->bindValue(":user_id", $user_id);
         $statement->execute();
-
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -289,8 +288,8 @@ class User{
         try {
             $conn = Db::getConnection();
             $updateDesStmt = $conn->prepare( 'UPDATE users SET description=:description WHERE email = :email' );
-            $description = $this->getDescription();
-            $updateDesStmt->bindValue( ':description', $description );
+            // $description = $this->getDescription();
+            // $updateDesStmt->bindValue( ':description', $description );
             $updateDesStmt->bindValue( ':email', $email );
             $descrResult = $updateDesStmt->execute();
 
@@ -360,15 +359,18 @@ class User{
     public function showAvatar( $email ) 
     {
         $conn = Db::getConnection();
-        $avatarstmt = $conn->prepare( 'SELECT avatar FROM users WHERE email=:email' );
+        $avatarstmt = $conn->prepare( 'SELECT avatar FROM users WHERE email = :email' );
         $avatarstmt->bindValue( ':email', $email );
         $avatarstmt->execute();
+        $result = $avatarstmt->fetchAll();
+        
+        return $result;
 
-        while( $row = $avatarstmt->fetch() ) {
-            $showAvatar = $row['avatar'];
+        // while( $row = $avatarstmt->fetch() ) {
+        //     $showAvatar = $row['avatar'];
 
-            return $showAvatar;
-        }
+        //     return $showAvatar;
+        // }
     }
 
     //login functie ----------
@@ -398,11 +400,12 @@ class User{
     public function registerUser() {
 
         $conn = Db::getConnection();
-        $statement = $conn->prepare("insert into users (username,email,password) values (:username, :email, :password )");
+        $statement = $conn->prepare("insert into users (username,password,email, avatar) values (:username, :password, :email, :avatar )");
         $username = $this->getUsername();
         $email = $this->getEmail();
         $password = $this->getPassword();
         $confirmPassword = $this->getConfirmPassword();
+        $avatar = "standard.jpg";
 
             
     
@@ -426,6 +429,7 @@ class User{
             $statement->bindValue(":username", $username);
             $statement->bindValue(":email", $email);
             $statement->bindValue(":password", $hash);
+            $statement->bindValue(":avatar", $avatar);
                 
             $result = $statement->execute();
             return $result;
@@ -435,6 +439,7 @@ class User{
 
     public function login( $complete ) {
             session_start();
+
             $_SESSION['user'] = $this->getEmail();
             if ( $complete ) {
                 header( 'Location: index.php' );
@@ -445,4 +450,19 @@ class User{
         }
 
 
+    public static function getIdByEmail($email){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("select * from users where email = :email");
+        $statement->bindValue(":email", $email);
+        $statement->execute();
+        $result = $statement->fetch();
+
+        return $result["id"];
+
+        
     }
+
+
+    }
+
+    

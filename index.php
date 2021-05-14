@@ -8,11 +8,17 @@
 
     session_start();
 
-    
-    
-    $_SESSION["user"] = 1;
+    if(!isset($_SESSION["id"])){
+        header("Location: login.php"); //redirect to login.php
+    }else{
+        $id = $_SESSION["id"];
+    }
 
-    $user = User::getUser($_SESSION["user"]);
+    
+    
+    // $_SESSION["user"] = 1;
+
+    $user = User::getUser($id);
 
     $_SESSION["user-type"] = $user["type"];
 
