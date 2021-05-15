@@ -101,3 +101,95 @@ btnMore.forEach((btn) => {
         console.log("test");
     })
 })
+
+//liken
+let btnLikes = document.querySelectorAll(".btnLike");
+
+btnLikes.forEach((btn) => {
+    btn.addEventListener("click", function(e){
+        e.preventDefault();
+
+        let postId = btn.dataset.postid;
+        let userId = btn.dataset.userid;
+        
+        console.log(postId);
+        console.log(userId);
+
+        let formData = new FormData();
+        formData.append('post_id', postId);
+        formData.append('user_id', userId);
+
+        fetch('ajax/like.php', {
+            method: 'POST',
+            body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result);
+            })
+            .catch(error => {
+            console.error('Error:', error);
+            });
+
+            this.style.display = "none";
+            document.querySelector(".btnUnlike").style.display = "flex";
+            
+
+            let likes = parseInt(document.querySelector(".display-likes").innerHTML);
+
+            likes += 1;
+
+            
+
+            document.querySelector(".display-likes").innerHTML = likes;
+    
+    })
+    
+})
+
+//unliken
+
+let btnUnlikes = document.querySelectorAll(".btnUnlike");
+
+btnUnlikes.forEach((btn) => {
+    btn.addEventListener("click", function(e){
+        e.preventDefault();
+
+        console.log("unlike")
+
+        let postId = btn.dataset.postid;
+        let userId = btn.dataset.userid;
+        
+        console.log(postId);
+        console.log(userId);
+
+        let formData = new FormData();
+        formData.append('post_id', postId);
+        formData.append('user_id', userId);
+
+        fetch('ajax/unlike.php', {
+            method: 'POST',
+            body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result);
+            })
+            .catch(error => {
+            console.error('Error:', error);
+            });
+
+            this.style.display = "none";
+            document.querySelector(".btnLike").style.display = "flex";
+
+            let likes = parseInt(document.querySelector(".display-likes").innerHTML);
+
+            likes -= 1;
+
+            
+
+            document.querySelector(".display-likes").innerHTML = likes;
+    
+    })
+    
+})
