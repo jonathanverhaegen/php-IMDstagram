@@ -23,7 +23,7 @@ if(!isset($_SESSION["id"])){
 
             // $post->setFile($_FILES['file']);
             $file = $_FILES['file'];
-            var_dump($file);
+            
             
             $post->setFileName($file['name']);
             $post->setFileTmpName($file['tmp_name']);
@@ -37,8 +37,7 @@ if(!isset($_SESSION["id"])){
 
             $extLocation = explode(" ", $location);
 
-            echo $extLocation[0];
-
+            
             
 
             if($post->isPostAllowed()){
@@ -57,6 +56,7 @@ if(!isset($_SESSION["id"])){
                 $post->setFilter($_POST["filter"]);
                 $post->setCity($extLocation[0]);
                 $post->setCountry($extLocation[1]);
+                $post->setCountry_code($_POST["country_code"]);
                 $post->uploadPost();
 
                 //kijken op tag al bestaat
@@ -198,6 +198,9 @@ if(!isset($_SESSION["id"])){
 
                 <label for="location">Location</label>
                 <input type="text" id="location" name="location" >
+
+                
+                <input style="display: none;" type="text" id="country_code" name="country_code" >
 
                 <div class="container_btn">
                 <input class="btn__upload" type="submit" value="Upload">

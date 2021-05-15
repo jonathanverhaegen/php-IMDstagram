@@ -31,15 +31,21 @@ include_once("includes/autoloader.inc.php");
 
         $countriesPosts = Post::getCountriesForUser($user_id);
 
+        
+
             //hoeveel posts in dat land
 
             foreach($countriesPosts as $c){
                 // echo $c["country"];
                 $numberOfCountry = Post::countCountryForUser($user_id,$c["country"]);
+                
                 // echo $numberOfPosts;
 
                 if($numberOfCountry > 1){
-                    $countryBadge[] = $c["country"];
+                    
+                    $countryBadge[] = $c["country_code"];
+
+                    
                     
                 }
 
@@ -115,11 +121,17 @@ include_once("includes/autoloader.inc.php");
                         echo "postbadge";
                     } ?>
 
-                    <?php if(isset($countryBadge)){
-                        foreach($countryBadge as $b){
-                            echo $b."badge ";
-                        }
-                    } ?>
+                    <?php if(isset($countryBadge)): ?>
+                        <?php foreach($countryBadge as $b):?>
+                            <img
+                            src="https://flagcdn.com/20x15/<?php echo $b ?>.png"
+                            srcset="https://flagcdn.com/40x30/<?php echo $b ?>.png 2x,
+                            https://flagcdn.com/60x45/<?php echo $b ?>.png 3x"
+                             width="20"
+                            height="15"
+                            alt="<?php echo $b ?>">
+                        <?php endforeach; ?>
+                    <?php endif; ?>
 
                     <?php if(isset($travellerBadge)){
                         echo "travellerbadge";

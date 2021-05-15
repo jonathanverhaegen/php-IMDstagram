@@ -10,6 +10,7 @@ class Post{
     
     private $city;
     private $country;
+    private $country_code;
     private $filter;
 
     private $file;
@@ -170,6 +171,26 @@ class Post{
         }
 
         $this->filter = $filter;
+
+        return $this;
+    }
+
+     /**
+     * Get the value of country_code
+     */ 
+    public function getCountry_code()
+    {
+        return $this->country_code;
+    }
+
+    /**
+     * Set the value of country_code
+     *
+     * @return  self
+     */ 
+    public function setCountry_code($country_code)
+    {
+        $this->country_code = $country_code;
 
         return $this;
     }
@@ -375,13 +396,14 @@ class Post{
     public function uploadPost(){
 
         $conn = Db::getConnection();
-        $statement = $conn->prepare("INSERT INTO `posts`(`user_id`, `description`, `time`, `image`, `filter_id`, `city`, `country`) VALUES (:user, :text, sysdate(), :image, (select id from filters where filter = :filter), :city, :country)");
+        $statement = $conn->prepare("INSERT INTO `posts`(`user_id`, `description`, `time`, `image`, `filter_id`, `city`, `country`, `country_code`) VALUES (:user, :text, sysdate(), :image, (select id from filters where filter = :filter), :city, :country, :country_code)");
         $statement->bindValue(":user", $this->getUser_id());
         $statement->bindValue(":text", $this->getDescription());
         $statement->bindValue(":image", $this->getImage());
         $statement->bindValue(":filter", $this->getFilter());
         $statement->bindValue(":city", $this->getCity());
         $statement->bindValue(":country", $this->getCountry());
+        $statement->bindValue(":country_code", $this->getCountry_code());
         
 
         $result = $statement->execute();
@@ -503,7 +525,7 @@ class Post{
 
     public static function getCountriesForUser($user_id){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT DISTINCT country FROM posts WHERE `user_id` = :user_id ");
+        $statement = $conn->prepare("SELECT DISTINCT country, country_code FROM posts WHERE `user_id` = :user_id ");
         $statement->bindValue(":user_id", $user_id);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -551,4 +573,6 @@ class Post{
     
 
     
+
+   
 }

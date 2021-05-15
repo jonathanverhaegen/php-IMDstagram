@@ -29,9 +29,10 @@ class App{
 
             let city = json.results[0].components.county;
             let country = json.results[0].components.country;
+            let country_code = json.results[0].components.country_code;
 
             document.querySelector("#location").value = `${city} ${country}`;
-            
+            document.querySelector("#country_code").value = country_code      
         })
 
     }
