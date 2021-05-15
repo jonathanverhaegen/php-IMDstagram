@@ -37,7 +37,8 @@ if (!empty($_POST)) {
 <head>
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="styles/style.css">
+	<link rel="stylesheet" href="style/register.css">
+	<link rel="stylesheet" href="style/background.css">
     <title>Register</title>
 </head>
 <body>
@@ -47,7 +48,6 @@ if (!empty($_POST)) {
 <div id="welkomtekst">
 	<h1>Buckle up!</h1>
 	<p>The following fields are required in order to create your account.</p>
-	<p>Do you already have an account? <br><a href="login.php"> Go to this page and login in!</a></p>
 	</div>
       
         
@@ -89,6 +89,14 @@ if (!empty($_POST)) {
 				<div class="formfield_submit">
 					<input type="submit" value="register" class="btn-inloggen">	
 				</div>
+
+				<div class="backlogin">
+				<p>Do you already have an account? <br>
+	<br>
+	<a href="login.php"> Go to this page and login in!</a></p>
+				</div>
+
+			
 
 				
     </div>
