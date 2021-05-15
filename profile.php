@@ -157,6 +157,10 @@ include_once("includes/autoloader.inc.php");
            $reports = Report::getReportsById($p[0]);
 
            $numberOfReports = count($reports);
+
+           $numberOfLikes = Like::CountLikesForPost($p[0]);
+
+           $likeByUser = Like::LikedByUser($id, $p[0]);
           
 
            if($numberOfReports < 3):
@@ -183,6 +187,30 @@ include_once("includes/autoloader.inc.php");
             <?php $tWithouth = explode("#", $t["text"]); ?>
                 <a href="tagpage.php?tag=<?php echo htmlspecialchars(end($tWithouth)); ?>"><?php echo htmlspecialchars($t["text"]); ?></a>
             <?php endforeach; ?>
+        </div>
+
+        <div class="likes">
+                <p class="display-likes">
+                <?php if(empty($numberOfLikes)){
+
+                    echo "0";
+                }else{
+                    echo $numberOfLikes;
+                } ?>
+                
+                </p>
+                <?php if($likeByUser): ?>
+
+                    <a style="<?php echo "display:none" ?>" class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Like</a>
+                    <a style="<?php echo "display:flex" ?>;" class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Unlike</a>
+                
+                <?php else: ?>
+
+                <a class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Like</a>
+                <a class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Unlike</a>
+                
+                <?php endif; ?>
+
         </div>
         
     </div>
