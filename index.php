@@ -115,11 +115,15 @@
                 
                 </p>
                 <?php if($likeByUser): ?>
+
                     <a style="<?php echo "display:none" ?>" class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Like</a>
                     <a style="<?php echo "display:flex" ?>;" class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Unlike</a>
+                
                 <?php else: ?>
+
                 <a class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Like</a>
-                <a style="display:none;" class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Unlike</a>
+                <a class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Unlike</a>
+                
                 <?php endif; ?>
 
         </div>

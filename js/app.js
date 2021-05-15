@@ -102,15 +102,24 @@ btnMore.forEach((btn) => {
     })
 })
 
-//liken
-let btnLikes = document.querySelectorAll(".btnLike");
+//like and unlike
 
-btnLikes.forEach((btn) => {
-    btn.addEventListener("click", function(e){
-        e.preventDefault();
+let posts = document.querySelectorAll(".post");
 
-        let postId = btn.dataset.postid;
-        let userId = btn.dataset.userid;
+posts.forEach((e) => {
+    
+    let btnLike = e.querySelector(".btnLike");
+    let btnUnlike = e.querySelector(".btnUnlike");
+    let displayLikes = e.querySelector(".display-likes");
+
+    //like
+
+    btnLike.addEventListener("click", function(f){
+
+        f.preventDefault();
+
+        let postId = this.dataset.postid;
+        let userId = this.dataset.userid;
         
         console.log(postId);
         console.log(userId);
@@ -132,33 +141,25 @@ btnLikes.forEach((btn) => {
             });
 
             this.style.display = "none";
-            document.querySelector(".btnUnlike").style.display = "flex";
-            
+            btnUnlike.style.display = "flex";
 
-            let likes = parseInt(document.querySelector(".display-likes").innerHTML);
+            let likes = parseInt(displayLikes.innerHTML);
 
             likes += 1;
+            displayLikes.innerHTML = likes;
 
-            
 
-            document.querySelector(".display-likes").innerHTML = likes;
-    
+
     })
-    
-})
 
-//unliken
+    //unlike
 
-let btnUnlikes = document.querySelectorAll(".btnUnlike");
+    btnUnlike.addEventListener("click", function(f){
 
-btnUnlikes.forEach((btn) => {
-    btn.addEventListener("click", function(e){
-        e.preventDefault();
+        f.preventDefault();
 
-        console.log("unlike")
-
-        let postId = btn.dataset.postid;
-        let userId = btn.dataset.userid;
+        let postId = this.dataset.postid;
+        let userId = this.dataset.userid;
         
         console.log(postId);
         console.log(userId);
@@ -180,16 +181,12 @@ btnUnlikes.forEach((btn) => {
             });
 
             this.style.display = "none";
-            document.querySelector(".btnLike").style.display = "flex";
+            btnLike.style.display = "flex";
 
-            let likes = parseInt(document.querySelector(".display-likes").innerHTML);
+            let likes = parseInt(displayLikes.innerHTML);
 
             likes -= 1;
-
-            
-
-            document.querySelector(".display-likes").innerHTML = likes;
-    
-    })
-    
+            displayLikes.innerHTML = likes;
 })
+})
+
