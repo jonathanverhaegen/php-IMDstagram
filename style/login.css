@@ -1,0 +1,77 @@
+#middenkader{
+    text-align: center;
+}
+
+#welkomtekst h1{
+    color: white;
+    font-size: 4em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.formfield label{
+    color: white;
+    font-size: 1.3em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.formfield input{
+    margin-top: 10px;
+    background: white;
+    border: none;
+    padding: 10px 20px;
+}
+
+.error{
+    color: white;
+    font-size: 1.2em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-inloggen{
+    margin-top: 20px;
+    background: white;
+    color: rgb(218, 105, 212);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 70px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-inloggen:hover{
+    margin-top: 20px;
+    background: rgb(218, 105, 212);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 70px;
+    cursor: crosshair;
+}
+
+.registerhier p{
+    color: white;
+    font-size: 1.2em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.registerhier a{
+    margin-top: 10px;
+    background: white;
+    color: rgb(218, 105, 212);
+    padding: 10px 20px;
+    font-size: 0.6em;
+    text-decoration: none;
+    border: none;
+    border-radius: 70px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.registerhier a:hover{
+    margin-top: 10px;
+    background: rgb(218, 105, 212);
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 70px;
+    font-family: Arial, Helvetica, sans-serif;
+}

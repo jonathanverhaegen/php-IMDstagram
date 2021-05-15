@@ -19,7 +19,7 @@ if (!empty($_POST)) {
 
 	  $user_id = User::getIdByEmail($user->getEmail());
 
-	  $_SESSION['user'] = $user_id;
+	  $_SESSION['id'] = $user_id;
 
 	  
 

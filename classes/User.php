@@ -6,6 +6,7 @@ class User{
     private $username;
     private $email;
     private $password;
+    private $changePassword;
     private $confirmPassword;
     private $avatar;
     private $bio;
@@ -69,6 +70,66 @@ class User{
      * @return  self
      */ 
     public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+        /**
+     * Get the value of password
+     */ 
+    public function getOldPassword()
+    {
+        return $this->password;
+    }
+
+        /**
+     * Get the value of password
+     */ 
+    public function getChangePassword()
+    {
+        return $this->password;
+    }
+
+        /**
+     * Set the value of password
+     *
+     * @return  self
+     */ 
+    public function setChangePassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */ 
+    public function setOldPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+        /**
+     * Get the value of password
+     */ 
+    public function getNewPassword()
+    {
+        return $this->password;
+    }
+
+        /**
+     * Set the value of password
+     *
+     * @return  self
+     */ 
+    public function setNewPassword($password)
     {
         $this->password = $password;
 

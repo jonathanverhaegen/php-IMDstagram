@@ -38,6 +38,7 @@ if(!empty($_POST)){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style/login.css">
 	<link rel="stylesheet" href="style/background.css">
     <title>Document</title>
 	
@@ -76,8 +77,10 @@ if(!empty($_POST)){
 					<input type="submit" value="inloggen" class="btn-inloggen">	
 				</div>
 				<br>
-				<div >
-    <p>Don't have an account? <br><a href="register.php"> register here! (it's free)</a></p>
+				<div class="registerhier">
+    <p>Don't have an account? <br>
+	<br>
+	<a href="register.php"> register here! (it's free)</a></p>
     </div>
                 
 			</form>
