@@ -195,9 +195,11 @@ if(!isset($_SESSION["id"])){
                 <textarea type="text" id="description" name="description" ></textarea>
 
                 <label for="tag">Tag</label>
+                <p class="extraInfo">Vul hier je tags in, geschieden met een spatie</p>
                 <input type="text" id="tag" name="tag" >
 
                 <label for="location">Location</label>
+                <p class="extraInfo">De locatie wordt voor je ingevuld, hier moet je niets meer aan veranderen</p>
                 <input type="text" id="location" name="location" >
 
                 
