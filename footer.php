@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-sm-12 col-md-6">
           <h6>About us</h6>
-          <p class="text-justify">Buckle-up is the new Instagram for posting your content about travelling.</p>
+          <p class="text-justify">Buckle Up is a PHP project that we developed for the course Development 4. Buckleup is the new Instagram for travel enthusiasts all over the world. Take your friends on your adventure and go viral!</p>
         </div>
 
         <div class="col-xs-6 col-md-3">
