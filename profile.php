@@ -109,20 +109,6 @@ include_once("includes/autoloader.inc.php");
                     <p><?php echo $user["followers"] ?> volgers</p>
                     <p><?php echo $user["following"] ?> volgend</p>
                     <p><?php echo $user["status"] ?> status<p>
-                        
-                        <?php
-                            if($rowUser['status'] === '1') {
-				            echo '<select class="form-control" id="status" name="status">
-				                <option selected value="1">Active</option>
-				                <option value="0">Inactive</option>
-			                      </select>';
-			                } elseif ($rowUser['status'] === '0') {
-				            echo '<select class="form-control" id="status" name="status">
-				                <option value="1">Active</option>
-				                <option selected value="0">Inactive</option>
-			                      </select>';
-			                }
-                        ?>
 
                 </div>
                 <p><?php echo $user["bio"] ?></p>
