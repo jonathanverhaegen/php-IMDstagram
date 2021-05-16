@@ -8,6 +8,7 @@ class User{
     private $password;
     private $newPassword;
     private $confirmPassword;
+    private $passwordCheck;
     private $oldPassword;
     private $avatar;
     private $bio;
@@ -505,14 +506,13 @@ class User{
         return $this;
     }
 
-    public function changePassword( $email ) 
+    public function changePassword( $email )
     {
         try {
             $conn = Db::getConnection();
-            $updateDesStmt = $conn->prepare( 'UPDATE users SET password = :password WHERE password = :oldPassword AND email = :email' );
+            $updateDesStmt = $conn->prepare( 'UPDATE users SET password = :password where email = :email ' );
             $password = password_hash($this->getNewPassword(), PASSWORD_DEFAULT, ['cost' => 13]);
             $oldPassword = password_hash($this->getOldPassword(), PASSWORD_DEFAULT, ['cost' => 13]);
-            $updateDesStmt->bindValue( ':oldPassword', $oldPassword );
             $updateDesStmt->bindValue( ':password', $password );
             $updateDesStmt->bindValue( ':email', $email );
             $descrResult = $updateDesStmt->execute();
@@ -544,8 +544,24 @@ class User{
 
         return $this;
     }
+
+    /**
+     * Get the value of passwordCheck
+     */ 
+    public function getPasswordCheck()
+    {
+        return $this->passwordCheck;
     }
 
+    /**
+     * Set the value of passwordCheck
+     *
+     * @return  self
+     */ 
+    public function setPasswordCheck($passwordCheck)
+    {
+        $this->passwordCheck = $passwordCheck;
 
-
-    
+        return $this;
+    }
+    }
