@@ -50,6 +50,7 @@ include_once("includes/autoloader.inc.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/profile.css?v=<?php echo time(); ?>">
     <!-- <link rel="stylesheet" href="style/header.css"/> -->
     <!-- <link rel="stylesheet" href="style/footer.css"/> -->
     <link rel="stylesheet" href="style/style.css">
@@ -106,7 +107,7 @@ include_once("includes/autoloader.inc.php");
         </div>
         <?php if(isset($profile)): ?>
         <div class="col-2" >
-            <a style="color: black;" href="editProfile.php">Edit profile</a>
+            <a style="    color: #fff; background: rgb(17, 248, 140); padding: 4px 14px; border-radius: 70px;" href="editProfile.php">Edit profile</a>
         </div>
         <?php endif; ?>
     </div>
