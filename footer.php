@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./style/footer.css">
+<link rel="stylesheet" href="/style/footer.css?v=<?php echo time(); ?>">
 
 <!-- Site footer -->
 <footer class="site-footer">
@@ -15,10 +15,9 @@
         <div class="col-xs-6 col-md-3">
           <h6>Links</h6>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="team.html">Post</a></li>
-            <li><a href="#">Popular</a></li>
-            <li><a href="rooster.html">Profile</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="uploadpost.php">Post</a></li>
+            <li><a href="userpage.php">Profile</a></li>
           </ul>
         </div>
       </div>
@@ -27,7 +26,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-sm-6 col-xs-12">
-          <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by 
+          <p  class="copyright-text">Copyright &copy; 2021 All Rights Reserved by 
        <a href="#">Buckle-up</a>.
           </p>
         </div>

@@ -59,7 +59,7 @@ if(!isset($_SESSION["id"])){
     <link rel="stylesheet" href="style/footer.css"/>
     <title>Profile</title>
 </head>
-<body class="profile">
+<body style="text-align: center;" class="profile">
 <?php include("header.php") ?>
     <div class="content">
         <div class="profilePicture">

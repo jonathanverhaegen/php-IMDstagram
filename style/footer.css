@@ -52,10 +52,6 @@
   text-align:right
 }
 
-.copyright-text
-{
-  margin:0
-}
 @media (max-width:991px)
 {
   .site-footer [class^=col-]
