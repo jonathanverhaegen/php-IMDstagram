@@ -63,26 +63,30 @@ if(!isset($_SESSION["id"])){
 <?php include("header.php") ?>
     <div class="content">
         <div class="profilePicture">
-            <h1>Your profile</h1>
+            <h1 style="margin-top: -60px;">Your profile</h1>
             <h2>Profile picture</h2>
             <h2></h2>
-            <img src="images/<?php echo htmlspecialchars($viewAvatar) ?>" alt="#">
+            <img style="width: 10%; height: auto;" src="images/<?php echo htmlspecialchars($viewAvatar) ?>" alt="#">
             <form action="" method="post" enctype="multipart/form-data">
                 <input type="file" name="avatar" class="btn">
                 <button type="submit" name="submitAvatar" class="btn btn-primary">Upload profile picture</button>
             </form>
             <h2>Bio</h2>
             <p> <?php echo htmlspecialchars($showDescription) ?> </p>
-            <a href="updateDescription.php">Change description</a>
-            <h2>Email adress</h2>
-            <a href="updateemail.php">Change email</a>
-            <h2>Password</h2>
-            <a href="UpdatePassword.php">Change password</a>
+            <a style="color: #fff; background-color: rgb(17, 248, 140); padding: 6px 14px; border-radius: 5px; text-decoration: none;" href="updateDescription.php">Change bio</a>
+            <h2 style="margin-bottom: 10px; margin-top: 10px;">Email adress</h2>
+            <a style="color: #fff; background-color: rgb(17, 248, 140); padding: 6px 14px; border-radius: 5px; text-decoration: none;" href="updateemail.php">Change email</a>
+            <h2 style="margin-bottom: 10px; margin-top: 10px;">Password</h2>
+            <a style="color: #fff; background-color: rgb(17, 248, 140); padding: 6px 14px; border-radius: 5px; text-decoration: none;" href="UpdatePassword.php">Change password</a>
+            <br>
+            <br>
         </div>
 
 
             <div>
-                <input type="submit" value="Update characteristics" class="btn btnu btn-primary" name="tags">	
+                <input type="submit" value="Update characteristics" class="btn btnu btn-primary" name="tags">
+                <br>
+                <br>	
             </div>
             </form>
         </div>
