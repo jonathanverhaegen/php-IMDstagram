@@ -5,3 +5,17 @@
 .profile h1{
     padding-top: 80px;
 }
+
+#editbtn a{
+    color: #fff;
+    background: rgb(17, 248, 140);
+    padding: 4px 14px;
+    border-radius: 70px;
+}
+
+#editbtn a:hover{
+    color: #fff;
+    background: rgb(2, 199, 107);
+    padding: 4px 14px;
+    border-radius: 70px;
+}

@@ -86,6 +86,7 @@ include_once("includes/autoloader.inc.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/profile.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="style/reset.css">
     <!-- <link rel="stylesheet" href="style/header.css"/> -->
     <!-- <link rel="stylesheet" href="style/footer.css"/> -->
@@ -136,8 +137,8 @@ include_once("includes/autoloader.inc.php");
             
         </div>
 
-        <div class="col-2" >
-            <a href="editProfile.php">Edit profile</a>
+        <div id="editbtn" >
+            <a id="editbtn" href="editProfile.php">Edit profile</a>
         </div>
 
     </div>
