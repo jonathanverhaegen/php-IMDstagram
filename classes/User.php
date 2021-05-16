@@ -506,9 +506,9 @@ class User{
         return $this;
     }
 
+
     public function changePassword( $email )
     {
-        try {
             $conn = Db::getConnection();
             $updateDesStmt = $conn->prepare( 'UPDATE users SET password = :password where email = :email ' );
             $password = password_hash($this->getNewPassword(), PASSWORD_DEFAULT, ['cost' => 13]);
@@ -517,9 +517,6 @@ class User{
             $descrResult = $updateDesStmt->execute();
 
             return $descrResult;
-        } catch ( PDOException $e ) {
-            print 'Error: '.$e->getMessage().'<br>';
-        }
     }
 
 
