@@ -64,7 +64,7 @@ if(!isset($_SESSION["id"])){
     <div class="content">
         <div class="profilePicture">
             <h1 style="margin-top: -60px;">Your profile</h1>
-            <h2 style="text-align: center; margin-left: auto; margin-right: auto;">Profile picture</h2>
+            <h2 id="h2edit" style="text-align: center; margin-left: auto; margin-right: auto;">Profile picture</h2>
             <h2></h2>
             <img style="width: 10%; height: auto;" src="images/<?php echo htmlspecialchars($viewAvatar) ?>" alt="#">
             <form action="" method="post" enctype="multipart/form-data">
