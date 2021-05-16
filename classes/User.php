@@ -8,6 +8,7 @@ class User{
     private $password;
     private $newPassword;
     private $confirmPassword;
+    private $oldPassword;
     private $avatar;
     private $bio;
     private $status_id;
@@ -75,15 +76,6 @@ class User{
 
         return $this;
     }
-
-        /**
-     * Get the value of password
-     */ 
-    public function getOldPassword()
-    {
-        return $this->password;
-    }
-
 
 
     /**
@@ -532,6 +524,26 @@ class User{
     }
 
 
+
+    /**
+     * Get the value of oldPassword
+     */ 
+    public function getOldPassword()
+    {
+        return $this->oldPassword;
+    }
+
+    /**
+     * Set the value of oldPassword
+     *
+     * @return  self
+     */ 
+    public function setOldPassword($oldPassword)
+    {
+        $this->oldPassword = $oldPassword;
+
+        return $this;
+    }
     }
 
 
