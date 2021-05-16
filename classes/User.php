@@ -6,8 +6,7 @@ class User{
     private $username;
     private $email;
     private $password;
-    private $changePassword;
-    private $NewPassword;
+    private $newPassword;
     private $confirmPassword;
     private $avatar;
     private $bio;
@@ -494,48 +493,45 @@ class User{
     }
 
 
-
-    
-
     /**
-     * Get the value of setNewPassword
+     * Get the value of newPassword
      */ 
-    public function getSetNewPassword()
+    public function getNewPassword()
     {
-        return $this->NewPassword;
+        return $this->newPassword;
     }
 
     /**
-     * Set the value of setNewPassword
+     * Set the value of newPassword
      *
      * @return  self
      */ 
-    public function setSetNewPassword($NewPassword)
+    public function setNewPassword($newPassword)
     {
-        $this->NewPassword = $NewPassword;
+        $this->newPassword = $newPassword;
 
         return $this;
     }
 
-    /**
-     * Get the value of changePassword
-     */ 
-    public function getChangePassword()
+    public function changePassword( $email ) 
     {
-        return $this->changePassword;
+        try {
+            $conn = Db::getConnection();
+            $updateDesStmt = $conn->prepare( 'UPDATE users SET password = :password WHERE password = :oldPassword AND email = :email' );
+            $password = password_hash($this->getNewPassword(), PASSWORD_DEFAULT, ['cost' => 13]);
+            $oldPassword = password_hash($this->getOldPassword(), PASSWORD_DEFAULT, ['cost' => 13]);
+            $updateDesStmt->bindValue( ':oldPassword', $oldPassword );
+            $updateDesStmt->bindValue( ':password', $password );
+            $updateDesStmt->bindValue( ':email', $email );
+            $descrResult = $updateDesStmt->execute();
+
+            return $descrResult;
+        } catch ( PDOException $e ) {
+            print 'Error: '.$e->getMessage().'<br>';
+        }
     }
 
-    /**
-     * Set the value of changePassword
-     *
-     * @return  self
-     */ 
-    public function setChangePassword($changePassword)
-    {
-        $this->changePassword = $changePassword;
 
-        return $this;
-    }
     }
 
 
