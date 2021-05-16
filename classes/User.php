@@ -7,8 +7,7 @@ class User{
     private $email;
     private $password;
     private $changePassword;
-    private $setNewPassword;
-    private $changePassword;
+    private $NewPassword;
     private $confirmPassword;
     private $avatar;
     private $bio;
@@ -503,7 +502,7 @@ class User{
      */ 
     public function getSetNewPassword()
     {
-        return $this->setNewPassword;
+        return $this->NewPassword;
     }
 
     /**
@@ -511,9 +510,9 @@ class User{
      *
      * @return  self
      */ 
-    public function setSetNewPassword($setNewPassword)
+    public function setSetNewPassword($NewPassword)
     {
-        $this->setNewPassword = $setNewPassword;
+        $this->NewPassword = $NewPassword;
 
         return $this;
     }
