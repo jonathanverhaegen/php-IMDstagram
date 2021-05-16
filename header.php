@@ -17,7 +17,7 @@
         <ul class="left">
           <li class="desktop-li"><a href="index.php">Home</a></li>
           <li class="desktop-li"><a href="uploadpost.php">Post</a></li>
-          <li class="desktop-li"><a href="profile.php">Profile</a></li>
+          <li class="desktop-li"><a href="userpage.php?user=<?php echo $id; ?>">Profile</a></li>
         </ul>
 
         <ul class="right">
