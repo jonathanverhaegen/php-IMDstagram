@@ -73,18 +73,11 @@ if(!isset($_SESSION["id"])){
             </form>
             <h2>Bio</h2>
             <p> <?php echo htmlspecialchars($showDescription) ?> </p>
-            <a style="color: #fff; background-color: rgb(17, 248, 140); padding: 6px 14px; border-radius: 5px;" href="updateDescription.php">Change bio</a>
-            <br>
-            <br>
-            <h2>Email adress</h2>
-            <br>
-            <a style="color: #fff; background-color: rgb(17, 248, 140); padding: 6px 14px; border-radius: 5px;" href="updateemail.php">Change email</a>
-            <br>
-            <br>
-            <h2>Password</h2>
-            <br>
-            <a style="color: #fff; background-color: rgb(17, 248, 140); padding: 6px 14px; border-radius: 5px;" href="UpdatePassword.php">Change password</a>
-            <br>
+            <a style="color: #fff; background-color: rgb(17, 248, 140); padding: 6px 14px; border-radius: 5px; text-decoration: none;" href="updateDescription.php">Change bio</a>
+            <h2 style="margin-bottom: 10px; margin-top: 10px;">Email adress</h2>
+            <a style="color: #fff; background-color: rgb(17, 248, 140); padding: 6px 14px; border-radius: 5px; text-decoration: none;" href="updateemail.php">Change email</a>
+            <h2 style="margin-bottom: 10px; margin-top: 10px;">Password</h2>
+            <a style="color: #fff; background-color: rgb(17, 248, 140); padding: 6px 14px; border-radius: 5px; text-decoration: none;" href="UpdatePassword.php">Change password</a>
             <br>
             <br>
         </div>
