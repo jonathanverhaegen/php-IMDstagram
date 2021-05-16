@@ -62,15 +62,18 @@
 
            $numberOfReports = count($reports);
 
+           $numberOfLikes = Like::CountLikesForPost($p[0]);
+
+           $likeByUser = Like::LikedByUser($id, $p[0]);
+
            
            if($numberOfReports >= 3):
             
             ?>
 
-    <div class="post">
-        <div class="admin__reports">
-            <a id="deletePost" href="" data-postid="<?php echo $p[0];?>">delete the post</a>
-            <a id="postOk" href="" data-postid="<?php echo $p[0];?>">the post is ok</a>
+<div class="post">
+        <div class="post__report">
+            <a class="report" href="" data-postid="<?php echo $p[0];?>">Report</a>
         </div>
         <div class="post_user">
             <img class="post_avatar" src="images/<?php echo htmlspecialchars($p["avatar"]) ?>" alt="avatar">
@@ -88,6 +91,49 @@
                 <a href="tagpage.php?tag=<?php echo htmlspecialchars(end($tWithouth)); ?>"><?php echo htmlspecialchars($t["text"]); ?></a>
             <?php endforeach; ?>
         </div>
+
+        <div class="likes">
+                <?php if($likeByUser): ?>
+
+                    <a style="<?php echo "display:none" ?>" class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/like.svg" alt=""></a>
+                    <a style="<?php echo "display:flex" ?>;" class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/unlike.svg" alt=""></a>
+                
+                <?php else: ?>
+
+                <a class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/like.svg" alt=""></a>
+                <a class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/unlike.svg" alt=""></a>
+                
+                <?php endif; ?>
+
+                <a class="btnComment" href=""><img class="iconComment" src="icons/comment.svg" alt=""></a>
+
+                    
+        </div>
+
+        <p class="display-likes">
+                <?php if(empty($numberOfLikes)){
+
+                    echo "0 vind-ik-leuks";
+                }else{
+                    echo $numberOfLikes." vind-ik-leuks";
+                } ?>
+                
+        </p> 
+
+        <div class="comment_input_field">
+            <input class="commentInput" name="comment" type="text">
+        </div>
+
+        <ul class="comments">
+            <li class="comment">
+                <img class="commentAvatar" src="" alt="">
+                <a class="commentName" href=""></a>
+                <p class="commentText"></p>
+            </li>
+
+            
+        </ul>
+        
         
     </div>
 

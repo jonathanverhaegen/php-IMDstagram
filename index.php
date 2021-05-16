@@ -38,10 +38,11 @@
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/header.css">
     <link rel="stylesheet" href="style/footer.css">
-    <link rel="stylesheet" href="style/style.css">
+    
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cssgram/0.1.10/cssgram.min.css">
+    <link rel="stylesheet" href="style/style.css">
     <title>Buckle up</title>
 </head>
 <body>
@@ -105,28 +106,47 @@
         </div>
 
         <div class="likes">
-                <p class="display-likes">
-                <?php if(empty($numberOfLikes)){
-
-                    echo "0";
-                }else{
-                    echo $numberOfLikes;
-                } ?>
-                
-                </p>
                 <?php if($likeByUser): ?>
 
-                    <a style="<?php echo "display:none" ?>" class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Like</a>
-                    <a style="<?php echo "display:flex" ?>;" class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Unlike</a>
+                    <a style="<?php echo "display:none" ?>" class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/like.svg" alt=""></a>
+                    <a style="<?php echo "display:flex" ?>;" class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/unlike.svg" alt=""></a>
                 
                 <?php else: ?>
 
-                <a class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Like</a>
-                <a class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Unlike</a>
+                <a class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/like.svg" alt=""></a>
+                <a class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/unlike.svg" alt=""></a>
                 
                 <?php endif; ?>
 
+                <a class="btnComment" href=""><img class="iconComment" src="icons/comment.svg" alt=""></a>
+
+                    
         </div>
+
+        <p class="display-likes">
+                <?php if(empty($numberOfLikes)){
+
+                    echo "0 vind-ik-leuks";
+                }else{
+                    echo $numberOfLikes." vind-ik-leuks";
+                } ?>
+                
+        </p> 
+
+        <div class="comment_input_field">
+            <input class="commentInput" name="comment" type="text">
+        </div>
+
+        <ul class="comments">
+            <li class="comment">
+                <img class="commentAvatar" src="" alt="">
+                <a class="commentName" href=""></a>
+                <p class="commentText"></p>
+            </li>
+
+            
+        </ul>
+        
         
     </div>
 

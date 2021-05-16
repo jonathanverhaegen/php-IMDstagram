@@ -69,10 +69,12 @@ include_once("includes/autoloader.inc.php");
            $reports = Report::getReportsById($p[0]);
 
            $numberOfReports = count($reports);
-           
+
            $numberOfLikes = Like::CountLikesForPost($p[0]);
 
            $likeByUser = Like::LikedByUser($id, $p[0]);
+
+        
           
 
            if($numberOfReports < 3):
@@ -102,28 +104,47 @@ include_once("includes/autoloader.inc.php");
         </div>
 
         <div class="likes">
-                <p class="display-likes">
-                <?php if(empty($numberOfLikes)){
-
-                    echo "0";
-                }else{
-                    echo $numberOfLikes;
-                } ?>
-                
-                </p>
                 <?php if($likeByUser): ?>
 
-                    <a style="<?php echo "display:none" ?>" class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Like</a>
-                    <a style="<?php echo "display:flex" ?>;" class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Unlike</a>
+                    <a style="<?php echo "display:none" ?>" class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/like.svg" alt=""></a>
+                    <a style="<?php echo "display:flex" ?>;" class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/unlike.svg" alt=""></a>
                 
                 <?php else: ?>
 
-                <a class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Like</a>
-                <a class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Unlike</a>
+                <a class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/like.svg" alt=""></a>
+                <a class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/unlike.svg" alt=""></a>
                 
                 <?php endif; ?>
 
+                <a class="btnComment" href=""><img class="iconComment" src="icons/comment.svg" alt=""></a>
+
+                    
         </div>
+
+        <p class="display-likes">
+                <?php if(empty($numberOfLikes)){
+
+                    echo "0 vind-ik-leuks";
+                }else{
+                    echo $numberOfLikes." vind-ik-leuks";
+                } ?>
+                
+        </p> 
+
+        <div class="comment_input_field">
+            <input class="commentInput" name="comment" type="text">
+        </div>
+
+        <ul class="comments">
+            <li class="comment">
+                <img class="commentAvatar" src="" alt="">
+                <a class="commentName" href=""></a>
+                <p class="commentText"></p>
+            </li>
+
+            
+        </ul>
+        
         
     </div>
 

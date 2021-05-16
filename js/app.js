@@ -102,7 +102,7 @@ btnMore.forEach((btn) => {
     })
 })
 
-//like and unlike
+//like and unlike and comments
 
 let posts = document.querySelectorAll(".post");
 
@@ -111,6 +111,8 @@ posts.forEach((e) => {
     let btnLike = e.querySelector(".btnLike");
     let btnUnlike = e.querySelector(".btnUnlike");
     let displayLikes = e.querySelector(".display-likes");
+    let btnComment = e.querySelector(".btnComment");
+    let commentField = e.querySelector(".commentInput");
 
     //like
 
@@ -141,12 +143,12 @@ posts.forEach((e) => {
             });
 
             this.style.display = "none";
-            btnUnlike.style.display = "flex";
+            btnUnlike.style.display = "block";
 
             let likes = parseInt(displayLikes.innerHTML);
 
             likes += 1;
-            displayLikes.innerHTML = likes;
+            displayLikes.innerHTML = likes + " vind-ik-leuks";
 
 
 
@@ -181,12 +183,20 @@ posts.forEach((e) => {
             });
 
             this.style.display = "none";
-            btnLike.style.display = "flex";
+            btnLike.style.display = "block";
 
             let likes = parseInt(displayLikes.innerHTML);
 
             likes -= 1;
-            displayLikes.innerHTML = likes;
+            displayLikes.innerHTML = likes + " vind-ik-leuks";
 })
+
+        //comments
+        btnComment.addEventListener("click", function(f){
+            f.preventDefault();
+            commentField.style.display = "flex";
+        })
 })
+
+
 

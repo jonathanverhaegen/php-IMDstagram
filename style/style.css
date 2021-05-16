@@ -150,15 +150,18 @@ input{
     width:40%;
     margin-left:auto;
     margin-right:auto;
-    background-color: rgb(231, 228, 228);
+    background-color: #D8E2DC;
     padding:25px;
     margin-bottom:50px;
+    border-radius:10px;
 }
 
 .post__image{
     width: 100%;
     
 }
+
+
 
 .post__report{
     display:grid;
@@ -167,6 +170,10 @@ input{
 
 .post__report a{
     color:black;
+    text-decoration: none;
+    background-color: #FEC5BB;
+    padding:10px;
+    border-radius:10px;
 }
 
 .post_user{
@@ -191,11 +198,12 @@ input{
 .post_tags{
     display:flex;
     gap:5px;
+    margin-bottom: 15px;
 }
 
 .post_tags a{
     text-decoration:none;
-    
+    color: #0d6efd;
 }
 
 .container__reports{
@@ -257,8 +265,74 @@ figure{
     margin-top:20px;
 }
 
+
+.likes{
+    display: flex;
+}
 .btnUnlike{
     display:none;
 }
+
+.display-likes{
+    margin-top:10px;
+}
+
+
+
+.iconLike, .iconComment{
+    width:25px;
+    height:25px;
+    
+}
+
+.btnComment {
+    margin-left:10px;
+    
+}
+
+.comment_input_field{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+}
+
+.commentInput{
+    border-radius:10px;
+    width:50%;
+    display:none;
+}
+
+.comment{
+    display:grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+
+
+.commentAvatar{
+    width:50px;
+    height:50px;
+    border-radius:70%;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+.commentName{
+    grid-column-start: 2;
+    grid-row-start: 1;
+    color: #0d6efd;
+}
+
+.commentText{
+    grid-column-start: 2;
+    grid-row-start: 2;
+}
+
+
 
 

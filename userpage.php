@@ -106,7 +106,7 @@ include_once("includes/autoloader.inc.php");
             
         </div>
         <?php if(isset($profile)): ?>
-        <div class="col-2" >
+        <div id="editbtn" >
             <a style="    color: #fff; background: rgb(17, 248, 140); padding: 4px 14px; border-radius: 70px;" href="editProfile.php">Edit profile</a>
         </div>
         <?php endif; ?>
@@ -162,28 +162,42 @@ include_once("includes/autoloader.inc.php");
         </div>
 
         <div class="likes">
-                <p class="display-likes">
-                <?php if(empty($numberOfLikes)){
-
-                    echo "0";
-                }else{
-                    echo $numberOfLikes;
-                } ?>
-                
-                </p>
                 <?php if($likeByUser): ?>
 
-                    <a style="<?php echo "display:none" ?>" class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Like</a>
-                    <a style="<?php echo "display:flex" ?>;" class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Unlike</a>
+                    <a style="<?php echo "display:none" ?>" class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/like.svg" alt=""></a>
+                    <a style="<?php echo "display:flex" ?>;" class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/unlike.svg" alt=""></a>
                 
                 <?php else: ?>
 
-                <a class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Like</a>
-                <a class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>">Unlike</a>
+                <a class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/like.svg" alt=""></a>
+                <a class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="icons/unlike.svg" alt=""></a>
                 
                 <?php endif; ?>
 
+                <a class="btnComment" href=""><img class="iconComment" src="icons/comment.svg" alt=""></a>
+
+                <p class="display-likes">
+                <?php if(empty($numberOfLikes)){
+
+                    echo "0 vind-ik-leuks";
+                }else{
+                    echo $numberOfLikes." vind-ik-leuks";
+                } ?>
+                
+                </p>     
         </div>
+
+                <div class="comment_input_field">
+                    <input class="commentInput" type="text">
+                </div>
+
+                <ul class="comments">
+                    <li class="comment">
+                        <img class="commentAvatar" src="images/standard.jpg" alt="">
+                        <a class="commentName" href="">Jonathan Verhaegen</a>
+                        <p class="commentText">juu ne comment enal</p>
+                    </li>
+                </ul>
         
     </div>
 
