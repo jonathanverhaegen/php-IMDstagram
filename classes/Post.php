@@ -125,6 +125,11 @@ class Post{
      */ 
     public function setCity($city)
     {
+
+        if(empty($city)){
+            // city kan niet leeg zijn
+            throw new Exception("City cannot be empty");
+        }
         $this->city = $city;
 
         return $this;
@@ -145,6 +150,10 @@ class Post{
      */ 
     public function setCountry($country)
     {
+        if(empty($country)){
+            // country kan niet leeg zijn
+            throw new Exception("country cannot be empty");
+        }
         $this->country = $country;
 
         return $this;
@@ -190,6 +199,11 @@ class Post{
      */ 
     public function setCountry_code($country_code)
     {
+
+        if(empty($country_code)){
+            // country code kan niet leeg zijn
+            throw new Exception("Country code cannot be empty");
+        }
         $this->country_code = $country_code;
 
         return $this;

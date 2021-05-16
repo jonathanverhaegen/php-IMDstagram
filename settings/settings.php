@@ -2,11 +2,11 @@
 
 const SETTINGS = [
     "db" => [
-        "user"      => "vincezu427_buckleupuser",
-        "password"  => "Buckleup1337",
+        "user"      => "root",
+        "password"  => "root",
         "host"      => "localhost",
-        "port"      => "3306",
-        "name"      => "vincezu427_buckleup"
+        "port"      => "",
+        "name"      => "buckle_up"
     ]
 
     ];

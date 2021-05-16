@@ -20,9 +20,7 @@ include_once("includes/autoloader.inc.php");
         $profile = true;
     }
 
-    if(isset($profile)){
-        echo "mijn profiel";
-    }
+    
 
 
     $numberOfPosts = count($posts);
@@ -31,7 +29,7 @@ include_once("includes/autoloader.inc.php");
 
         //coutry badge: aantal posts in hetzelfde land
         $countryBadge = Badge::countryBadge($user_id); 
-            
+       
         //travell badge: hoeveel keer in een bepaald land geweest
         $travellerBadge = Badge::travellerbadge($user_id);
 
@@ -83,9 +81,10 @@ include_once("includes/autoloader.inc.php");
 
                     <?php if(isset($countryBadge)): ?>
                         <?php foreach($countryBadge as $b):?>
-                            <a href="" title="specific country badge"><img src="https://flagcdn.com/20x15/<?php echo $b ?>.png"
-                                srcset="https://flagcdn.com/40x30/<?php echo $b ?>.png 2x,
-                                https://flagcdn.com/60x45/<?php echo $b ?>.png 3x"
+                            
+                            <a class="badges" href="" title="<?php echo $b["country"] ?> badge: Make more than 2 posts in this country"><img  src="https://flagcdn.com/20x15/<?php echo $b["country_code"] ?>.png"
+                                srcset="https://flagcdn.com/40x30/<?php echo $b["country_code"] ?>.png 2x,
+                                https://flagcdn.com/60x45/<?php echo $b["country_code"] ?>.png 3x"
                                 width="20"
                                 height="15"
                                 alt="<?php echo $b ?>"></a>
@@ -193,9 +192,9 @@ include_once("includes/autoloader.inc.php");
 
                 <ul class="comments">
                     <li class="comment">
-                        <img class="commentAvatar" src="images/standard.jpg" alt="">
-                        <a class="commentName" href="">Jonathan Verhaegen</a>
-                        <p class="commentText">juu ne comment enal</p>
+                        <img class="commentAvatar" src="" alt="">
+                        <a class="commentName" href=""></a>
+                        <p class="commentText"></p>
                     </li>
                 </ul>
         

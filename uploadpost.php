@@ -31,7 +31,8 @@ if(!isset($_SESSION["id"])){
             $post->setFileError($file['error']);
             $post->setFileType($file['type']);
             $post->setFileExt(explode('.', $post->getFileName()));
-            $post->setFileActExt(strtolower(end($post->getFileExt())));
+            $fileActExt = strtolower(end($post->getFileExt()));
+            $post->setFileActExt($fileActExt);
 
             $location = $_POST["location"];
 

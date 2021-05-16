@@ -8,6 +8,8 @@ class Badge{
     public static function countryBadge( $user_id){
 
         $countriesPosts = Post::getCountriesForUser($user_id);
+
+        
         
         foreach($countriesPosts as $c){
             
@@ -16,8 +18,12 @@ class Badge{
             
             if($numberOfCountry > 1){
                     
-                $countryBadge[] = $c["country_code"];
- 
+                // $countryBadge[] = $c["country_code"];
+                
+                $countryBadge[] = [
+                    "country_code" => $c["country_code"],
+                    "country" => $c["country"]
+                ];
             }
             
         }
@@ -29,7 +35,7 @@ class Badge{
 
     public static function postBadge($numberOfPosts){
         if($numberOfPosts > 2){
-            $postBadge = '<a href="" title="post badge">📷</a>';
+            $postBadge = '<a class="badges"  href="" title="Post badge: Post more than 2 posts">📷</a>';
             return $postBadge;
         }
     }
@@ -41,7 +47,7 @@ class Badge{
         
 
         if($numberOfCountries > 2){
-            $travellerBadge = '<a href="" title="traveller badge">🧳</a>';
+            $travellerBadge = '<a class="badges"  href="" title="Traveller badge: Visit more than 2 countries">🧳</a>';
             return $travellerBadge;
         }
     }
@@ -50,7 +56,7 @@ class Badge{
         $numberOfCities = Post::countCitiesForUser($user_id);
         
         if($numberOfCities > 2){
-            $distanceBadge = '<a href="" title="distance badge">✈️</a>';
+            $distanceBadge = '<a class="badges" href="" title="Distance badge: Visit over 2 cities">✈️</a>';
             return $distanceBadge;
         }
     }
