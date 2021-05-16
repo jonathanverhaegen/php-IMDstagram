@@ -229,8 +229,8 @@ input{
     border-radius: 50px;
     color: black;
     font-weight: 500;
-    float: right;
-    margin-right: 20px;
+    
+    margin-left: 20px;
 }
 
 
@@ -371,7 +371,7 @@ figure{
     margin-bottom: 5px;
 }
 
-@media(min-width:600px){
+@media(min-width:800px){
 
     .post{
         width:40%;
