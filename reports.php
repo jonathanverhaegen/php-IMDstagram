@@ -72,8 +72,9 @@
             ?>
 
 <div class="post">
-        <div class="post__report">
-            <a class="report" href="" data-postid="<?php echo $p[0];?>">Report</a>
+<div class="admin__reports">
+            <a id="deletePost" href="" data-postid="<?php echo $p[0];?>">delete the post</a>
+            <a id="postOk" href="" data-postid="<?php echo $p[0];?>">the post is ok</a>
         </div>
         <div class="post_user">
             <img class="post_avatar" src="images/<?php echo htmlspecialchars($p["avatar"]) ?>" alt="avatar">
