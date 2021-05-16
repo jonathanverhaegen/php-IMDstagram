@@ -7,6 +7,8 @@ class User{
     private $email;
     private $password;
     private $changePassword;
+    private $setNewPassword;
+    private $changePassword;
     private $confirmPassword;
     private $avatar;
     private $bio;
@@ -84,57 +86,7 @@ class User{
         return $this->password;
     }
 
-        /**
-     * Get the value of password
-     */ 
-    public function getChangePassword()
-    {
-        return $this->password;
-    }
 
-        /**
-     * Set the value of password
-     *
-     * @return  self
-     */ 
-    public function setChangePassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Set the value of password
-     *
-     * @return  self
-     */ 
-    public function setOldPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-        /**
-     * Get the value of password
-     */ 
-    public function getNewPassword()
-    {
-        return $this->password;
-    }
-
-        /**
-     * Set the value of password
-     *
-     * @return  self
-     */ 
-    public function setNewPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
 
     /**
      * Get the value of ConfirmPassword
@@ -545,6 +497,48 @@ class User{
 
 
     
+
+    /**
+     * Get the value of setNewPassword
+     */ 
+    public function getSetNewPassword()
+    {
+        return $this->setNewPassword;
     }
+
+    /**
+     * Set the value of setNewPassword
+     *
+     * @return  self
+     */ 
+    public function setSetNewPassword($setNewPassword)
+    {
+        $this->setNewPassword = $setNewPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of changePassword
+     */ 
+    public function getChangePassword()
+    {
+        return $this->changePassword;
+    }
+
+    /**
+     * Set the value of changePassword
+     *
+     * @return  self
+     */ 
+    public function setChangePassword($changePassword)
+    {
+        $this->changePassword = $changePassword;
+
+        return $this;
+    }
+    }
+
+
 
     
