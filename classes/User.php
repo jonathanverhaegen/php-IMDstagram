@@ -512,7 +512,6 @@ class User{
             $conn = Db::getConnection();
             $updateDesStmt = $conn->prepare( 'UPDATE users SET password = :password where email = :email ' );
             $password = password_hash($this->getNewPassword(), PASSWORD_DEFAULT, ['cost' => 13]);
-            $oldPassword = password_hash($this->getOldPassword(), PASSWORD_DEFAULT, ['cost' => 13]);
             $updateDesStmt->bindValue( ':password', $password );
             $updateDesStmt->bindValue( ':email', $email );
             $descrResult = $updateDesStmt->execute();
