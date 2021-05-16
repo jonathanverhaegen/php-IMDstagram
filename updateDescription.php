@@ -15,6 +15,7 @@ if (isset($_SESSION["id"])) {
         try {
             $description->setBio($_POST["description"]);
             $description->editDescription($email);
+            header("Location: userpage.php?user=".$_SESSION["id"]);
         } catch (\Throwable $th) {
             $error = $th->getMessage();
         }

@@ -17,7 +17,7 @@ if (isset($_SESSION["id"])) {
             $changePassword->setOldPassword($_POST["oldpas"]);
             $changePassword->changePassword($email);
 
-            header("Location: profile.php");
+            header("Location: userpage.php?user=".$_SESSION["id"]);
         } catch (\Throwable $th) {
             $error = $th->getMessage();
         }
