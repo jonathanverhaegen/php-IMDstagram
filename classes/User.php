@@ -75,6 +75,8 @@ class User{
     {
         $this->password = $password;
 
+        $password = password_hash( $password, PASSWORD_DEFAULT, ['cost'=>16] );
+
         return $this;
     }
 

@@ -32,11 +32,20 @@
             </div>
           </li>
           <li class="desktop-li">
-            <a class="bold" href="login.php">Sign In</a>
-            <a class="bold" href="logout.php">Sign Out</a>
+          <?php if( isset($_SESSION['username']) && !empty($_SESSION['username']) )
+{
+?>
+<a class="bold" href="login.php">Sign In</a>
+<?php }else{ ?>
+  <a class="bold" href="logout.php">Sign Out</a>
+            <?php } ?>
           </li>
         </ul>
       </div>
+
+
+
+
 
       <!-- mobile version -->
       <div class="inner-container mobile">
