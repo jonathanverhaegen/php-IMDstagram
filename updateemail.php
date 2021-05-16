@@ -4,6 +4,8 @@ session_start();
 include_once( __DIR__ . '/classes/User.php' );
 
 if (isset($_SESSION["id"])) {
+
+    
     
     $user = User::getUser($_SESSION["id"]);
     
@@ -18,7 +20,7 @@ if (isset($_SESSION["id"])) {
             $newEmail-> setNewEmailCheck($_POST["newE2"]);
             $newEmail->editEmail($email);
             $succes = "email changed";
-            header("Location: profile.php");
+            header("Location: userpage.php?user=".$_SESSION["id"]);
         } catch (\Throwable $th) {
             $error = $th->getMessage();
         }

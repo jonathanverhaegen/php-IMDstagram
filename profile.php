@@ -17,68 +17,23 @@ include_once("includes/autoloader.inc.php");
     
 
 
-    $numberOfPosts = count($posts);
+        $numberOfPosts = count($posts);
 
+        $numberOfPosts = count($posts);
+        
+        //badge systeem
     
-
-    //badge systeem
-
-        //land badge: aantal post uit een zelfde land
-
-            //in welke landen zijn er posts gebeurd
-
-        
-
-        $countriesPosts = Post::getCountriesForUser($user_id);
-
-            //hoeveel posts in dat land
-
-            foreach($countriesPosts as $c){
-                // echo $c["country"];
-                $numberOfCountry = Post::countCountryForUser($user_id,$c["country"]);
-                // echo $numberOfPosts;
-
-                if($numberOfCountry > 1){
-                    $countryBadge[] = $c["country"];
-                    
-                }
-
-            }
-
-       
-
-        //travell badge: hoeveel keer in een bepaald land geweest
-
-        $numberOfCountries = Post::numberOfCountries($user_id);
-        // echo $numberOfCountries;
-
-        if($numberOfCountries > 2){
-            $travellerBadge = true;
-        }
-        
-
-
-        //post badge: hoeveel keer een post gedaan
-        if($numberOfPosts > 2){
-            $postBadge = true;
-        }
-
-        //distance badge: hoeveel kilometer gereisd, hoeveel keer verschillende steden
-
-        $numberOfCities = Post::countCitiesForUser($user_id);
-        // echo $numberOfCities;
-
-        if($numberOfCities > 5){
-            $distanceBadge = true;
-        }
-        
-        
-
-        
-
-        
-
+            //coutry badge: aantal posts in hetzelfde land
+            $countryBadge = Badge::countryBadge($user_id); 
+                
+            //travell badge: hoeveel keer in een bepaald land geweest
+            $travellerBadge = Badge::travellerbadge($user_id);
     
+            //post badge: hoeveel keer een post gedaan
+            $postBadge = Badge::postBadge($numberOfPosts);
+            
+            //distance badge: hoeveel kilometer gereisd, hoeveel keer verschillende steden
+            $distanceBadge = Badge::distancebadge($user_id);  
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -114,23 +69,30 @@ include_once("includes/autoloader.inc.php");
                 </div>
                 <p><?php echo $user["bio"] ?></p>
                 <p>
-                    <?php if(isset($postBadge)){
-                        echo "postbadge";
+                <?php if(isset($postBadge)){
+                        echo $postBadge;
                     } ?>
+                        
 
-                    <?php if(isset($countryBadge)){
-                        foreach($countryBadge as $b){
-                            echo $b."badge ";
-                        }
-                    } ?>
+                    <?php if(isset($countryBadge)): ?>
+                        <?php foreach($countryBadge as $b):?>
+                            <a href="" title="specific country badge"><img src="https://flagcdn.com/20x15/<?php echo $b ?>.png"
+                                srcset="https://flagcdn.com/40x30/<?php echo $b ?>.png 2x,
+                                https://flagcdn.com/60x45/<?php echo $b ?>.png 3x"
+                                width="20"
+                                height="15"
+                                alt="<?php echo $b ?>"></a>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
 
                     <?php if(isset($travellerBadge)){
-                        echo "travellerbadge";
-                    } ?>
+                        echo $travellerBadge;
+                    }?>
+                        
 
                     <?php if(isset($distanceBadge)){
-                        echo "distancebadge";
-                    } ?>
+                        echo $distanceBadge;
+                    }?>
                 
                 </p>
                 
