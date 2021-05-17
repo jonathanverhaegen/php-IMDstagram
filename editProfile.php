@@ -63,10 +63,10 @@ if(!isset($_SESSION["id"])){
 <?php include("header.php") ?>
     <div class="content">
         <div class="profilePicture">
-            <h1 style="margin-top: -60px;">Your profile</h1>
+            <h1 style="margin-top: 50px;">Your profile</h1>
             <h2 id="h2edit" style="text-align: center; margin-left: auto; margin-right: auto;">Profile picture</h2>
             <h2></h2>
-            <img style="width: 10%; height: auto;" src="images/<?php echo htmlspecialchars($viewAvatar) ?>" alt="#">
+            <img class="profilePreviewImg"  src="images/<?php echo htmlspecialchars($viewAvatar) ?>" alt="#">
             <form action="" method="post" enctype="multipart/form-data">
                 <input type="file" name="avatar" class="btn">
                 <button type="submit" name="submitAvatar" class="btn btn-primary">Upload profile picture</button>

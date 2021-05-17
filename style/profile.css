@@ -15,3 +15,18 @@
 #h2edit{
     text-align: center;
 }
+
+.profilePreviewImg{
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+    margin-top:10px;
+}
+
+@media(min-width:800px){
+
+    .profilePreviewImg{
+        width: 30%;
+        
+    }
+}

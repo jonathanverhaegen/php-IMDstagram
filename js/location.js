@@ -27,7 +27,7 @@ class App{
             return response.json();
         }).then((json) =>{
 
-            let city = json.results[0].components.county;
+            let city = json.results[0].components.town;
             let country = json.results[0].components.country;
             let country_code = json.results[0].components.country_code;
 
