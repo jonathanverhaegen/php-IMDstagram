@@ -71,7 +71,7 @@
       <ul class="mobile-ul">
         <li class="mobile-li"><a href="index.php">Home</a></li>
         <li class="mobile-li"><a href="uploadpost.php">Post</a></li>
-        <li class="mobile-li"><a href="profile.php">Profile</a></li>
+        <li class="mobile-li"><a href="userpage.php?user=<?php echo $id; ?>">Profile</a></li>
         <li class="search-outer mobile-li">
           <div class="search-outer search-outer-mobile">
             <input
