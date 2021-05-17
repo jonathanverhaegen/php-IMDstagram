@@ -21,7 +21,7 @@ class App{
 
         let key = "19b2bc6c45ce4513abb54cf86761a7d8";
         
-        let url = `http://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${key}`;
+        let url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${key}`;
 
         fetch(url).then((response) =>{
             return response.json();
