@@ -114,7 +114,7 @@
                 <?php else: ?>
 
                 <a class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="images/like.svg" alt="like"></a>
-                <a class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="images/like.svg" alt="unlike"></a>
+                <a class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="images/unlike.svg" alt="unlike"></a>
                 
                 <?php endif; ?>
 
