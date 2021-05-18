@@ -49,7 +49,7 @@
 
       <!-- mobile version -->
       <div class="inner-container mobile">
-        <div class="mobile-logo"><img src="./images/buckle.png" /></div>
+        <div class="mobile-logo"><img src="images/buckle.png" /></div>
         <button class="svg-button">
           <svg
             height="28"
