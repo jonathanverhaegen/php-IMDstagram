@@ -12,7 +12,7 @@
       <!-- desktop version -->
       <div class="inner-container desktop">
         <span class="logo left"
-          ><a href="index.php"><img src="images/buckle.png" alt=""/></a
+          ><a href="index.php"><img src="images/Buckle.png" alt=""/></a
         ></span>
         <ul class="left">
           <li class="desktop-li"><a href="index.php">Home</a></li>
@@ -49,7 +49,7 @@
 
       <!-- mobile version -->
       <div class="inner-container mobile">
-        <div class="mobile-logo"><img src="images/buckle.png" /></div>
+        <div class="mobile-logo"><img src="images/Buckle.png" /></div>
         <button class="svg-button">
           <svg
             height="28"
