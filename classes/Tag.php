@@ -20,9 +20,16 @@ class Tag{
      */ 
     public function setText($text)
     {
-        $this->text = $text;
+        $firstLetter = substr($text,0,1);
 
+        if($firstLetter != "#"){
+            throw new Exception("Tag has to start with #");
+        }
+
+        $this->text = $text;
         return $this;
+
+        
     }
 
     public static function getAllTags(){

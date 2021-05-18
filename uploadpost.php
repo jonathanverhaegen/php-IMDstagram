@@ -160,6 +160,7 @@ if(!isset($_SESSION["id"])){
 
 
 <div class="upload">
+
     <h2 class="title__upload">Upload a new post</h2>
 
     <figure class="">

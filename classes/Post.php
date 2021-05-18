@@ -174,11 +174,7 @@ class Post{
      */ 
     public function setFilter($filter)
     {
-        if(empty($filter)){
-            // filter kan niet leeg zijn
-            throw new Exception("Please choose a filter");
-        }
-
+        
         $this->filter = $filter;
 
         return $this;

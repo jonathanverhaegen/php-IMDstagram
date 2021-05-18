@@ -108,17 +108,17 @@
         <div class="likes">
                 <?php if($likeByUser): ?>
 
-                    <a style="<?php echo "display:none" ?>" class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="./icons/like.svg" alt="like"></a>
-                    <a style="<?php echo "display:block" ?>;" class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="./icons/unlike.svg" alt="unlike"></a>
+                    <a style="<?php echo "display:none" ?>" class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="images/like.svg" alt="like"></a>
+                    <a style="<?php echo "display:block" ?>;" class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="images/unlike.svg" alt="unlike"></a>
                 
                 <?php else: ?>
 
-                <a class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="./icons/like.svg" alt="like"></a>
-                <a class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="./icons/like.svg" alt="unlike"></a>
+                <a class="btnLike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="images/like.svg" alt="like"></a>
+                <a class="btnUnlike" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>"><img class="iconLike" src="images/like.svg" alt="unlike"></a>
                 
                 <?php endif; ?>
 
-                <a class="btnComment" href=""><img class="iconComment" src="./icons/comment.svg" alt="comment"></a>
+                <a class="btnComment" href=""><img class="iconComment" src="images/comment.svg" alt="comment"></a>
 
                     
         </div>

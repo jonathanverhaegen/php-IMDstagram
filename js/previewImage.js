@@ -5,7 +5,6 @@ let fileSelect = document.querySelector("#file");
 
 fileSelect.addEventListener("change", function(e){
     let preview = document.querySelector(".prev-image");
-
     preview.src = URL.createObjectURL(e.target.files[0]);
 })
 
