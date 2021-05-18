@@ -7,6 +7,8 @@ include_once(__DIR__."/../classes/PostTag.php");
 if(!empty($_POST)){
 
     $postId = $_POST["post_id"];
+
+    
     
     Report::deleteReport($postId);
     PostTag::deletePostTag($postId);

@@ -5,6 +5,7 @@ include_once(__DIR__."/Db.php");
 
 class Report{
     private $post_id;
+    private $user_id;
     private $date;
 
     /**
@@ -23,6 +24,26 @@ class Report{
     public function setPost_id($post_id)
     {
         $this->post_id = $post_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user_id
+     */ 
+    public function getUser_id()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set the value of user_id
+     *
+     * @return  self
+     */ 
+    public function setUser_id($user_id)
+    {
+        $this->user_id = $user_id;
 
         return $this;
     }
@@ -49,8 +70,9 @@ class Report{
 
     public function save(){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("insert into reports (post_id, date) values (:post_id, sysdate())");
+        $statement = $conn->prepare("insert into reports (post_id, user_id, date) values (:post_id, :user_id, sysdate())");
         $statement->bindValue(":post_id", $this->getPost_id());
+        $statement->bindValue(":user_id", $this->getUser_id());
         $statement->execute();
     }
 
@@ -72,4 +94,18 @@ class Report{
         $statement->bindValue(":post_id", $post_id);
         $statement->execute();
     }
+
+    public function checkreport(){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM `reports` WHERE post_id = :post_id AND user_id = :user_id ");
+        $statement->bindValue(":post_id", $this->getPost_id());
+        $statement->bindValue(":user_id", $this->getUser_id());
+        $statement->execute();
+        $result = $statement->fetch();
+        return $result;
+
+        
+    }
+
+    
 }

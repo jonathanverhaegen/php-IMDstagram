@@ -86,7 +86,7 @@
 
     <div class="post">
         <div class="post__report">
-            <a class="report" href="" data-postid="<?php echo $p[0];?>">Report</a>
+            <a class="report" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0];?>">Report</a>
         </div>
         <div class="post_user">
             <img class="post_avatar" src="images/<?php echo htmlspecialchars($p["avatar"]) ?>" alt="avatar">
@@ -137,7 +137,7 @@
             <input class="commentInput" name="comment" type="text">
         </div>
 
-        <ul class="comments">
+        <ul style="display:none;" class="comments">
             <li class="comment">
                 <img class="commentAvatar" src="" alt="">
                 <a class="commentName" href=""></a>

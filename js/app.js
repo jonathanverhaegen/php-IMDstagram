@@ -6,11 +6,13 @@ reportBtns.forEach((reportBtn) => {
         e.preventDefault();
 
         let postId = this.dataset.postid;
+        let userId = this.dataset.userid;
 
-        console.log(postId);
+        
 
         let formData = new FormData();
         formData.append('post_id', postId);
+        formData.append('user_id', userId);
 
         fetch('ajax/saveReport.php', {
             method: 'POST',

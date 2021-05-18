@@ -8,14 +8,35 @@ if(!empty($_POST)){
     $report = new Report();
 
     $report->setPost_id($_POST["post_id"]);
+    $report->setUser_id($_POST["user_id"]);
 
-    $report->save();
+    //post id gaan halen in de database
+
+    $checkReport = $report->checkReport();
+
+    //kijken of deze persoon die al gereport heeft
+
+    //wel niet meer toevoegen
+
+    //niet: toevoegen
+
+    if($checkReport === false){
+        $report->save();
+
+        $response =[
+            'status' => 'succes',
+            'message' => 'post reported'
+        ];
+    }else{
+        $response =[
+            'status' => 'succes',
+            'message' => 'post was already reported'
+        ];
+    }
 
 
-    $response =[
-        'status' => 'succes',
-        'message' => 'post reported'
-    ];
+
+    
 
     header('Content-Type: application/json');
     echo json_encode($response);
