@@ -6,7 +6,6 @@ if(!empty($_POST)){
 
 
     $report = new Report();
-
     $report->setPost_id($_POST["post_id"]);
     $report->setUser_id($_POST["user_id"]);
 
