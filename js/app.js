@@ -193,10 +193,79 @@ posts.forEach((e) => {
             displayLikes.innerHTML = likes + " vind-ik-leuks";
 })
 
-        //comments
+        //commentsfield open
         btnComment.addEventListener("click", function(f){
             f.preventDefault();
             commentField.style.display = "flex";
+        })
+
+        //comment toevoegen
+        commentField.addEventListener("keydown", function(f){
+            
+            if(f.keyCode === 13){
+                
+                let comment = f.target.value;
+                let userId = this.dataset.userid;
+                let postId = this.dataset.postid;
+
+                console.log(comment);
+                console.log(userId);
+                console.log(postId);
+                
+
+                let formData = new FormData();
+                formData.append('post_id', postId);
+                formData.append('user_id', userId);
+                formData.append('comment', comment);
+
+                fetch('ajax/comment.php', {
+                    method: 'POST',
+                    body: formData
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log('Success:', result);
+                        
+                        //data uit de json halen
+                        let avatar = result.avatar;
+                        let username = result.username;
+                        let text = result.text;
+                        
+                        let commentNew = document.createElement("li");
+                        let avatarField = document.createElement("img");
+                        let usernameField = document.createElement('a');
+                        let commentField = document.createElement('p');
+
+                        commentNew.className = "comment";
+                        avatarField.className = "commentAvatar";
+                        avatarField.src = "images/" + avatar;
+                        usernameField.className = "commentName";
+                        usernameField.innerHTML = username;
+                        usernameField.href = "userpage.php?user=" + userId;
+                        commentField.classname = "commentText";
+                        commentField.innerHTML = text;
+
+                        // nieuwe comment plaatsen
+                        e.querySelector('.comments').appendChild(commentNew);
+                        commentNew.appendChild(avatarField);
+                        commentNew.appendChild(usernameField);
+                        commentNew.appendChild(commentField);
+                        
+
+                        
+                        
+
+                        
+
+                        
+
+                    })
+                    .catch(error => {
+                    console.error('Error:', error);
+                    });
+
+                f.target.value = "";
+            }
         })
 })
 

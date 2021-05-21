@@ -1,5 +1,7 @@
 <?php
 
+include_once(__DIR__."/Db.php");
+
 class Comment{
     private $user_id;
     private $post_id;
@@ -63,5 +65,23 @@ class Comment{
         $this->text = $text;
 
         return $this;
+    }
+
+    public function save(){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("insert into comments (post_id, user_id, text) values (:post_id, :user_id, :text)");
+        $statement->bindValue(":post_id", $this->getPost_id());
+        $statement->bindValue(":user_id", $this->getUser_id());
+        $statement->bindValue(":text", $this->getText());
+        $statement->execute();
+    }
+
+    public static function getCommentsByPostId($post_id){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("select * from comments INNER JOIN `users` on `comments`.`user_id` = `users`.`id` where post_id = :post_id");
+        $statement->bindValue(":post_id", $post_id);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 }

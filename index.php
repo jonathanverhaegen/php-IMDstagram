@@ -134,16 +134,19 @@
         </p> 
 
         <div class="comment_input_field">
-            <input class="commentInput" name="comment" type="text">
+            <input data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>" class="commentInput" name="comment" type="text">
         </div>
 
-        <ul style="display:none;" class="comments">
+        <ul class="comments">
+        <?php $comments = Comment::getCommentsByPostId($p[0]);
+        foreach($comments as $c):
+        ?>
             <li class="comment">
-                <img class="commentAvatar" src="" alt="">
-                <a class="commentName" href=""></a>
-                <p class="commentText"></p>
+                <img class="commentAvatar" src="images/<?php echo htmlspecialchars($c["avatar"]); ?>" alt="avatar">
+                <a class="commentName" href="userpage.php?user=<?php echo $c["user_id"] ?>"><?php echo htmlspecialchars($c["username"]); ?></a>
+                <p class="commentText"><?php echo htmlspecialchars($c["text"]); ?></p>
             </li>
-
+        <?php endforeach ?>
             
         </ul>
         
@@ -168,6 +171,7 @@
 <?php include_once(__DIR__."/footer.php") ?>
 
 <script src="js/app.js"></script>
+
 
 
 
