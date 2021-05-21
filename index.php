@@ -80,10 +80,6 @@
            $comments = Comment::getCommentsByPostId($p[0]);
 
            $numberOfComments = count($comments);
-           
-
-        
-          
 
            if($numberOfReports < 3):
 
@@ -144,14 +140,8 @@
                     echo $numberOfComments;
                 } ?>
                 
-                </p> 
-
-                    
+                </p>          
         </div>
-
-        
-
-        
 
         <div class="comment_input_field">
             <input data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>" class="commentInput" name="comment" type="text" placeholder="leave a comment">
