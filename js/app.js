@@ -150,7 +150,7 @@ posts.forEach((e) => {
             let likes = parseInt(displayLikes.innerHTML);
 
             likes += 1;
-            displayLikes.innerHTML = likes + " vind-ik-leuks";
+            displayLikes.innerHTML = likes;
 
 
 
@@ -190,14 +190,8 @@ posts.forEach((e) => {
             let likes = parseInt(displayLikes.innerHTML);
 
             likes -= 1;
-            displayLikes.innerHTML = likes + " vind-ik-leuks";
+            displayLikes.innerHTML = likes;
 })
-
-        //commentsfield open
-        btnComment.addEventListener("click", function(f){
-            f.preventDefault();
-            commentField.style.display = "flex";
-        })
 
         //comment toevoegen
         commentField.addEventListener("keydown", function(f){
@@ -235,6 +229,7 @@ posts.forEach((e) => {
                         let avatarField = document.createElement("img");
                         let usernameField = document.createElement('a');
                         let commentField = document.createElement('p');
+                        let time = document.createElement('span');
 
                         commentNew.className = "comment";
                         avatarField.className = "commentAvatar";
@@ -242,14 +237,22 @@ posts.forEach((e) => {
                         usernameField.className = "commentName";
                         usernameField.innerHTML = username;
                         usernameField.href = "userpage.php?user=" + userId;
-                        commentField.classname = "commentText";
+                        commentField.className = "commentText";
                         commentField.innerHTML = text;
+                        time.className = "commentTime"
+                        time.innerHTML = "just now";
 
                         // nieuwe comment plaatsen
                         e.querySelector('.comments').appendChild(commentNew);
                         commentNew.appendChild(avatarField);
                         commentNew.appendChild(usernameField);
                         commentNew.appendChild(commentField);
+                        commentNew.appendChild(time);
+
+                        //comment bijtellen
+                        let number = parseInt(document.querySelector(".display-comments").innerHTML);
+                        number += 1;
+                        document.querySelector(".display-comments").innerHTML = number;
                         
 
                         
@@ -264,7 +267,7 @@ posts.forEach((e) => {
                     console.error('Error:', error);
                     });
 
-                f.target.value = "";
+                 f.target.value = "";
             }
         })
 })

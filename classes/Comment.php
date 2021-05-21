@@ -69,7 +69,7 @@ class Comment{
 
     public function save(){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("insert into comments (post_id, user_id, text) values (:post_id, :user_id, :text)");
+        $statement = $conn->prepare("insert into comments (post_id, user_id, text, time) values (:post_id, :user_id, :text, sysdate())");
         $statement->bindValue(":post_id", $this->getPost_id());
         $statement->bindValue(":user_id", $this->getUser_id());
         $statement->bindValue(":text", $this->getText());
@@ -84,4 +84,29 @@ class Comment{
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    //https://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago
+    public static function humanTiming ($date)
+        {
+            $time = strtotime($date);
+            $time = time() - $time + 7200; // to get the time since that moment
+            
+            $time = ($time<1)? 1 : $time;
+            $tokens = array (
+                31536000 => 'year',
+                2592000 => 'month',
+                604800 => 'week',
+                86400 => 'day',
+                3600 => 'hour',
+                60 => 'minute',
+                1 => 'second'
+            );
+
+            foreach ($tokens as $unit => $text) {
+                if ($time < $unit) continue;
+                $numberOfUnits = floor($time / $unit);
+                return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s':'');
+            }
+
+        }
 }

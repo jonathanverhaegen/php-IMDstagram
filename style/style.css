@@ -292,8 +292,9 @@ figure{
     display:none;
 }
 
-.display-likes{
+.display-likes, .display-comments{
     margin-top:10px;
+    margin-left: 2px;
 }
 
 
@@ -319,7 +320,12 @@ figure{
 .commentInput{
     border-radius:10px;
     width:50%;
-    display:none;
+}
+
+.comments{
+    margin-top:20px;
+    padding-left: 0px;
+    
 }
 
 .comment{
@@ -328,6 +334,11 @@ figure{
     grid-template-rows: 1fr 1fr;
     align-items: center;
     margin-bottom: 5px;
+    background-color: #E8E8E4;
+    padding:10px;
+    border-radius: 10px;
+    margin-bottom:10px;
+    
 }
 
 
@@ -338,7 +349,6 @@ figure{
     border-radius:70%;
     grid-column-start: 1;
     grid-row-start: 1;
-    grid-row-end: 3;
 }
 
 .commentName{
@@ -348,8 +358,22 @@ figure{
 }
 
 .commentText{
-    grid-column-start: 2;
+    grid-column: 1 / span 3;
     grid-row-start: 2;
+    margin-top:5px;
+}
+
+.commentTime{
+    grid-column-start: 1;
+    grid-row-start: 3;
+    font-style: italic;
+    margin-top:-15px;
+    font-size: 12px;
+}
+
+.postTime{
+    font-style: italic;
+    font-size: 12px;
 }
 
 
