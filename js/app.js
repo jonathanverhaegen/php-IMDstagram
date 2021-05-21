@@ -125,8 +125,8 @@ posts.forEach((e) => {
         let postId = this.dataset.postid;
         let userId = this.dataset.userid;
         
-        console.log(postId);
-        console.log(userId);
+        // console.log(postId);
+        // console.log(userId);
 
         let formData = new FormData();
         formData.append('post_id', postId);

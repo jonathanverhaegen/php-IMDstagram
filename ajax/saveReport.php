@@ -24,12 +24,12 @@ if(!empty($_POST)){
         $report->save();
 
         $response =[
-            'status' => 'succes',
+            'status' => 'success',
             'message' => 'post reported'
         ];
     }else{
         $response =[
-            'status' => 'succes',
+            'status' => 'success',
             'message' => 'post was already reported'
         ];
     }

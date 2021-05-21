@@ -11,7 +11,7 @@ if(!empty($_POST)){
 
 
     $response =[
-        'status' => 'succes',
+        'status' => 'success',
         'message' => 'post is now report free'
     ];
 
