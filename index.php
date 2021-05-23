@@ -88,6 +88,11 @@
         <div class="post__report">
             <a class="report" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0];?>">Report</a>
         </div>
+
+        <div class="post__remove">
+            <a class="postremove" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0];?>">Delete</a>
+        </div>
+
         <div class="post_user">
             <img class="post_avatar" src="images/<?php echo htmlspecialchars($p["avatar"]) ?>" alt="avatar">
             <a class="post_username" href="userpage.php?user=<?php echo $p["user_id"] ?>"><h2><?php echo htmlspecialchars($p["username"]) ?></h2></a>

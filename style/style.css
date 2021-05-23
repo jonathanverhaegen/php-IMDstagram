@@ -235,6 +235,17 @@ input{
     margin-left: 20px;
 }
 
+.btn__delete{
+    text-decoration: none;
+    padding: 10px 32px;
+    background-color:rgb(231, 228, 228);
+    border-radius: 50px;
+    color: black;
+    font-weight: 500;
+    
+    margin-left: 20px;
+}
+
 
 
 .btn-more{

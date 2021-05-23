@@ -20,8 +20,6 @@ if(!isset($_SESSION["id"])){
 
     
 
-    
-
     try {
         $showEmail = $user->viewEmail($email);
         $showDescription = $user->viewDescription($email);
