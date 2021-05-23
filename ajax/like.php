@@ -17,7 +17,7 @@ if(!empty($_POST)){
 
 
     $response =[
-        'status' => 'succes',
+        'status' => 'success',
         'message' => 'post liked',
         'post'=> $like->getPost_id(),
         'user' => $like->getUser_id()

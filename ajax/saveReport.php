@@ -6,7 +6,6 @@ if(!empty($_POST)){
 
 
     $report = new Report();
-
     $report->setPost_id($_POST["post_id"]);
     $report->setUser_id($_POST["user_id"]);
 
@@ -24,12 +23,12 @@ if(!empty($_POST)){
         $report->save();
 
         $response =[
-            'status' => 'succes',
+            'status' => 'success',
             'message' => 'post reported'
         ];
     }else{
         $response =[
-            'status' => 'succes',
+            'status' => 'success',
             'message' => 'post was already reported'
         ];
     }

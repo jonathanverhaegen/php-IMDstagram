@@ -24,6 +24,7 @@
 
     $posts = Post::getAllPosts();
 
+    
 
 
     
@@ -76,8 +77,9 @@
 
            $likeByUser = Like::LikedByUser($id, $p[0]);
 
-        
-          
+           $comments = Comment::getCommentsByPostId($p[0]);
+
+           $numberOfComments = count($comments);
 
            if($numberOfReports < 3):
 
@@ -85,6 +87,7 @@
             ?>
 
     <div class="post">
+    <span class="postTime"><?php echo Comment::humanTiming($p["time"])." ago"; ?></span>
         <div class="post__report">
             <a class="report" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0];?>">Report</a>
         </div>
@@ -123,32 +126,41 @@
                 
                 <?php endif; ?>
 
+                <p class="display-likes">
+                    <?php if(empty($numberOfLikes)){
+                     echo "0";
+                    }else{
+                        echo $numberOfLikes;
+                    } ?>
+                </p> 
+
+
                 <a class="btnComment" href=""><img class="iconComment" src="images/comment.svg" alt="comment"></a>
+                <p class="display-comments">
 
-                    
-        </div>
+                <?php if(empty($numberOfComments)){
 
-        <p class="display-likes">
-                <?php if(empty($numberOfLikes)){
-
-                    echo "0 vind-ik-leuks";
+                    echo "0";
                 }else{
-                    echo $numberOfLikes." vind-ik-leuks";
+                    echo $numberOfComments;
                 } ?>
                 
-        </p> 
-
-        <div class="comment_input_field">
-            <input class="commentInput" name="comment" type="text">
+                </p>          
         </div>
 
-        <ul style="display:none;" class="comments">
-            <li class="comment">
-                <img class="commentAvatar" src="" alt="">
-                <a class="commentName" href=""></a>
-                <p class="commentText"></p>
-            </li>
+        <div class="comment_input_field">
+            <input data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0] ?>" class="commentInput" name="comment" type="text" placeholder="leave a comment">
+        </div>
 
+        <ul class="comments">
+        <?php foreach($comments as $c):?>
+            <li class="comment">
+                <img class="commentAvatar" src="images/<?php echo htmlspecialchars($c["avatar"]); ?>" alt="avatar">
+                <a class="commentName" href="userpage.php?user=<?php echo $c["user_id"] ?>"><?php echo htmlspecialchars($c["username"]); ?></a>
+                <p class="commentText"><?php echo htmlspecialchars($c["text"]); ?></p>
+                <span class="commentTime"><?php echo Comment::humanTiming($c["time"])." ago"; ?></span>
+            </li>
+        <?php endforeach ?>
             
         </ul>
         
@@ -173,6 +185,7 @@
 <?php include_once(__DIR__."/footer.php") ?>
 
 <script src="js/app.js"></script>
+
 
 
 

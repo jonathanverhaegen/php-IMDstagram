@@ -230,39 +230,8 @@ class User{
         return $this;
     }
 
-    public function save() 
-    {
-        try {
-            $conn = Db::getConnection();
-            $statement = $conn->prepare( 'INSERT INTO users (email, firstName, lastName, password, description, avatar) VALUES (:email, :firstName, :lastName, :password, :description, :avatar)' );
-            $email = $this->getEmail();
-            // $firstName = $this->getFirstName();
-            // $lastName = $this->getLastName();
-            $password = $this->getPassword();
-            $description = "here comes your description";
-            $avatar = "Upload/standard.jpg";
-      
+   
 
-        
-            
-        
-            $statement->bindValue(":email", $email);
-            // $statement->bindValue(":firstName", $firstName);
-            // $statement->bindValue(":lastName", $lastName);
-            $statement->bindValue(":password", $password);
-            $statement->bindValue(":description", $description);
-            $statement->bindValue(":avatar", $avatar);
-
-
-            $result = $statement->execute();
-
-            return $result;
-
-        } catch ( PDOException $e ) {
-            print 'Error!: ' . $e->getMessage() . '<br/>';
-            die();
-        }
-    }
 
     public static function getAll() 
     {
@@ -461,18 +430,6 @@ class User{
         }
     }
 
-
-    public function login( $complete ) {
-            session_start();
-
-            $_SESSION['user'] = $this->getEmail();
-            if ( $complete ) {
-                header( 'Location: index.php' );
-
-            } else {
-                header( 'Location: login.php' );
-            }
-        }
 
 
     public static function getIdByEmail($email){
