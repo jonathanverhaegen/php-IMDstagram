@@ -125,8 +125,7 @@ posts.forEach((e) => {
         let postId = this.dataset.postid;
         let userId = this.dataset.userid;
         
-        // console.log(postId);
-        // console.log(userId);
+        
 
         let formData = new FormData();
         formData.append('post_id', postId);
@@ -165,8 +164,7 @@ posts.forEach((e) => {
         let postId = this.dataset.postid;
         let userId = this.dataset.userid;
         
-        console.log(postId);
-        console.log(userId);
+       
 
         let formData = new FormData();
         formData.append('post_id', postId);
@@ -202,9 +200,7 @@ posts.forEach((e) => {
                 let userId = this.dataset.userid;
                 let postId = this.dataset.postid;
 
-                console.log(comment);
-                console.log(userId);
-                console.log(postId);
+                
                 
 
                 let formData = new FormData();
@@ -250,9 +246,10 @@ posts.forEach((e) => {
                         commentNew.appendChild(time);
 
                         //comment bijtellen
-                        let number = parseInt(document.querySelector(".display-comments").innerHTML);
+                        let number = parseInt(e.querySelector(".display-comments").innerHTML);
+                        console.log(number);
                         number += 1;
-                        document.querySelector(".display-comments").innerHTML = number;
+                        e.querySelector(".display-comments").innerHTML = number;
                         
 
                         
