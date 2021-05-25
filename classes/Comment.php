@@ -89,7 +89,7 @@ class Comment{
     public static function humanTiming ($date)
         {
             $time = strtotime($date);
-            $time = time() - $time + 7200; // to get the time since that moment
+            $time = time() - $time + 14400; // to get the time since that moment
             
             $time = ($time<1)? 1 : $time;
             $tokens = array (
