@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/header.css">
     <link rel="stylesheet" href="style/footer.css">
+    <link rel="shortcut icon" type="image/png" href="images/Buckle.png"/>
     
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
@@ -92,9 +93,13 @@
             <a class="report" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0];?>">Report</a>
         </div>
 
+            <?php if($id === $p["user_id"]): ?>
+
         <div class="post__remove">
             <a class="postremove" href="" data-userid="<?php echo $id ?>" data-postid="<?php echo $p[0];?>">Delete</a>
         </div>
+
+                <?php endif;?>
 
         <div class="post_user">
             <img class="post_avatar" src="images/<?php echo htmlspecialchars($p["avatar"]) ?>" alt="avatar">
