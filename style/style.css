@@ -164,6 +164,7 @@ input{
 
 .post__image{
     width: 100%;
+    object-fit: cover;
     
 }
 
@@ -298,7 +299,10 @@ figure{
     overflow: hidden;
     width:500px;
     height:500px;
+    
 }
+
+
 
 
 .likes{
