@@ -147,10 +147,10 @@ if(!isset($_SESSION["id"])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/footer.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cssgram/0.1.10/cssgram.min.css">
+    <link rel="stylesheet" href="style/style.css">
     <title>Upload post</title>
 </head>
 <body>
@@ -196,7 +196,7 @@ if(!isset($_SESSION["id"])){
                 <textarea type="text" id="description" name="description" ></textarea>
 
                 <label for="tag">Tag</label>
-                <p class="extraInfo">Vul hier je tags in, geschieden met een spatie</p>
+                <p class="extraInfo">Vul hier je tags in, gescheiden met een spatie. Bv #vacation #icecream</p>
                 <input type="text" id="tag" name="tag" >
 
                 <label for="location">Location</label>
