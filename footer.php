@@ -17,7 +17,7 @@
           <ul class="footer-links">
             <li><a href="index.php">Home</a></li>
             <li><a href="uploadpost.php">Post</a></li>
-            <li><a href="userpage.php">Profile</a></li>
+            <li><a href="userpage.php?user=<?php echo $id; ?>">Profile</a></li>
           </ul>
         </div>
       </div>

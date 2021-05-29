@@ -51,9 +51,9 @@ include_once("includes/autoloader.inc.php");
     <link rel="stylesheet" href="style/profile.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="style/header.css"/>
     <link rel="stylesheet" href="style/footer.css"/>
-    <link rel="stylesheet" href="style/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cssgram/0.1.10/cssgram.min.css">
+    <link rel="stylesheet" href="style/style.css">
     <title><?php echo $user["username"] ?></title>
 </head>
 <body>
@@ -65,7 +65,7 @@ include_once("includes/autoloader.inc.php");
         <div class="col-lg-4"><img id="profileImage" src="images/<?php echo $user["avatar"] ?>" alt=""></div>
         <div class="col-lg-8">
             
-                <h5><?php echo $user["username"] ?></h5>
+                <h5><?php echo htmlspecialchars($user["username"]); ?></h5>
                 <div class="userInfo">
                     <p><?php echo $numberOfPosts ?> <?php if($numberOfPosts === 1){echo "post";}else{echo "posts";}  ?> </p>
                     <p><?php echo $user["followers"] ?> volgers</p>
@@ -82,9 +82,9 @@ include_once("includes/autoloader.inc.php");
                     <?php if(isset($countryBadge)): ?>
                         <?php foreach($countryBadge as $b):?>
                             
-                            <a class="badges" href="" title="<?php echo $b["country"] ?> badge: Make more than 2 posts in this country"><img  src="https://flagcdn.com/20x15/<?php echo $b["country_code"] ?>.png"
-                                srcset="https://flagcdn.com/40x30/<?php echo $b["country_code"] ?>.png 2x,
-                                https://flagcdn.com/60x45/<?php echo $b["country_code"] ?>.png 3x"
+                            <a class="badges" href="" title="<?php echo htmlspecialchars($b["country"]) ?> badge: Make more than 2 posts in this country"><img  src="https://flagcdn.com/20x15/<?php echo $b["country_code"] ?>.png"
+                                srcset="https://flagcdn.com/40x30/<?php echo htmlspecialchars($b["country_code"]) ?>.png 2x,
+                                https://flagcdn.com/60x45/<?php echo htmlspecialchars($b["country_code"]) ?>.png 3x"
                                 width="20"
                                 height="15"
                                 alt="<?php echo $b ?>"></a>

@@ -47,7 +47,7 @@ if(!isset($_SESSION["id"])){
                 $fileDestination = 'images/'.$fileNameNew;
 
                 $imgCompressed = Post::compressImage($post->getFileTmpName(),$fileDestination,20);
-                var_dump($imgCompressed);
+                
 
                 // move_uploaded_file($post->getFileTmpName(), $fileDestination);
 

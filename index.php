@@ -40,8 +40,6 @@
     <link rel="stylesheet" href="style/header.css">
     <link rel="stylesheet" href="style/footer.css">
     <link rel="shortcut icon" type="image/png" href="images/Buckle.png"/>
-    
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cssgram/0.1.10/cssgram.min.css">
     <link rel="stylesheet" href="style/style.css">
@@ -176,7 +174,7 @@
     <?php endforeach; ?>
 
 
-    <a class="btn-more" href="">load more</a>
+    
     
     
 
